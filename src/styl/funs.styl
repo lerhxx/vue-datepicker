@@ -1,0 +1,45 @@
+border-radius()
+    -webkit-border-radius: arguments
+    -moz-border-radius: arguments
+    border-radius: arguments
+
+box-sizing()
+	-webkit-box-sizing: arguments
+	-moz-box-sizing: arguments
+	-ms-box-sizing: arguments
+	-o-box-sizing: arguments
+	box-sizing: arguments
+
+box-shadow()
+	-webkit-box-shadow: arguments
+	-moz-box-shadow: arguments
+	-ms-box-shadow: arguments
+	-o-box-shadow: arguments
+	box-shadow: arguments
+
+transform()
+	-webkit-transform: arguments
+	-moz-transform: arguments
+	-ms-transform: arguments
+	-o-transform: arguments
+	transform: arguments
+
+opacity(n)
+    opacity n
+    if support-for-ie
+        filter unquote('progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round(n * 100) + ')')
+
+-pos(type, args)
+	i = 0
+	position: unquote(type)
+	{args[i]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+	{args[i += 1]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+
+absolute()
+	-pos('absolute', arguments)
+
+relative()
+	-pos('relative', arguments)
+
+fixed()
+	-pos('fixed', arguments)
