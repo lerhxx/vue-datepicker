@@ -76,7 +76,7 @@
                     color: this.themeweekcolor ? this.themeweekcolor : this.theme
                 },
                 themeBorder: {
-                    borderBottom: this.themeborder ? this.themeborder : `1px solid this.theme`
+                    borderBottom: this.themeborder ? this.themeborder : `1px solid ${this.theme}`
                 },
                 themeBtnCon: {
                     border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
@@ -426,6 +426,7 @@
             border-radius(20px)
         .group-btn
             margin 10px 0
+            border-group 1px solid header-color
             text-align center
         .btn
             padding 8px 15px
