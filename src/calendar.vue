@@ -6,23 +6,23 @@
             <span class='input-clear' @click='clearValue'></span>
         </div>
         <transition name='toggle'>
-            <div class='pannel-wrapper' v-show='togglePanel'>
-                <div class='pannel-header'>
-                    <span class='year' v-text='tmpYear'></span>/<span class='month' v-text='tmpMonth + 1'></span>
-                    <span class='prev' @click='prevMonth'>&lt;</span>
-                    <span class='next' @click='nextMonth'>&gt;</span>
+            <div class='pannel-wrapper' :style='themeBorder' v-show='togglePanel'>
+                <div class='pannel-header' :style='themeHeaderBg'>
+                    <span class='year' v-text='tmpYear' :style='themeHeaderYear'></span><span :style='themeHeaderSep'>/</span><span class='month' v-text='tmpMonth + 1' :style='themeHeaderMonth'></span>
+                    <span class='prev' @click='prevMonth' :style='themeLeftArrow'>&lt;</span>
+                    <span class='next' @click='nextMonth' :style='themeRightArrow'>&gt;</span>
                 </div>
                 <div class='date-list'>
                     <ul class='week'>
-                        <li v-for='item in weekList'>{{week(item, lang)}}</li>
+                        <li v-for='item in weekList' :style='themeWeekColor'>{{week(item, lang)}}</li>
                     </ul>
                     <ul class='date'>
-                        <li v-for='item in dateList' :class="{selected: isSelected(item, 'date'), 'notCurMonth': !item.isCurMonth, unvalid: !validDate(item)}" @click='selectDate(item)'>{{item.value}}</li>
+                        <li v-for='item in dateList' :class="{selected: isSelected(item, 'date'), 'notCurMonth': !item.isCurMonth, unvalid: !validDate(item)}" @click='selectDate(item)' :style='setSeltheme(item, "date")'>{{item.value}}</li>
                     </ul>
                 </div>
                 <div class='group-btn'>
-                    <button type='button' class='btn btn-confirm' @click='confirmSelect'>确认</button>
-                    <button type='button' class='btn @click='cancleSelect>取消</button>
+                    <button type='button' class='btn btn-confirm' @click='confirmSelect' :style='themeBtnCon'>确认</button>
+                    <button type='button' class='btn' @click='cancleSelect' :style='themeBtnCan'>取消</button>
                 </div>
             </div>
         </transition>
@@ -52,7 +52,41 @@
                 format: '-',
                 weekList: [0, 1, 2, 3, 4, 5, 6],
                 monthList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-                minDate: curDate.getDate()
+                minDate: curDate.getDate(),
+                flag: true,
+                themeHeaderYear: {
+                    color: this.themeheaderyear ? this.themeheaderyear : this.themeheadercolor
+                },
+                themeHeaderMonth: {
+                    color: this.themeheadermonth ? this.themeheadermonth : this.themeheadercolor
+                },
+                themeHeaderSep: {
+                    color: this.themeheadersep ? this.themeheadersep : this.themeheadercolor
+                },
+                themeLeftArrow: {
+                    color: this.themeleftarrow ? this.themeleftarrow : this.themeheadercolor
+                },
+                themeRightArrow: {
+                    color: this.themerightarrow ? this.themerightarrow : this.themeheadercolor
+                },
+                themeHeaderBg: {
+                    backgroundColor: this.themeheaderbg ? this.themeheaderbg : this.theme
+                },
+                themeWeekColor: {
+                    color: this.themeweekcolor ? this.themeweekcolor : this.theme
+                },
+                themeBorder: {
+                    borderBottom: this.themeborder ? this.themeborder : `1px solid this.theme`
+                },
+                themeBtnCon: {
+                    border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
+                    color: this.themebtnconfirmcolor,
+                    backgroundColor: this.themebtnbg ? this.themebtnbg : this.theme
+                },
+                themeBtnCan: {
+                    border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
+                    color: this.themebtncanclecolor
+                }
             }
         },
         props: {
@@ -63,6 +97,82 @@
             isAbandon: {
                 type: Boolean,
                 default: false
+            },
+            theme: {
+                type: String,
+                default: '#e57373'
+            },
+            themeheadercolor: {
+                type: String,
+                default: '#fff'
+            },
+            themeheaderyear: {
+                type: String,
+                default: ''
+            },
+            themeheadermonth: {
+                type: String,
+                default: ''
+            },
+            themeheadersep: {
+                type: String,
+                default: ''
+            },
+            themeleftarrow: {
+                type: String,
+                default: ''
+            },
+            themerightarrow: {
+                type: String,
+                default: ''
+            },
+            themeheaderbg: {
+                type: String,
+                default: ''
+            },
+            themeweekcolor: {
+                type: String,
+                default: ''
+            },
+            themeborder: {
+                type: String,
+                default: ''
+            },
+            themeselbg: {
+                type: String,
+                default: ''
+            },
+            themeselcolor: {
+                type:String,
+                default: '#fff'
+            },
+            themebtnborder: {
+                type: String,
+                default: ''
+            },
+            themebtnbg: {
+                type: String,
+                default: ''
+            },
+            themebtnconfirmcolor: {
+                type: String,
+                default: '#fff'
+            },
+            themebtncanclecolor: {
+                type: String,
+                default: '#000'
+            },
+            themecurmonthcolor: {
+                type: String,
+                default: '#000'
+            },
+            themeprevmonthcolor: {
+                type: String,
+                default: '#aaa'
+            },
+            themenextmonthcolor: {
+                type: String,
+                default: '#aaa'
             }
         },
         created() {
@@ -121,15 +231,20 @@
                         let selTime = new Date(this.tmpYear, this.tmpMonth, item.value).getTime(),
                             startTime = new Date(this.startYear, this.startMonth, this.startDate).getTime(),
                             endTime = new Date(this.endYear, this.endMonth, this.endDate).getTime();
-                        selTime <= startTime ? (this.startYear = this.tmpYear, this.startMonth = this.tmpMonth, this.startDate = item.value) : (this.endYear = this.tmpYear, this.endMonth = this.tmpMonth, this.endDate = item.value);
-                        // selTime > endTime ? (this.endYear = this.tmpYear, this.endMonth = this.tmpMonth, this.endDate = item.value) : (this.startYear = this.tmpYear, this.startMonth = this.tmpMonth, this.startDate = item.value);
-                        // if(selTime < startTime) {
-                        //     this.startYear = this.tmpYear;
-                        //     this.startMonth = this.tmpMonth;
-                        //     this.startDate = item.value;
-                        // }else if(selTime < endTime) {
-
-                        // }
+                        
+                        if(selTime < startTime) {
+                            this.startYear = this.tmpYear;
+                            this.startMonth = this.tmpMonth;
+                            this.startDate = item.value;
+                            this.flag = true;
+                        }else if(selTime > endTime) {
+                            this.endYear = this.tmpYear;
+                            this.endMonth = this.tmpMonth;
+                            this.endDate = item.value;
+                            this.flag = false;
+                        }else if (selTime > startTime && selTime < endTime) {
+                            this.flag ? (this.startYear = this.tmpYear, this.startMonth = this.tmpMonth, this.startDate = item.value) : (this.endYear = this.tmpYear, this.endMonth = this.tmpMonth, this.endDate = item.value);
+                        }
                         break;
                     default:
                         this.value = '';
@@ -162,6 +277,20 @@
             },
             cancleSelect() {
                 this.togglePanel = !this.togglePanel;
+            },
+            setSeltheme(item, type) {
+                if(this.isSelected(item, type)) {
+                    let bg = this.themeselbg ? this.themeselbg : this.theme;
+                    return `backgroundColor:${bg};color:${this.themeselcolor}`;
+                }else {
+                    if(item.isCurMonth) {
+                        return `color:${this.themecurmonthcolor}`;
+                    }else if(item.isPrevMonth) {
+                        return `color:${this.themeprevmonthcolor}`;
+                    }else {
+                        return `color:${this.themenextmonthcolor}`;
+                    }
+                }
             }
         },
         computed: {
@@ -191,7 +320,7 @@
                     })
                 }
                 return dateList;
-            }
+            },
         }
     }
 </script>
@@ -245,14 +374,13 @@
         .pannel-wrapper
             width width
             height ((li-width + li-margin * 2) * 6 + 125)
-            border-bottom 1px solid header-color
             margin-top 5px
             background #fff
         .pannel-header
             relative()
             padding 3px
-            text-align center
             color #fff
+            text-align center
             font-size 1.5em
             background-color header-color
             border-radius(30px)
@@ -284,6 +412,7 @@
         .date
             li
                 height li-width
+                color #000
                 line-height li-width
                 cursor pointer
             .notCurMonth,
@@ -302,6 +431,7 @@
             padding 8px 15px
             margin 0 15px
             border 1px solid header-color
+            outline none
             font-size 16px
             background #fff
             border-radius(10px)

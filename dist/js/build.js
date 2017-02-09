@@ -8745,7 +8745,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             format: '-',
             weekList: [0, 1, 2, 3, 4, 5, 6],
             monthList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-            minDate: curDate.getDate()
+            minDate: curDate.getDate(),
+            flag: true,
+            themeHeaderYear: {
+                color: this.themeheaderyear ? this.themeheaderyear : this.themeheadercolor
+            },
+            themeHeaderMonth: {
+                color: this.themeheadermonth ? this.themeheadermonth : this.themeheadercolor
+            },
+            themeHeaderSep: {
+                color: this.themeheadersep ? this.themeheadersep : this.themeheadercolor
+            },
+            themeLeftArrow: {
+                color: this.themeleftarrow ? this.themeleftarrow : this.themeheadercolor
+            },
+            themeRightArrow: {
+                color: this.themerightarrow ? this.themerightarrow : this.themeheadercolor
+            },
+            themeHeaderBg: {
+                backgroundColor: this.themeheaderbg ? this.themeheaderbg : this.theme
+            },
+            themeWeekColor: {
+                color: this.themeweekcolor ? this.themeweekcolor : this.theme
+            },
+            themeBorder: {
+                borderBottom: this.themeborder ? this.themeborder : `1px solid this.theme`
+            },
+            themeBtnCon: {
+                border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
+                color: this.themebtnconfirmcolor,
+                backgroundColor: this.themebtnbg ? this.themebtnbg : this.theme
+            },
+            themeBtnCan: {
+                border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
+                color: this.themebtncanclecolor
+            }
         };
     },
     props: {
@@ -8756,6 +8790,82 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         isAbandon: {
             type: Boolean,
             default: false
+        },
+        theme: {
+            type: String,
+            default: '#e57373'
+        },
+        themeheadercolor: {
+            type: String,
+            default: '#fff'
+        },
+        themeheaderyear: {
+            type: String,
+            default: ''
+        },
+        themeheadermonth: {
+            type: String,
+            default: ''
+        },
+        themeheadersep: {
+            type: String,
+            default: ''
+        },
+        themeleftarrow: {
+            type: String,
+            default: ''
+        },
+        themerightarrow: {
+            type: String,
+            default: ''
+        },
+        themeheaderbg: {
+            type: String,
+            default: ''
+        },
+        themeweekcolor: {
+            type: String,
+            default: ''
+        },
+        themeborder: {
+            type: String,
+            default: ''
+        },
+        themeselbg: {
+            type: String,
+            default: ''
+        },
+        themeselcolor: {
+            type: String,
+            default: '#fff'
+        },
+        themebtnborder: {
+            type: String,
+            default: ''
+        },
+        themebtnbg: {
+            type: String,
+            default: ''
+        },
+        themebtnconfirmcolor: {
+            type: String,
+            default: '#fff'
+        },
+        themebtncanclecolor: {
+            type: String,
+            default: '#000'
+        },
+        themecurmonthcolor: {
+            type: String,
+            default: '#000'
+        },
+        themeprevmonthcolor: {
+            type: String,
+            default: '#aaa'
+        },
+        themenextmonthcolor: {
+            type: String,
+            default: '#aaa'
         }
     },
     created() {
@@ -8814,15 +8924,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     let selTime = new Date(this.tmpYear, this.tmpMonth, item.value).getTime(),
                         startTime = new Date(this.startYear, this.startMonth, this.startDate).getTime(),
                         endTime = new Date(this.endYear, this.endMonth, this.endDate).getTime();
-                    selTime <= startTime ? (this.startYear = this.tmpYear, this.startMonth = this.tmpMonth, this.startDate = item.value) : (this.endYear = this.tmpYear, this.endMonth = this.tmpMonth, this.endDate = item.value);
-                    // selTime > endTime ? (this.endYear = this.tmpYear, this.endMonth = this.tmpMonth, this.endDate = item.value) : (this.startYear = this.tmpYear, this.startMonth = this.tmpMonth, this.startDate = item.value);
-                    // if(selTime < startTime) {
-                    //     this.startYear = this.tmpYear;
-                    //     this.startMonth = this.tmpMonth;
-                    //     this.startDate = item.value;
-                    // }else if(selTime < endTime) {
 
-                    // }
+                    if (selTime < startTime) {
+                        this.startYear = this.tmpYear;
+                        this.startMonth = this.tmpMonth;
+                        this.startDate = item.value;
+                        this.flag = true;
+                    } else if (selTime > endTime) {
+                        this.endYear = this.tmpYear;
+                        this.endMonth = this.tmpMonth;
+                        this.endDate = item.value;
+                        this.flag = false;
+                    } else if (selTime > startTime && selTime < endTime) {
+                        this.flag ? (this.startYear = this.tmpYear, this.startMonth = this.tmpMonth, this.startDate = item.value) : (this.endYear = this.tmpYear, this.endMonth = this.tmpMonth, this.endDate = item.value);
+                    }
                     break;
                 default:
                     this.value = '';
@@ -8855,6 +8970,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         cancleSelect() {
             this.togglePanel = !this.togglePanel;
+        },
+        setSeltheme(item, type) {
+            if (this.isSelected(item, type)) {
+                let bg = this.themeselbg ? this.themeselbg : this.theme;
+                return `backgroundColor:${bg};color:${this.themeselcolor}`;
+            } else {
+                if (item.isCurMonth) {
+                    return `color:${this.themecurmonthcolor}`;
+                } else if (item.isPrevMonth) {
+                    return `color:${this.themeprevmonthcolor}`;
+                } else {
+                    return `color:${this.themenextmonthcolor}`;
+                }
+            }
         }
     },
     computed: {
@@ -8896,7 +9025,7 @@ exports = module.exports = __webpack_require__(5)();
 
 
 // module
-exports.push([module.i, "\n.calendar ul {\n  padding: 0;\n  margin: 0;\n}\n.calendar li {\n  display: inline-block;\n  list-style: none;\n}\n.calendar .input-wrapper {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  display: inline-block;\n}\n.calendar .date-icon {\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  width: 20px;\n  height: 20px;\n  background: url(" + __webpack_require__(2) + ");\n  background-size: contain;\n}\n.calendar .input {\n  width: 259px;\n  height: 30px;\n  padding: 5px;\n  padding-left: 30px;\n  border: 1px solid #ddd;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .input-clear {\n  position: absolute;\n  top: 4px;\n  right: 5px;\n  width: 20px;\n  height: 20px;\n}\n.calendar .input-clear:before,\n.calendar .input-clear:after {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  width: 100%;\n  height: 2px;\n  content: '';\n  background: #000;\n}\n.calendar .input-clear:before {\n  -webkit-transform: rotate(45deg);\n  -moz-transform: rotate(45deg);\n  -ms-transform: rotate(45deg);\n  -o-transform: rotate(45deg);\n  transform: rotate(45deg);\n}\n.calendar .input-clear:after {\n  -webkit-transform: rotate(-45deg);\n  -moz-transform: rotate(-45deg);\n  -ms-transform: rotate(-45deg);\n  -o-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n.calendar .pannel-wrapper {\n  width: 259px;\n  height: 347px;\n  border-bottom: 1px solid #e57373;\n  margin-top: 5px;\n  background: #fff;\n}\n.calendar .pannel-header {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  padding: 3px;\n  text-align: center;\n  color: #fff;\n  font-size: 1.5em;\n  background-color: #e57373;\n  -webkit-border-radius: 30px;\n  -moz-border-radius: 30px;\n  border-radius: 30px;\n}\n.calendar .year,\n.calendar .month {\n  display: inline-block;\n  margin: 0 5px;\n  cursor: pointer;\n}\n.calendar .prev,\n.calendar .next {\n  position: absolute;\n  top: 5px;\n  ((null)): 0;\n  cursor: pointer;\n}\n.calendar .prev {\n  left: 10px;\n}\n.calendar .next {\n  right: 10px;\n}\n.calendar .date-list li {\n  width: 35px;\n  margin: 1px;\n  text-align: center;\n  font-size: 1em;\n  cursor: default;\n}\n.calendar .week {\n  margin: 10px 0 5px;\n}\n.calendar .week li {\n  color: #e57373;\n  font-weight: bold;\n}\n.calendar .date li {\n  height: 35px;\n  line-height: 35px;\n  cursor: pointer;\n}\n.calendar .date .notCurMonth,\n.calendar .date .unvalid {\n  color: #aaa;\n}\n.calendar .date .unvalid {\n  cursor: not-allowed;\n}\n.calendar .selected {\n  color: #fff;\n  background-color: #e57373;\n  -webkit-border-radius: 20px;\n  -moz-border-radius: 20px;\n  border-radius: 20px;\n}\n.calendar .group-btn {\n  margin: 10px 0;\n  text-align: center;\n}\n.calendar .btn {\n  padding: 8px 15px;\n  margin: 0 15px;\n  border: 1px solid #e57373;\n  font-size: 16px;\n  background: #fff;\n  -webkit-border-radius: 10px;\n  -moz-border-radius: 10px;\n  border-radius: 10px;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .btn-confirm {\n  color: #fff;\n  background: #e57373;\n}\n", ""]);
+exports.push([module.i, "\n.calendar ul {\n  padding: 0;\n  margin: 0;\n}\n.calendar li {\n  display: inline-block;\n  list-style: none;\n}\n.calendar .input-wrapper {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  display: inline-block;\n}\n.calendar .date-icon {\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  width: 20px;\n  height: 20px;\n  background: url(" + __webpack_require__(2) + ");\n  background-size: contain;\n}\n.calendar .input {\n  width: 259px;\n  height: 30px;\n  padding: 5px;\n  padding-left: 30px;\n  border: 1px solid #ddd;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .input-clear {\n  position: absolute;\n  top: 4px;\n  right: 5px;\n  width: 20px;\n  height: 20px;\n}\n.calendar .input-clear:before,\n.calendar .input-clear:after {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  width: 100%;\n  height: 2px;\n  content: '';\n  background: #000;\n}\n.calendar .input-clear:before {\n  -webkit-transform: rotate(45deg);\n  -moz-transform: rotate(45deg);\n  -ms-transform: rotate(45deg);\n  -o-transform: rotate(45deg);\n  transform: rotate(45deg);\n}\n.calendar .input-clear:after {\n  -webkit-transform: rotate(-45deg);\n  -moz-transform: rotate(-45deg);\n  -ms-transform: rotate(-45deg);\n  -o-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n.calendar .pannel-wrapper {\n  width: 259px;\n  height: 347px;\n  margin-top: 5px;\n  background: #fff;\n}\n.calendar .pannel-header {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  padding: 3px;\n  color: #fff;\n  text-align: center;\n  font-size: 1.5em;\n  background-color: #e57373;\n  -webkit-border-radius: 30px;\n  -moz-border-radius: 30px;\n  border-radius: 30px;\n}\n.calendar .year,\n.calendar .month {\n  display: inline-block;\n  margin: 0 5px;\n  cursor: pointer;\n}\n.calendar .prev,\n.calendar .next {\n  position: absolute;\n  top: 5px;\n  ((null)): 0;\n  cursor: pointer;\n}\n.calendar .prev {\n  left: 10px;\n}\n.calendar .next {\n  right: 10px;\n}\n.calendar .date-list li {\n  width: 35px;\n  margin: 1px;\n  text-align: center;\n  font-size: 1em;\n  cursor: default;\n}\n.calendar .week {\n  margin: 10px 0 5px;\n}\n.calendar .week li {\n  color: #e57373;\n  font-weight: bold;\n}\n.calendar .date li {\n  height: 35px;\n  color: #000;\n  line-height: 35px;\n  cursor: pointer;\n}\n.calendar .date .notCurMonth,\n.calendar .date .unvalid {\n  color: #aaa;\n}\n.calendar .date .unvalid {\n  cursor: not-allowed;\n}\n.calendar .selected {\n  color: #fff;\n  background-color: #e57373;\n  -webkit-border-radius: 20px;\n  -moz-border-radius: 20px;\n  border-radius: 20px;\n}\n.calendar .group-btn {\n  margin: 10px 0;\n  text-align: center;\n}\n.calendar .btn {\n  padding: 8px 15px;\n  margin: 0 15px;\n  border: 1px solid #e57373;\n  outline: none;\n  font-size: 16px;\n  background: #fff;\n  -webkit-border-radius: 10px;\n  -moz-border-radius: 10px;\n  border-radius: 10px;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .btn-confirm {\n  color: #fff;\n  background: #e57373;\n}\n", ""]);
 
 // exports
 
@@ -9045,26 +9174,34 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.togglePanel),
       expression: "togglePanel"
     }],
-    staticClass: "pannel-wrapper"
+    staticClass: "pannel-wrapper",
+    style: (_vm.themeBorder)
   }, [_c('div', {
-    staticClass: "pannel-header"
+    staticClass: "pannel-header",
+    style: (_vm.themeHeaderBg)
   }, [_c('span', {
     staticClass: "year",
+    style: (_vm.themeHeaderYear),
     domProps: {
       "textContent": _vm._s(_vm.tmpYear)
     }
-  }), _vm._v("/"), _c('span', {
+  }), _c('span', {
+    style: (_vm.themeHeaderSep)
+  }, [_vm._v("/")]), _c('span', {
     staticClass: "month",
+    style: (_vm.themeHeaderMonth),
     domProps: {
       "textContent": _vm._s(_vm.tmpMonth + 1)
     }
   }), _vm._v(" "), _c('span', {
     staticClass: "prev",
+    style: (_vm.themeLeftArrow),
     on: {
       "click": _vm.prevMonth
     }
   }, [_vm._v("<")]), _vm._v(" "), _c('span', {
     staticClass: "next",
+    style: (_vm.themeRightArrow),
     on: {
       "click": _vm.nextMonth
     }
@@ -9073,7 +9210,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('ul', {
     staticClass: "week"
   }, _vm._l((_vm.weekList), function(item) {
-    return _c('li', [_vm._v(_vm._s(_vm.week(item, _vm.lang)))])
+    return _c('li', {
+      style: (_vm.themeWeekColor)
+    }, [_vm._v(_vm._s(_vm.week(item, _vm.lang)))])
   })), _vm._v(" "), _c('ul', {
     staticClass: "date"
   }, _vm._l((_vm.dateList), function(item) {
@@ -9081,6 +9220,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       class: {
         selected: _vm.isSelected(item, 'date'), 'notCurMonth': !item.isCurMonth, unvalid: !_vm.validDate(item)
       },
+      style: (_vm.setSeltheme(item, "date")),
       on: {
         "click": function($event) {
           _vm.selectDate(item)
@@ -9091,6 +9231,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "group-btn"
   }, [_c('button', {
     staticClass: "btn btn-confirm",
+    style: (_vm.themeBtnCon),
     attrs: {
       "type": "button"
     },
@@ -9098,10 +9239,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": _vm.confirmSelect
     }
   }, [_vm._v("确认")]), _vm._v(" "), _c('button', {
-    staticClass: "btn @click=",
+    staticClass: "btn",
+    style: (_vm.themeBtnCan),
     attrs: {
-      "type": "button",
-      "cancleSelect": ""
+      "type": "button"
+    },
+    on: {
+      "click": _vm.cancleSelect
     }
   }, [_vm._v("取消")])])])])], 1)
 },staticRenderFns: []}
