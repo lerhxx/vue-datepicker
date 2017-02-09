@@ -8,11 +8,21 @@
         <transition name='toggle'>
             <div class='pannel-wrapper' :style='themeBorder' v-show='togglePanel'>
                 <div class='pannel-header' :style='themeHeaderBg'>
-                    <span class='year' v-text='tmpYear' :style='themeHeaderYear'></span><span :style='themeHeaderSep'>/</span><span class='month' v-text='tmpMonth + 1' :style='themeHeaderMonth'></span>
-                    <span class='prev' @click='prevMonth' :style='themeLeftArrow'>&lt;</span>
-                    <span class='next' @click='nextMonth' :style='themeRightArrow'>&gt;</span>
+                    <span class='year' :style='themeHeaderYear' v-text='tmpYear' @click='showYearPannel'></span><span :style='themeHeaderSep'>/</span><span class='month' :style='themeHeaderMonth' v-text='tmpMonth + 1' @click='showMonthPannel'></span>
+                    <span class='prev' @click='prevMonth' :style='themeLeftArrow' v-show='pannelType !== "month"'>&lt;</span>
+                    <span class='next' @click='nextMonth' :style='themeRightArrow' v-show='pannelType !== "month"'>&gt;</span>
                 </div>
-                <div class='date-list'>
+                <div class='year-list' v-show='pannelType === "year"'>
+                    <ul class='month-wrapper'>
+                        <li v-for='item in yearList' :class="{selected: isSelected(item, 'year')}" @click='selectYear(item)'>{{item}}</li>
+                    </ul>
+                </div>
+                <div class='month-list' v-show='pannelType === "month"'>
+                    <ul class='month-wrapper'>
+                        <li v-for='item in monthList' :class="{selected: isSelected(item, 'month')}" @click='selectMonth(item)'>{{month(item, lang)}}</li>
+                    </ul>
+                </div>
+                <div class='date-list' v-show='pannelType === "date"'>
                     <ul class='week'>
                         <li v-for='item in weekList' :style='themeWeekColor'>{{week(item, lang)}}</li>
                     </ul>
@@ -36,6 +46,7 @@
             return {
                 value: '',
                 togglePanel: true,
+                pannelType: 'date',
                 curYear: curDate.getFullYear(),
                 curMonth: curDate.getMonth(),
                 curDate: curDate.getDate(),
@@ -48,10 +59,11 @@
                 endYear: curDate.getFullYear(),
                 endMonth: curDate.getMonth(),
                 endDate: curDate.getDate(),
+                page: 0,
                 lang: 'zh',
                 format: '-',
                 weekList: [0, 1, 2, 3, 4, 5, 6],
-                monthList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                monthList: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
                 minDate: curDate.getDate(),
                 flag: true,
                 themeHeaderYear: {
@@ -185,8 +197,18 @@
             clearValue() {
                 this.date = '';
             },
+            showYearPannel() {
+                this.pannelType = 'year';
+            },
+            showMonthPannel() {
+                this.pannelType = 'month';
+            },
             isSelected(item, type) {
                 switch(type) {
+                    case 'year':
+                        return item === this.tmpYear;
+                    case 'month':
+                        return item === this.tmpMonth;
                     case 'date':
                         let mon = this.tmpMonth;
                         let time;
@@ -196,6 +218,16 @@
                         time = new Date(this.tmpYear, mon, item.value).getTime()
 
                         return time >= new Date(this.startYear, this.startMonth, this.startDate).getTime() && time <= new Date(this.endYear, this.endMonth, this.endDate).getTime();
+                }
+            },
+            month(item, lang) {
+                switch (lang) {
+                    case 'en':
+                        return {0: 'Jan', 1: 'Feb', 2: 'Mar', 3: 'Apr', 4: 'May', 5: 'Jun', 6: 'Jul', 7: 'Aug', 8: 'Sep', 9: 'Oct', 10: 'Nov', 11: 'Dec'}[item]
+                    case 'zh':
+                        return {0: '一', 1: '二', 2: '三', 3: '四', 4: '五', 5: '六', 6: '七', 7: '八', 8: '九', 9: '十', 10: '十一', 11: '十二'}[item]
+                    default:
+                        return item
                 }
             },
             week(item, lang) {
@@ -215,35 +247,47 @@
                 }
                 return true;
             },
+            selectYear(item) {
+                this.tmpYear = item;
+            },
+            selectMonth(item) {
+                this.tmpMonth = item;
+                this.startYear = this.startMonth = this.startDate = this.endYear = this.endMonth = this.endDate = '';
+            },
             selectDate(item){
                 if(!this.validDate(item)) return;
-
                 //是否修改月份
                 item.isPrevMonth ? (this.tmpMonth === 0 ? (--this.tmpYear,this.tmpMonth = 11) : --this.tmpMonth) : (item.isNextMonth ? (this.tmpMonth === 11 ? (++this.tmpYear, this.tmpMonth = 0) : ++this.tmpMonth) : (this.tmpYear, this.tmpMonth));
 
                 switch(this.type) {
                     case 'single':
                         this.startDate = this.endDate = item.value;
-                        this.startYear = this.endYear = this.tmpYear;
                         this.startMonth = this.endMonth = this.tmpMonth;
+                        this.startYear = this.endYear = this.tmpYear;
                         break;
                     case 'range':
-                        let selTime = new Date(this.tmpYear, this.tmpMonth, item.value).getTime(),
-                            startTime = new Date(this.startYear, this.startMonth, this.startDate).getTime(),
-                            endTime = new Date(this.endYear, this.endMonth, this.endDate).getTime();
-                        
-                        if(selTime < startTime) {
-                            this.startYear = this.tmpYear;
-                            this.startMonth = this.tmpMonth;
-                            this.startDate = item.value;
-                            this.flag = true;
-                        }else if(selTime > endTime) {
-                            this.endYear = this.tmpYear;
-                            this.endMonth = this.tmpMonth;
-                            this.endDate = item.value;
-                            this.flag = false;
-                        }else if (selTime > startTime && selTime < endTime) {
-                            this.flag ? (this.startYear = this.tmpYear, this.startMonth = this.tmpMonth, this.startDate = item.value) : (this.endYear = this.tmpYear, this.endMonth = this.tmpMonth, this.endDate = item.value);
+                        if(this.startYear && this.startMonth && this.startDate && this.endYear && this.endMonth && this.endDate) {
+                            let selTime = new Date(this.tmpYear, this.tmpMonth, item.value).getTime(),
+                                startTime = new Date(this.startYear, this.startMonth, this.startDate).getTime(),
+                                endTime = new Date(this.endYear, this.endMonth, this.endDate).getTime();
+                            
+                            if(selTime < startTime) {
+                                this.startYear = this.tmpYear;
+                                this.startMonth = this.tmpMonth;
+                                this.startDate = item.value;
+                                this.flag = true;
+                            }else if(selTime > endTime) {
+                                this.endYear = this.tmpYear;
+                                this.endMonth = this.tmpMonth;
+                                this.endDate = item.value;
+                                this.flag = false;
+                            }else if (selTime > startTime && selTime < endTime) {
+                                this.flag ? (this.startYear = this.tmpYear, this.startMonth = this.tmpMonth, this.startDate = item.value) : (this.endYear = this.tmpYear, this.endMonth = this.tmpMonth, this.endDate = item.value);
+                            }
+                        }else {
+                            this.startDate = this.endDate = item.value;
+                            this.startMonth = this.endMonth = this.tmpMonth;
+                            this.startYear = this.endYear = this.tmpYear;
                         }
                         break;
                     default:
@@ -251,10 +295,18 @@
                 }
             },
             prevMonth() {
-                this.tmpMonth === 0 ? (--this.tmpYear,this.tmpMonth = 11) : --this.tmpMonth;
+                if(this.pannelType === 'date') {
+                    this.tmpMonth === 0 ? (--this.tmpYear,this.tmpMonth = 11) : --this.tmpMonth;
+                }else if(this.pannelType === 'year') {
+                    --this.page;
+                }
             },
             nextMonth() {
-                this.tmpMonth === 11 ? (++this.tmpYear, this.tmpMonth = 0) : ++this.tmpMonth;
+                if(this.pannelType === 'date') {
+                    this.tmpMonth === 11 ? (++this.tmpYear, this.tmpMonth = 0) : ++this.tmpMonth;
+                }else if(this.pannelType === 'year') {
+                    ++this.page;
+                }
             },
             changeValue() {
                 switch(this.type) {
@@ -271,12 +323,19 @@
             clearValue() {
                 this.value = '';
             },
-            confirmSelect() {
-                this.changeValue();
-                this.togglePanel = !this.togglePanel;
+            confirmSelect(item) {
+                if(this.pannelType === 'year') {
+                    this.pannelType = 'month';
+                }else if(this.pannelType === 'month'){
+                    this.pannelType = 'date';
+                }else {
+                    this.changeValue();
+                    this.togglePanel = !this.togglePanel;
+                }
             },
             cancleSelect() {
                 this.togglePanel = !this.togglePanel;
+                this.pannelType = 'date';
             },
             setSeltheme(item, type) {
                 if(this.isSelected(item, type)) {
@@ -294,6 +353,11 @@
             }
         },
         computed: {
+            yearList() {
+                return Array.from({length: 12}, (val, index) => {
+                    return this.curYear + index + 12 * this.page;
+                })
+            },
             dateList() {
                 let tmpMonthLength = new Date(this.tmpYear, this.tmpMonth + 1, 0).getDate();
                 let dateList = Array.from({length: tmpMonthLength}, (val, index) => {
@@ -373,12 +437,12 @@
                 transform rotate(-45deg)
         .pannel-wrapper
             width width
-            height ((li-width + li-margin * 2) * 6 + 125)
             margin-top 5px
             background #fff
         .pannel-header
             relative()
             padding 3px
+            margin-bottom 10px
             color #fff
             text-align center
             font-size 1.5em
@@ -397,6 +461,14 @@
             left 10px
         .next
             right 10px
+        .month-wrapper
+            width (li-width * 9 / 2)
+            margin 0 auto
+            li
+                width (li-width * 3 / 2)
+                padding 5px 0
+                text-align center
+                cursor pointer
         .date-list
             li
                 width li-width
@@ -405,10 +477,11 @@
                 font-size 1em
                 cursor default
         .week
-            margin 10px 0 5px
+            margin-bottom 5px
             li
                 color header-color
                 font-weight bold
+
         .date
             li
                 height li-width

@@ -8722,6 +8722,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
     data() {
@@ -8729,6 +8739,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             value: '',
             togglePanel: true,
+            pannelType: 'date',
             curYear: curDate.getFullYear(),
             curMonth: curDate.getMonth(),
             curDate: curDate.getDate(),
@@ -8741,10 +8752,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             endYear: curDate.getFullYear(),
             endMonth: curDate.getMonth(),
             endDate: curDate.getDate(),
+            page: 0,
             lang: 'zh',
             format: '-',
             weekList: [0, 1, 2, 3, 4, 5, 6],
-            monthList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            monthList: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
             minDate: curDate.getDate(),
             flag: true,
             themeHeaderYear: {
@@ -8878,8 +8890,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         clearValue() {
             this.date = '';
         },
+        showYearPannel() {
+            this.pannelType = 'year';
+        },
+        showMonthPannel() {
+            this.pannelType = 'month';
+        },
         isSelected(item, type) {
             switch (type) {
+                case 'year':
+                    return item === this.tmpYear;
+                case 'month':
+                    return item === this.tmpMonth;
                 case 'date':
                     let mon = this.tmpMonth;
                     let time;
@@ -8889,6 +8911,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     time = new Date(this.tmpYear, mon, item.value).getTime();
 
                     return time >= new Date(this.startYear, this.startMonth, this.startDate).getTime() && time <= new Date(this.endYear, this.endMonth, this.endDate).getTime();
+            }
+        },
+        month(item, lang) {
+            switch (lang) {
+                case 'en':
+                    return { 0: 'Jan', 1: 'Feb', 2: 'Mar', 3: 'Apr', 4: 'May', 5: 'Jun', 6: 'Jul', 7: 'Aug', 8: 'Sep', 9: 'Oct', 10: 'Nov', 11: 'Dec' }[item];
+                case 'zh':
+                    return { 0: '一', 1: '二', 2: '三', 3: '四', 4: '五', 5: '六', 6: '七', 7: '八', 8: '九', 9: '十', 10: '十一', 11: '十二' }[item];
+                default:
+                    return item;
             }
         },
         week(item, lang) {
@@ -8908,35 +8940,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
             return true;
         },
+        selectYear(item) {
+            this.tmpYear = item;
+        },
+        selectMonth(item) {
+            this.tmpMonth = item;
+            this.startYear = this.startMonth = this.startDate = this.endYear = this.endMonth = this.endDate = '';
+        },
         selectDate(item) {
             if (!this.validDate(item)) return;
-
             //是否修改月份
             item.isPrevMonth ? this.tmpMonth === 0 ? (--this.tmpYear, this.tmpMonth = 11) : --this.tmpMonth : item.isNextMonth ? this.tmpMonth === 11 ? (++this.tmpYear, this.tmpMonth = 0) : ++this.tmpMonth : (this.tmpYear, this.tmpMonth);
 
             switch (this.type) {
                 case 'single':
                     this.startDate = this.endDate = item.value;
-                    this.startYear = this.endYear = this.tmpYear;
                     this.startMonth = this.endMonth = this.tmpMonth;
+                    this.startYear = this.endYear = this.tmpYear;
                     break;
                 case 'range':
-                    let selTime = new Date(this.tmpYear, this.tmpMonth, item.value).getTime(),
-                        startTime = new Date(this.startYear, this.startMonth, this.startDate).getTime(),
-                        endTime = new Date(this.endYear, this.endMonth, this.endDate).getTime();
+                    if (this.startYear && this.startMonth && this.startDate && this.endYear && this.endMonth && this.endDate) {
+                        let selTime = new Date(this.tmpYear, this.tmpMonth, item.value).getTime(),
+                            startTime = new Date(this.startYear, this.startMonth, this.startDate).getTime(),
+                            endTime = new Date(this.endYear, this.endMonth, this.endDate).getTime();
 
-                    if (selTime < startTime) {
-                        this.startYear = this.tmpYear;
-                        this.startMonth = this.tmpMonth;
-                        this.startDate = item.value;
-                        this.flag = true;
-                    } else if (selTime > endTime) {
-                        this.endYear = this.tmpYear;
-                        this.endMonth = this.tmpMonth;
-                        this.endDate = item.value;
-                        this.flag = false;
-                    } else if (selTime > startTime && selTime < endTime) {
-                        this.flag ? (this.startYear = this.tmpYear, this.startMonth = this.tmpMonth, this.startDate = item.value) : (this.endYear = this.tmpYear, this.endMonth = this.tmpMonth, this.endDate = item.value);
+                        if (selTime < startTime) {
+                            this.startYear = this.tmpYear;
+                            this.startMonth = this.tmpMonth;
+                            this.startDate = item.value;
+                            this.flag = true;
+                        } else if (selTime > endTime) {
+                            this.endYear = this.tmpYear;
+                            this.endMonth = this.tmpMonth;
+                            this.endDate = item.value;
+                            this.flag = false;
+                        } else if (selTime > startTime && selTime < endTime) {
+                            this.flag ? (this.startYear = this.tmpYear, this.startMonth = this.tmpMonth, this.startDate = item.value) : (this.endYear = this.tmpYear, this.endMonth = this.tmpMonth, this.endDate = item.value);
+                        }
+                    } else {
+                        this.startDate = this.endDate = item.value;
+                        this.startMonth = this.endMonth = this.tmpMonth;
+                        this.startYear = this.endYear = this.tmpYear;
                     }
                     break;
                 default:
@@ -8944,10 +8988,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         prevMonth() {
-            this.tmpMonth === 0 ? (--this.tmpYear, this.tmpMonth = 11) : --this.tmpMonth;
+            if (this.pannelType === 'date') {
+                this.tmpMonth === 0 ? (--this.tmpYear, this.tmpMonth = 11) : --this.tmpMonth;
+            } else if (this.pannelType === 'year') {
+                --this.page;
+            }
         },
         nextMonth() {
-            this.tmpMonth === 11 ? (++this.tmpYear, this.tmpMonth = 0) : ++this.tmpMonth;
+            if (this.pannelType === 'date') {
+                this.tmpMonth === 11 ? (++this.tmpYear, this.tmpMonth = 0) : ++this.tmpMonth;
+            } else if (this.pannelType === 'year') {
+                ++this.page;
+            }
         },
         changeValue() {
             switch (this.type) {
@@ -8964,12 +9016,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         clearValue() {
             this.value = '';
         },
-        confirmSelect() {
-            this.changeValue();
-            this.togglePanel = !this.togglePanel;
+        confirmSelect(item) {
+            if (this.pannelType === 'year') {
+                this.pannelType = 'month';
+            } else if (this.pannelType === 'month') {
+                this.pannelType = 'date';
+            } else {
+                this.changeValue();
+                this.togglePanel = !this.togglePanel;
+            }
         },
         cancleSelect() {
             this.togglePanel = !this.togglePanel;
+            this.pannelType = 'date';
         },
         setSeltheme(item, type) {
             if (this.isSelected(item, type)) {
@@ -8987,6 +9046,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     computed: {
+        yearList() {
+            return Array.from({ length: 12 }, (val, index) => {
+                return this.curYear + index + 12 * this.page;
+            });
+        },
         dateList() {
             let tmpMonthLength = new Date(this.tmpYear, this.tmpMonth + 1, 0).getDate();
             let dateList = Array.from({ length: tmpMonthLength }, (val, index) => {
@@ -9025,7 +9089,7 @@ exports = module.exports = __webpack_require__(5)();
 
 
 // module
-exports.push([module.i, "\n.calendar ul {\n  padding: 0;\n  margin: 0;\n}\n.calendar li {\n  display: inline-block;\n  list-style: none;\n}\n.calendar .input-wrapper {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  display: inline-block;\n}\n.calendar .date-icon {\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  width: 20px;\n  height: 20px;\n  background: url(" + __webpack_require__(2) + ");\n  background-size: contain;\n}\n.calendar .input {\n  width: 259px;\n  height: 30px;\n  padding: 5px;\n  padding-left: 30px;\n  border: 1px solid #ddd;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .input-clear {\n  position: absolute;\n  top: 4px;\n  right: 5px;\n  width: 20px;\n  height: 20px;\n}\n.calendar .input-clear:before,\n.calendar .input-clear:after {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  width: 100%;\n  height: 2px;\n  content: '';\n  background: #000;\n}\n.calendar .input-clear:before {\n  -webkit-transform: rotate(45deg);\n  -moz-transform: rotate(45deg);\n  -ms-transform: rotate(45deg);\n  -o-transform: rotate(45deg);\n  transform: rotate(45deg);\n}\n.calendar .input-clear:after {\n  -webkit-transform: rotate(-45deg);\n  -moz-transform: rotate(-45deg);\n  -ms-transform: rotate(-45deg);\n  -o-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n.calendar .pannel-wrapper {\n  width: 259px;\n  height: 347px;\n  margin-top: 5px;\n  background: #fff;\n}\n.calendar .pannel-header {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  padding: 3px;\n  color: #fff;\n  text-align: center;\n  font-size: 1.5em;\n  background-color: #e57373;\n  -webkit-border-radius: 30px;\n  -moz-border-radius: 30px;\n  border-radius: 30px;\n}\n.calendar .year,\n.calendar .month {\n  display: inline-block;\n  margin: 0 5px;\n  cursor: pointer;\n}\n.calendar .prev,\n.calendar .next {\n  position: absolute;\n  top: 5px;\n  ((null)): 0;\n  cursor: pointer;\n}\n.calendar .prev {\n  left: 10px;\n}\n.calendar .next {\n  right: 10px;\n}\n.calendar .date-list li {\n  width: 35px;\n  margin: 1px;\n  text-align: center;\n  font-size: 1em;\n  cursor: default;\n}\n.calendar .week {\n  margin: 10px 0 5px;\n}\n.calendar .week li {\n  color: #e57373;\n  font-weight: bold;\n}\n.calendar .date li {\n  height: 35px;\n  color: #000;\n  line-height: 35px;\n  cursor: pointer;\n}\n.calendar .date .notCurMonth,\n.calendar .date .unvalid {\n  color: #aaa;\n}\n.calendar .date .unvalid {\n  cursor: not-allowed;\n}\n.calendar .selected {\n  color: #fff;\n  background-color: #e57373;\n  -webkit-border-radius: 20px;\n  -moz-border-radius: 20px;\n  border-radius: 20px;\n}\n.calendar .group-btn {\n  margin: 10px 0;\n  border-group: 1px solid #e57373;\n  text-align: center;\n}\n.calendar .btn {\n  padding: 8px 15px;\n  margin: 0 15px;\n  border: 1px solid #e57373;\n  outline: none;\n  font-size: 16px;\n  background: #fff;\n  -webkit-border-radius: 10px;\n  -moz-border-radius: 10px;\n  border-radius: 10px;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .btn-confirm {\n  color: #fff;\n  background: #e57373;\n}\n", ""]);
+exports.push([module.i, "\n.calendar ul {\n  padding: 0;\n  margin: 0;\n}\n.calendar li {\n  display: inline-block;\n  list-style: none;\n}\n.calendar .input-wrapper {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  display: inline-block;\n}\n.calendar .date-icon {\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  width: 20px;\n  height: 20px;\n  background: url(" + __webpack_require__(2) + ");\n  background-size: contain;\n}\n.calendar .input {\n  width: 259px;\n  height: 30px;\n  padding: 5px;\n  padding-left: 30px;\n  border: 1px solid #ddd;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .input-clear {\n  position: absolute;\n  top: 4px;\n  right: 5px;\n  width: 20px;\n  height: 20px;\n}\n.calendar .input-clear:before,\n.calendar .input-clear:after {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  width: 100%;\n  height: 2px;\n  content: '';\n  background: #000;\n}\n.calendar .input-clear:before {\n  -webkit-transform: rotate(45deg);\n  -moz-transform: rotate(45deg);\n  -ms-transform: rotate(45deg);\n  -o-transform: rotate(45deg);\n  transform: rotate(45deg);\n}\n.calendar .input-clear:after {\n  -webkit-transform: rotate(-45deg);\n  -moz-transform: rotate(-45deg);\n  -ms-transform: rotate(-45deg);\n  -o-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n.calendar .pannel-wrapper {\n  width: 259px;\n  margin-top: 5px;\n  background: #fff;\n}\n.calendar .pannel-header {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  padding: 3px;\n  margin-bottom: 10px;\n  color: #fff;\n  text-align: center;\n  font-size: 1.5em;\n  background-color: #e57373;\n  -webkit-border-radius: 30px;\n  -moz-border-radius: 30px;\n  border-radius: 30px;\n}\n.calendar .year,\n.calendar .month {\n  display: inline-block;\n  margin: 0 5px;\n  cursor: pointer;\n}\n.calendar .prev,\n.calendar .next {\n  position: absolute;\n  top: 5px;\n  ((null)): 0;\n  cursor: pointer;\n}\n.calendar .prev {\n  left: 10px;\n}\n.calendar .next {\n  right: 10px;\n}\n.calendar .month-wrapper {\n  width: 157.5px;\n  margin: 0 auto;\n}\n.calendar .month-wrapper li {\n  width: 52.5px;\n  padding: 5px 0;\n  text-align: center;\n  cursor: pointer;\n}\n.calendar .date-list li {\n  width: 35px;\n  margin: 1px;\n  text-align: center;\n  font-size: 1em;\n  cursor: default;\n}\n.calendar .week {\n  margin-bottom: 5px;\n}\n.calendar .week li {\n  color: #e57373;\n  font-weight: bold;\n}\n.calendar .date li {\n  height: 35px;\n  color: #000;\n  line-height: 35px;\n  cursor: pointer;\n}\n.calendar .date .notCurMonth,\n.calendar .date .unvalid {\n  color: #aaa;\n}\n.calendar .date .unvalid {\n  cursor: not-allowed;\n}\n.calendar .selected {\n  color: #fff;\n  background-color: #e57373;\n  -webkit-border-radius: 20px;\n  -moz-border-radius: 20px;\n  border-radius: 20px;\n}\n.calendar .group-btn {\n  margin: 10px 0;\n  border-group: 1px solid #e57373;\n  text-align: center;\n}\n.calendar .btn {\n  padding: 8px 15px;\n  margin: 0 15px;\n  border: 1px solid #e57373;\n  outline: none;\n  font-size: 16px;\n  background: #fff;\n  -webkit-border-radius: 10px;\n  -moz-border-radius: 10px;\n  border-radius: 10px;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .btn-confirm {\n  color: #fff;\n  background: #e57373;\n}\n", ""]);
 
 // exports
 
@@ -9184,6 +9248,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     style: (_vm.themeHeaderYear),
     domProps: {
       "textContent": _vm._s(_vm.tmpYear)
+    },
+    on: {
+      "click": _vm.showYearPannel
     }
   }), _c('span', {
     style: (_vm.themeHeaderSep)
@@ -9192,20 +9259,83 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     style: (_vm.themeHeaderMonth),
     domProps: {
       "textContent": _vm._s(_vm.tmpMonth + 1)
+    },
+    on: {
+      "click": _vm.showMonthPannel
     }
   }), _vm._v(" "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.pannelType !== "month"),
+      expression: "pannelType !== \"month\""
+    }],
     staticClass: "prev",
     style: (_vm.themeLeftArrow),
     on: {
       "click": _vm.prevMonth
     }
   }, [_vm._v("<")]), _vm._v(" "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.pannelType !== "month"),
+      expression: "pannelType !== \"month\""
+    }],
     staticClass: "next",
     style: (_vm.themeRightArrow),
     on: {
       "click": _vm.nextMonth
     }
   }, [_vm._v(">")])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.pannelType === "year"),
+      expression: "pannelType === \"year\""
+    }],
+    staticClass: "year-list"
+  }, [_c('ul', {
+    staticClass: "month-wrapper"
+  }, _vm._l((_vm.yearList), function(item) {
+    return _c('li', {
+      class: {
+        selected: _vm.isSelected(item, 'year')
+      },
+      on: {
+        "click": function($event) {
+          _vm.selectYear(item)
+        }
+      }
+    }, [_vm._v(_vm._s(item))])
+  }))]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.pannelType === "month"),
+      expression: "pannelType === \"month\""
+    }],
+    staticClass: "month-list"
+  }, [_c('ul', {
+    staticClass: "month-wrapper"
+  }, _vm._l((_vm.monthList), function(item) {
+    return _c('li', {
+      class: {
+        selected: _vm.isSelected(item, 'month')
+      },
+      on: {
+        "click": function($event) {
+          _vm.selectMonth(item)
+        }
+      }
+    }, [_vm._v(_vm._s(_vm.month(item, _vm.lang)))])
+  }))]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.pannelType === "date"),
+      expression: "pannelType === \"date\""
+    }],
     staticClass: "date-list"
   }, [_c('ul', {
     staticClass: "week"
