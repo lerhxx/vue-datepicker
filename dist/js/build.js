@@ -8787,18 +8787,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             themeBtnCon: {
                 border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
                 color: this.themebtnconfirmcolor,
-                backgroundColor: this.themebtnbg ? this.themebtnbg : this.theme
+                backgroundColor: this.themebtnconbg ? this.themebtnconbg : this.theme
             },
             themeBtnCan: {
                 border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
-                color: this.themebtncanclecolor
+                color: this.themebtncanclecolor,
+                backgroundColor: this.themebtncanbg ? this.themebtncanbg : this.theme
             }
         };
     },
     props: {
         type: {
             type: String,
-            default: 'range' //range
+            default: 'single' //range
         },
         isAbandon: {
             type: Boolean,
@@ -8864,9 +8865,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: String,
             default: ''
         },
-        themebtnbg: {
+        themebtnconbg: {
             type: String,
             default: ''
+        },
+        themebtncanbg: {
+            type: String,
+            default: '#fff'
         },
         themebtnconfirmcolor: {
             type: String,
@@ -9108,7 +9113,7 @@ exports = module.exports = __webpack_require__(5)();
 
 
 // module
-exports.push([module.i, "\n.calendar ul {\n  padding: 0;\n  margin: 0;\n}\n.calendar li {\n  display: inline-block;\n  list-style: none;\n}\n.calendar .input-wrapper {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  display: inline-block;\n}\n.calendar .date-icon {\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  width: 20px;\n  height: 20px;\n  background: url(" + __webpack_require__(2) + ");\n  background-size: contain;\n}\n.calendar .input {\n  width: 259px;\n  height: 30px;\n  padding: 5px;\n  padding-left: 30px;\n  border: 1px solid #ddd;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .input-clear {\n  position: absolute;\n  top: 4px;\n  right: 5px;\n  width: 20px;\n  height: 20px;\n}\n.calendar .input-clear:before,\n.calendar .input-clear:after {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  width: 100%;\n  height: 2px;\n  content: '';\n  background: #000;\n}\n.calendar .input-clear:before {\n  -webkit-transform: rotate(45deg);\n  -moz-transform: rotate(45deg);\n  -ms-transform: rotate(45deg);\n  -o-transform: rotate(45deg);\n  transform: rotate(45deg);\n}\n.calendar .input-clear:after {\n  -webkit-transform: rotate(-45deg);\n  -moz-transform: rotate(-45deg);\n  -ms-transform: rotate(-45deg);\n  -o-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n.calendar .pannel-wrapper {\n  width: 259px;\n  margin-top: 5px;\n  background: #fff;\n}\n.calendar .pannel-header {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  padding: 3px;\n  margin-bottom: 10px;\n  color: #fff;\n  text-align: center;\n  font-size: 1.5em;\n  background-color: #e57373;\n  -webkit-border-radius: 30px;\n  -moz-border-radius: 30px;\n  border-radius: 30px;\n}\n.calendar .year,\n.calendar .month {\n  display: inline-block;\n  margin: 0 5px;\n  cursor: pointer;\n}\n.calendar .prev,\n.calendar .next {\n  position: absolute;\n  top: 5px;\n  ((null)): 0;\n  cursor: pointer;\n}\n.calendar .prev {\n  left: 10px;\n}\n.calendar .next {\n  right: 10px;\n}\n.calendar .month-wrapper {\n  width: 157.5px;\n  margin: 0 auto;\n}\n.calendar .month-wrapper li {\n  width: 52.5px;\n  padding: 5px 0;\n  text-align: center;\n  cursor: pointer;\n}\n.calendar .date-list li {\n  width: 35px;\n  margin: 1px;\n  text-align: center;\n  font-size: 1em;\n  cursor: default;\n}\n.calendar .week {\n  margin-bottom: 5px;\n}\n.calendar .week li {\n  color: #e57373;\n  font-weight: bold;\n}\n.calendar .date li {\n  height: 35px;\n  color: #000;\n  line-height: 35px;\n  cursor: pointer;\n}\n.calendar .date .notCurMonth,\n.calendar .date .unvalid {\n  color: #aaa;\n}\n.calendar .date .unvalid {\n  cursor: not-allowed;\n}\n.calendar .selected {\n  color: #fff;\n  background-color: #e57373;\n  -webkit-border-radius: 20px;\n  -moz-border-radius: 20px;\n  border-radius: 20px;\n}\n.calendar .group-btn {\n  margin: 10px 0;\n  border-group: 1px solid #e57373;\n  text-align: center;\n}\n.calendar .btn {\n  padding: 8px 15px;\n  margin: 0 15px;\n  border: 1px solid #e57373;\n  outline: none;\n  font-size: 16px;\n  background: #fff;\n  -webkit-border-radius: 10px;\n  -moz-border-radius: 10px;\n  border-radius: 10px;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .btn-confirm {\n  color: #fff;\n  background: #e57373;\n}\n", ""]);
+exports.push([module.i, "\n.calendar ul {\n  padding: 0;\n  margin: 0;\n}\n.calendar li {\n  display: inline-block;\n  list-style: none;\n}\n.calendar .input-wrapper {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  display: inline-block;\n}\n.calendar .date-icon {\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  width: 20px;\n  height: 20px;\n  background: url(" + __webpack_require__(2) + ");\n  background-size: contain;\n}\n.calendar .input {\n  width: 259px;\n  height: 30px;\n  padding: 5px;\n  padding-left: 30px;\n  border: 1px solid #ddd;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .input-clear {\n  position: absolute;\n  top: 4px;\n  right: 5px;\n  width: 20px;\n  height: 20px;\n}\n.calendar .input-clear:before,\n.calendar .input-clear:after {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  width: 100%;\n  height: 2px;\n  content: '';\n  background: #000;\n}\n.calendar .input-clear:before {\n  -webkit-transform: rotate(45deg);\n  -moz-transform: rotate(45deg);\n  -ms-transform: rotate(45deg);\n  -o-transform: rotate(45deg);\n  transform: rotate(45deg);\n}\n.calendar .input-clear:after {\n  -webkit-transform: rotate(-45deg);\n  -moz-transform: rotate(-45deg);\n  -ms-transform: rotate(-45deg);\n  -o-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n.calendar .pannel-wrapper {\n  width: 259px;\n  margin-top: 5px;\n  background: #fff;\n}\n.calendar .pannel-header {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  padding: 3px;\n  margin-bottom: 10px;\n  color: #fff;\n  text-align: center;\n  font-size: 1.5em;\n  background-color: #e57373;\n  -webkit-border-radius: 30px;\n  -moz-border-radius: 30px;\n  border-radius: 30px;\n}\n.calendar .year,\n.calendar .month {\n  display: inline-block;\n  margin: 0 5px;\n  cursor: pointer;\n}\n.calendar .prev,\n.calendar .next {\n  position: absolute;\n  top: 5px;\n  ((null)): 0;\n  cursor: pointer;\n}\n.calendar .prev {\n  left: 10px;\n}\n.calendar .next {\n  right: 10px;\n}\n.calendar .month-wrapper {\n  width: 157.5px;\n  margin: 0 auto;\n}\n.calendar .month-wrapper li {\n  width: 52.5px;\n  padding: 5px 0;\n  text-align: center;\n  cursor: pointer;\n}\n.calendar .date-list li {\n  width: 35px;\n  margin: 1px;\n  text-align: center;\n  font-size: 1em;\n  cursor: default;\n}\n.calendar .week {\n  margin-bottom: 5px;\n}\n.calendar .week li {\n  color: #e57373;\n  font-weight: bold;\n}\n.calendar .date li {\n  height: 35px;\n  color: #000;\n  line-height: 35px;\n  cursor: pointer;\n}\n.calendar .date .notCurMonth,\n.calendar .date .unvalid {\n  color: #aaa;\n}\n.calendar .date .unvalid {\n  cursor: not-allowed;\n}\n.calendar .selected {\n  color: #fff;\n  background-color: #e57373;\n  -webkit-border-radius: 20px;\n  -moz-border-radius: 20px;\n  border-radius: 20px;\n}\n.calendar .group-btn {\n  margin: 10px 0;\n  border-group: 1px solid #e57373;\n  text-align: center;\n}\n.calendar .btn {\n  padding: 8px 15px;\n  margin: 0 15px;\n  border: 1px solid #e57373;\n  outline: none;\n  font-size: 16px;\n  background: #fff;\n  -webkit-border-radius: 10px;\n  -moz-border-radius: 10px;\n  border-radius: 10px;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .btn-confirm {\n  color: #fff;\n  background: #e57373;\n}\n.calendar .btn-cancle {\n  color: #000;\n  background: #fff;\n}\n", ""]);
 
 // exports
 
@@ -9394,7 +9399,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": _vm.confirmSelect
     }
   }, [_vm._v("确认")]), _vm._v(" "), _c('button', {
-    staticClass: "btn",
+    staticClass: "btn btn-cancle",
     style: (_vm.themeBtnCan),
     attrs: {
       "type": "button"

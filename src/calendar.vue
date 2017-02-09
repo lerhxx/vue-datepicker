@@ -32,7 +32,7 @@
                 </div>
                 <div class='group-btn'>
                     <button type='button' class='btn btn-confirm' @click='confirmSelect' :style='themeBtnCon'>确认</button>
-                    <button type='button' class='btn' @click='cancleSelect' :style='themeBtnCan'>取消</button>
+                    <button type='button' class='btn btn-cancle' @click='cancleSelect' :style='themeBtnCan'>取消</button>
                 </div>
             </div>
         </transition>
@@ -94,18 +94,19 @@
                 themeBtnCon: {
                     border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
                     color: this.themebtnconfirmcolor,
-                    backgroundColor: this.themebtnbg ? this.themebtnbg : this.theme
+                    backgroundColor: this.themebtnconbg ? this.themebtnconbg : this.theme
                 },
                 themeBtnCan: {
                     border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
-                    color: this.themebtncanclecolor
+                    color: this.themebtncanclecolor,
+                    backgroundColor: this.themebtncanbg ? this.themebtncanbg : this.theme
                 }
             }
         },
         props: {
             type: {
                 type: String,
-                default: 'range'            //range
+                default: 'single'            //range
             },
             isAbandon: {
                 type: Boolean,
@@ -171,9 +172,13 @@
                 type: String,
                 default: ''
             },
-            themebtnbg: {
+            themebtnconbg: {
                 type: String,
                 default: ''
+            },
+            themebtncanbg: {
+                type: String,
+                default: '#fff'
             },
             themebtnconfirmcolor: {
                 type: String,
@@ -532,4 +537,7 @@
         .btn-confirm
             color #fff
             background header-color
+        .btn-cancle
+            color #000
+            background #fff
 </style>
