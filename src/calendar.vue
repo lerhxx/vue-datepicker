@@ -1,12 +1,12 @@
 <template>
     <div class='calendar'>
-        <div class='input-wrapper'>
+        <div class='input-wrapper' v-show='showInput'>
             <i class='date-icon'></i>
             <div class='input' v-text='value' @click='onTogglePanel'></div>
             <span class='input-clear' @click='clearValue'></span>
         </div>
         <transition name='toggle'>
-            <div class='pannel-wrapper' :style='themeBorder' v-show='togglePanel'>
+            <div class='pannel-wrapper' :style='themePannel' v-show='togglePanel'>
                 <div class='pannel-header' :style='themeHeaderBg'>
                     <span class='year' :style='themeHeaderYear' v-text='tmpYear' @click='showYearPannel'></span><span :style='themeHeaderSep'>/</span><span class='month' :style='themeHeaderMonth' v-text='tmpMonth + 1' @click='showMonthPannel'></span>
                     <span class='prev' @click='prevMonth' :style='themeLeftArrow' v-show='pannelType !== "month"'>&lt;</span>
@@ -66,6 +66,10 @@
                 monthList: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
                 minDate: curDate.getDate(),
                 flag: true,
+                themePannel: {
+                    borderBottom: this.themeborder ? this.themeborder : `1px solid ${this.theme}`,
+                    backgroundColor: this.themepannelbg
+                },
                 themeHeaderYear: {
                     color: this.themeheaderyear ? this.themeheaderyear : this.themeheadercolor
                 },
@@ -87,9 +91,6 @@
                 themeWeekColor: {
                     color: this.themeweekcolor ? this.themeweekcolor : this.theme
                 },
-                themeBorder: {
-                    borderBottom: this.themeborder ? this.themeborder : `1px solid ${this.theme}`
-                },
                 themeBtnCon: {
                     border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
                     color: this.themebtnconfirmcolor,
@@ -108,11 +109,19 @@
             },
             isAbandon: {
                 type: Boolean,
-                default: false
+                default: true
+            },
+            showInput: {
+                type: Boolean,
+                default: true
             },
             theme: {
                 type: String,
                 default: '#e57373'
+            },
+            themepannelbg: {
+                type: String,
+                default: '#fff'
             },
             themeheadercolor: {
                 type: String,
@@ -185,6 +194,10 @@
             themenextmonthcolor: {
                 type: String,
                 default: '#aaa'
+            },
+            themenotallowcolor: {
+                type: String,
+                default: '#aaa'
             }
         },
         created() {
@@ -252,7 +265,6 @@
             },
             selectMonth(item) {
                 this.tmpMonth = item;
-                this.startYear = this.startMonth = this.startDate = this.endYear = this.endMonth = this.endDate = '';
             },
             selectDate(item){
                 if(!this.validDate(item)) return;
@@ -322,12 +334,14 @@
             },
             clearValue() {
                 this.value = '';
+                this.startYear = this.startMonth = this.startDate = this.endYear = this.endMonth = this.endDate = '';
             },
-            confirmSelect(item) {
+            confirmSelect() {
                 if(this.pannelType === 'year') {
                     this.pannelType = 'month';
                 }else if(this.pannelType === 'month'){
                     this.pannelType = 'date';
+                    this.startYear = this.startMonth = this.startDate = this.endYear = this.endMonth = this.endDate = '';
                 }else {
                     this.changeValue();
                     this.togglePanel = !this.togglePanel;
@@ -336,9 +350,14 @@
             cancleSelect() {
                 this.togglePanel = !this.togglePanel;
                 this.pannelType = 'date';
+                this.tmpYear = this.startYear = this.endYear = this.curYear;
+                this.tmpMonth = this.startMonth = this.endMonth = this.curMonth;
+                this.tmpDate = this.startDate = this.endDate = this.curDate;
             },
             setSeltheme(item, type) {
-                if(this.isSelected(item, type)) {
+                if(!this.validDate(item)) {
+                    return `color:${this.themenotallowcolor}`;
+                }else if(this.isSelected(item, type)) {
                     let bg = this.themeselbg ? this.themeselbg : this.theme;
                     return `backgroundColor:${bg};color:${this.themeselcolor}`;
                 }else {

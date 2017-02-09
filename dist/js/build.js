@@ -8759,6 +8759,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             monthList: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
             minDate: curDate.getDate(),
             flag: true,
+            themePannel: {
+                borderBottom: this.themeborder ? this.themeborder : `1px solid ${this.theme}`,
+                backgroundColor: this.themepannelbg
+            },
             themeHeaderYear: {
                 color: this.themeheaderyear ? this.themeheaderyear : this.themeheadercolor
             },
@@ -8780,9 +8784,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             themeWeekColor: {
                 color: this.themeweekcolor ? this.themeweekcolor : this.theme
             },
-            themeBorder: {
-                borderBottom: this.themeborder ? this.themeborder : `1px solid ${this.theme}`
-            },
             themeBtnCon: {
                 border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
                 color: this.themebtnconfirmcolor,
@@ -8801,11 +8802,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         isAbandon: {
             type: Boolean,
-            default: false
+            default: true
+        },
+        showInput: {
+            type: Boolean,
+            default: true
         },
         theme: {
             type: String,
             default: '#e57373'
+        },
+        themepannelbg: {
+            type: String,
+            default: '#fff'
         },
         themeheadercolor: {
             type: String,
@@ -8878,6 +8887,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         themenextmonthcolor: {
             type: String,
             default: '#aaa'
+        },
+        themenotallowcolor: {
+            type: String,
+            default: '#aaa'
         }
     },
     created() {
@@ -8945,7 +8958,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         selectMonth(item) {
             this.tmpMonth = item;
-            this.startYear = this.startMonth = this.startDate = this.endYear = this.endMonth = this.endDate = '';
         },
         selectDate(item) {
             if (!this.validDate(item)) return;
@@ -9015,12 +9027,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         clearValue() {
             this.value = '';
+            this.startYear = this.startMonth = this.startDate = this.endYear = this.endMonth = this.endDate = '';
         },
-        confirmSelect(item) {
+        confirmSelect() {
             if (this.pannelType === 'year') {
                 this.pannelType = 'month';
             } else if (this.pannelType === 'month') {
                 this.pannelType = 'date';
+                this.startYear = this.startMonth = this.startDate = this.endYear = this.endMonth = this.endDate = '';
             } else {
                 this.changeValue();
                 this.togglePanel = !this.togglePanel;
@@ -9029,9 +9043,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         cancleSelect() {
             this.togglePanel = !this.togglePanel;
             this.pannelType = 'date';
+            this.tmpYear = this.startYear = this.endYear = this.curYear;
+            this.tmpMonth = this.startMonth = this.endMonth = this.curMonth;
+            this.tmpDate = this.startDate = this.endDate = this.curDate;
         },
         setSeltheme(item, type) {
-            if (this.isSelected(item, type)) {
+            if (!this.validDate(item)) {
+                return `color:${this.themenotallowcolor}`;
+            } else if (this.isSelected(item, type)) {
                 let bg = this.themeselbg ? this.themeselbg : this.theme;
                 return `backgroundColor:${bg};color:${this.themeselcolor}`;
             } else {
@@ -9211,6 +9230,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "calendar"
   }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showInput),
+      expression: "showInput"
+    }],
     staticClass: "input-wrapper"
   }, [_c('i', {
     staticClass: "date-icon"
@@ -9239,7 +9264,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "togglePanel"
     }],
     staticClass: "pannel-wrapper",
-    style: (_vm.themeBorder)
+    style: (_vm.themePannel)
   }, [_c('div', {
     staticClass: "pannel-header",
     style: (_vm.themeHeaderBg)
