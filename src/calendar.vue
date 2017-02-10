@@ -22,13 +22,16 @@
                         <li v-for='item in monthList' :class="{selected: isSelected(item, 'month')}" @click='selectMonth(item)'>{{month(item, lang)}}</li>
                     </ul>
                 </div>
-                <div class='date-list' v-show='pannelType === "date"'>
+                <div class='date-list' v-show='pannelType === "date" || pannelType === "time"'>
                     <ul class='week'>
                         <li v-for='item in weekList' :style='themeWeekColor'>{{week(item, lang)}}</li>
                     </ul>
                     <ul class='date'>
                         <li v-for='item in dateList' :class="{selected: isSelected(item, 'date'), 'notCurMonth': !item.isCurMonth, unvalid: !validDate(item)}" @click='selectDate(item)' :style='setSeltheme(item, "date")'>{{item.value}}</li>
                     </ul>
+                    <div class='time' v-show='pannelType ==="time"'>
+                        <input type='text' v-model='startHour' @focus='checkTime("startHour")' @blur='clearCheck'/> : <input type='text' v-model='startMin'  @focus='checkTime("startMin")' @blur='clearCheck'/> - <input type='text' v-model='endHour'  @focus='checkTime("endHour")' @blur='clearCheck'/> : <input type='text' v-model='endMin'  @focus='checkTime("endMin")' @blur='clearCheck'/>
+                    </div>
                 </div>
                 <div class='group-btn'>
                     <button type='button' class='btn btn-confirm' @click='confirmSelect' :style='themeBtnCon'>确认</button>
@@ -46,7 +49,7 @@
             return {
                 value: '',
                 togglePanel: true,
-                pannelType: 'date',
+                pannelType: 'time',
                 curYear: curDate.getFullYear(),
                 curMonth: curDate.getMonth(),
                 curDate: curDate.getDate(),
@@ -59,6 +62,10 @@
                 endYear: curDate.getFullYear(),
                 endMonth: curDate.getMonth(),
                 endDate: curDate.getDate(),
+                startHour: '0',
+                startMin: '0',
+                endHour: '0',
+                endMin: '0',
                 page: 0,
                 lang: 'zh',
                 format: '-',
@@ -66,6 +73,7 @@
                 monthList: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
                 minDate: curDate.getDate(),
                 flag: true,
+                check: '',
                 themePannel: {
                     borderBottom: this.themeborder ? this.themeborder : `1px solid ${this.theme}`,
                     backgroundColor: this.themepannelbg
@@ -374,6 +382,26 @@
                         return `color:${this.themenextmonthcolor}`;
                     }
                 }
+            },
+            checkTime(type){
+                let self = this;
+                // time = time * 1;
+                this.check = setInterval(function() {
+                    switch(type) {
+                        case 'startHour':
+                        case 'endHour':
+                            self[type] = self[type] > 23 ? 23 : (self[type] > 0 ? self[type] * 1 : 0); 
+                            break;
+                        case 'startMin':
+                        case 'endMin':
+                            self[type] = self[type] > 59 ? 59 : (self[type] > 0 ? self[type] * 1 : 0); 
+                            break;
+                    }
+                }, 500)
+            },
+            clearCheck() {
+                let self = this;
+                clearInterval(self.check);
             }
         },
         computed: {
@@ -445,16 +473,16 @@
             border 1px solid #ddd
             box-sizing border-box
         .input-clear
-            absolute(top 4px right 5px)
-            width 20px
-            height 20px
+            absolute(top 6px right 6px)
+            width 16px
+            height 16px
             &:before,
             &:after
                 absolute(top 50% left 0)
                 width 100%
                 height 2px
                 content ''
-                background #000
+                background #aaa
             &:before
                 transform rotate(45deg)
             &:after
@@ -517,6 +545,13 @@
                 color #aaa
             .unvalid
                 cursor not-allowed
+        .time
+            margin 10px 0 15px
+            text-align center
+            input
+                width 30px
+                outline none
+                text-align center
         .selected
             color #fff
             background-color header-color
