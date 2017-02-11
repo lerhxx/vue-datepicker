@@ -22,14 +22,14 @@
                         <li v-for='item in monthList' :class="{selected: isSelected(item, 'month')}" @click='selectMonth(item)'>{{month(item, lang)}}</li>
                     </ul>
                 </div>
-                <div class='date-list' v-show='pannelType === "date" || pannelType === "time"'>
+                <div class='date-list' v-show='pannelType === "date"'>
                     <ul class='week'>
                         <li v-for='item in weekList' :style='themeWeekColor'>{{week(item, lang)}}</li>
                     </ul>
                     <ul class='date'>
                         <li v-for='item in dateList' :class="{selected: isSelected(item, 'date'), 'notCurMonth': !item.isCurMonth, unvalid: !validDate(item)}" @click='selectDate(item)' :style='setSeltheme(item, "date")'>{{item.value}}</li>
                     </ul>
-                    <div class='time' v-show='pannelType ==="time"'>
+                    <div class='time' v-show='type === "singleTime"'>
                         <input type='text' v-model='startHour' @focus='checkTime("startHour")' @blur='clearCheck'/> : <input type='text' v-model='startMin'  @focus='checkTime("startMin")' @blur='clearCheck'/> - <input type='text' v-model='endHour'  @focus='checkTime("endHour")' @blur='clearCheck'/> : <input type='text' v-model='endMin'  @focus='checkTime("endMin")' @blur='clearCheck'/>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
             return {
                 value: '',
                 togglePanel: true,
-                pannelType: 'time',
+                pannelType: 'date',
                 curYear: curDate.getFullYear(),
                 curMonth: curDate.getMonth(),
                 curDate: curDate.getDate(),
@@ -64,8 +64,8 @@
                 endDate: curDate.getDate(),
                 startHour: '0',
                 startMin: '0',
-                endHour: '0',
-                endMin: '0',
+                endHour: '23',
+                endMin: '59',
                 page: 0,
                 lang: 'zh',
                 format: '-',
@@ -114,7 +114,7 @@
         props: {
             type: {
                 type: String,
-                default: 'single'            //range
+                default: 'singleTime'            //range/singleTime
             },
             isAbandon: {
                 type: Boolean,
@@ -286,6 +286,7 @@
 
                 switch(this.type) {
                     case 'single':
+                    case 'singleTime':
                         this.startDate = this.endDate = item.value;
                         this.startMonth = this.endMonth = this.tmpMonth;
                         this.startYear = this.endYear = this.tmpYear;
@@ -341,6 +342,14 @@
                     case 'range':
                         this.value = `${this.startYear}${this.format}${this.startMonth + 1}${this.format}${this.startDate} -- ${this.endYear}${this.format}${this.endMonth + 1}${this.format}${this.endDate}`;
                         break;
+                    case 'singleTime':
+                        let date = `${this.startYear}${this.format}${this.startMonth + 1}${this.format}${this.startDate}`;
+                        this.startHour = this.startHour > 9 ? this.startHour : '0' + this.startHour * 1;
+                        this.startMin = this.startMin > 9 ? this.startMin : '0' + this.startMin * 1;
+                        this.endHour = this.endHour > 9 ? this.endHour : '0' + this.endHour * 1;
+                        this.endMin = this.endMin > 9 ? this.endMin : '0' + this.endMin * 1;
+                        this.value = `${date} ${this.startHour}:${this.startMin} - ${this.endHour}:${this.endMin}`;
+                        break;
                     default:
                         this.value = '';
                 }
@@ -356,6 +365,11 @@
                     this.pannelType = 'date';
                     this.startYear = this.startMonth = this.startDate = this.endYear = this.endMonth = this.endDate = '';
                 }else {
+                    if(this.endHour < this.startHour) {
+                        this.endHour = this.startHour;
+                    }else if(this.endHour == this.startHour && this.endMin < this.startMin) {
+                        this.endMin = this.startMin;
+                    }
                     this.changeValue();
                     this.togglePanel = !this.togglePanel;
                 }
@@ -366,6 +380,10 @@
                 this.tmpYear = this.startYear = this.endYear = this.curYear;
                 this.tmpMonth = this.startMonth = this.endMonth = this.curMonth;
                 this.tmpDate = this.startDate = this.endDate = this.curDate;
+                this.startHour = '0';
+                this.startMin = '0';
+                this.endHour = '23';
+                this.endMin = '59';
             },
             setSeltheme(item, type) {
                 if(!this.validDate(item)) {
@@ -385,7 +403,6 @@
             },
             checkTime(type){
                 let self = this;
-                // time = time * 1;
                 this.check = setInterval(function() {
                     switch(type) {
                         case 'startHour':
