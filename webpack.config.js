@@ -2,11 +2,14 @@ let webpack = require('webpack');
 let path = require('path');
 
 module.exports = {
-    entry: './src/main.js',
+    entry: {
+    	app: ['./src/main.js'],
+    	demo: './src/demo.js'
+	},
     output: {
         path: path.resolve(__dirname, './dist/js'),
         publicPath: '/dist/',
-        filename: 'build.js'
+        filename: '[name].js'
     },
     module: {
         loaders: [{
@@ -35,12 +38,25 @@ module.exports = {
 					}
 				}
 			}
+		}),
+		new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: '"production"'
+			}
 		})
 	],
     resolve: {
 		extensions: ['.js', '.vue'],
 		alias: {
 			vue: 'vue/dist/vue.js'
+		}
+	},
+	devServer: {
+		inline: true,
+		hot: true,
+		'/get': {
+			target: 'localhost:3000',
+			secure: false
 		}
 	}
 }

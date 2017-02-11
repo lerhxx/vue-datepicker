@@ -29,7 +29,7 @@
                     <ul class='date'>
                         <li v-for='item in dateList' :class="{selected: isSelected(item, 'date'), 'notCurMonth': !item.isCurMonth, unvalid: !validDate(item)}" @click='selectDate(item)' :style='setSeltheme(item, "date")'>{{item.value}}</li>
                     </ul>
-                    <div class='time' v-show='type === "singleTime"'>
+                    <div class='time' v-show='type === "time"'>
                         <input type='text' v-model='startHour' @focus='checkTime("startHour")' @blur='clearCheck'/> : <input type='text' v-model='startMin'  @focus='checkTime("startMin")' @blur='clearCheck'/> - <input type='text' v-model='endHour'  @focus='checkTime("endHour")' @blur='clearCheck'/> : <input type='text' v-model='endMin'  @focus='checkTime("endMin")' @blur='clearCheck'/>
                     </div>
                 </div>
@@ -74,47 +74,12 @@
                 minDate: curDate.getDate(),
                 flag: true,
                 check: '',
-                themePannel: {
-                    borderBottom: this.themeborder ? this.themeborder : `1px solid ${this.theme}`,
-                    backgroundColor: this.themepannelbg
-                },
-                themeHeaderYear: {
-                    color: this.themeheaderyear ? this.themeheaderyear : this.themeheadercolor
-                },
-                themeHeaderMonth: {
-                    color: this.themeheadermonth ? this.themeheadermonth : this.themeheadercolor
-                },
-                themeHeaderSep: {
-                    color: this.themeheadersep ? this.themeheadersep : this.themeheadercolor
-                },
-                themeLeftArrow: {
-                    color: this.themeleftarrow ? this.themeleftarrow : this.themeheadercolor
-                },
-                themeRightArrow: {
-                    color: this.themerightarrow ? this.themerightarrow : this.themeheadercolor
-                },
-                themeHeaderBg: {
-                    backgroundColor: this.themeheaderbg ? this.themeheaderbg : this.theme
-                },
-                themeWeekColor: {
-                    color: this.themeweekcolor ? this.themeweekcolor : this.theme
-                },
-                themeBtnCon: {
-                    border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
-                    color: this.themebtnconfirmcolor,
-                    backgroundColor: this.themebtnconbg ? this.themebtnconbg : this.theme
-                },
-                themeBtnCan: {
-                    border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
-                    color: this.themebtncanclecolor,
-                    backgroundColor: this.themebtncanbg ? this.themebtncanbg : this.theme
-                }
             }
         },
         props: {
             type: {
                 type: String,
-                default: 'singleTime'            //range/singleTime
+                default: 'single'            //range/time
             },
             isAbandon: {
                 type: Boolean,
@@ -286,7 +251,7 @@
 
                 switch(this.type) {
                     case 'single':
-                    case 'singleTime':
+                    case 'time':
                         this.startDate = this.endDate = item.value;
                         this.startMonth = this.endMonth = this.tmpMonth;
                         this.startYear = this.endYear = this.tmpYear;
@@ -342,7 +307,7 @@
                     case 'range':
                         this.value = `${this.startYear}${this.format}${this.startMonth + 1}${this.format}${this.startDate} -- ${this.endYear}${this.format}${this.endMonth + 1}${this.format}${this.endDate}`;
                         break;
-                    case 'singleTime':
+                    case 'time':
                         let date = `${this.startYear}${this.format}${this.startMonth + 1}${this.format}${this.startDate}`;
                         this.startHour = this.startHour > 9 ? this.startHour : '0' + this.startHour * 1;
                         this.startMin = this.startMin > 9 ? this.startMin : '0' + this.startMin * 1;
@@ -454,6 +419,61 @@
                 }
                 return dateList;
             },
+            themePannel() {
+                return {
+                    borderBottom: this.themeborder ? this.themeborder : `1px solid ${this.theme}`,
+                    backgroundColor: this.themepannelbg
+                }
+            },
+            themeHeaderBg() {
+                return {
+                    backgroundColor: this.themeheaderbg ? this.themeheaderbg : this.theme
+                }
+            },
+            themeHeaderYear() {
+                return {
+                    color: this.themeheaderyear ? this.themeheaderyear : this.themeheadercolor
+                }
+            },
+            themeHeaderMonth() {
+                return {
+                    color: this.themeheadermonth ? this.themeheadermonth : this.themeheadercolor
+                }
+            },
+            themeHeaderSep() {
+                return {
+                    color: this.themeheadersep ? this.themeheadersep : this.themeheadercolor
+                }
+            },
+            themeLeftArrow() {
+                return {
+                    color: this.themeleftarrow ? this.themeleftarrow : this.themeheadercolor
+                }
+            },
+            themeRightArrow() {
+                return {
+                    color: this.themerightarrow ? this.themerightarrow : this.themeheadercolor
+                }
+            },
+            themeWeekColor() {
+                return {
+                    color: this.themeweekcolor ? this.themeweekcolor : this.theme
+                }
+            },
+            themeBtnCon() {
+                return {
+                    border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
+                    color: this.themebtnconfirmcolor,
+                    backgroundColor: this.themebtnconbg ? this.themebtnconbg : this.theme
+                }
+            },
+            themeBtnCan() {
+                return {
+                    border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
+                    color: this.themebtncanclecolor,
+                    backgroundColor: this.themebtncanbg ? this.themebtncanbg : this.theme
+                }
+            }
         }
     }
 </script>
