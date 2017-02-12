@@ -20,6 +20,7 @@
 <caleendar theme='#800080' type='range' iconUrl='./images/icon.png'></caleendar>
 ```
 ![demo][2]
+
 ##Props
 * `type(String)`: 默认 single（选择单天），可选 range（选择多天） / time（选择单天 + 时间）
 

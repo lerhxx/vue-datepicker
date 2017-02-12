@@ -1,5 +1,5 @@
 {
-  "name": "datepicker",
+  "name": "auto-calendar",
   "version": "1.0.0",
   "description": "datepicker for vue",
   "main": "webpack.config.js",
