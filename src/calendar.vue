@@ -2,7 +2,7 @@
     <div class='calendar'>
         <div class='input-wrapper' v-show='showInput'>
             <i class='date-icon' :style='setIconUrl'></i>
-            <div class='input' v-text='value' @click='onTogglePanel'></div>
+            <div class='input' v-text='value' @click='togglePanel = !togglePanel'></div>
             <span class='input-clear' @click='clearValue'></span>
         </div>
         <transition name='toggle'>
@@ -48,7 +48,7 @@
             let curDate = new Date();
             return {
                 value: '',
-                togglePanel: true,
+                togglePanel: false,
                 pannelType: 'date',
                 curYear: curDate.getFullYear(),
                 curMonth: curDate.getMonth(),
@@ -185,9 +185,6 @@
             this.changeValue();
         },
         methods: {
-            onTogglePanel() {
-                this.togglePanel = !this.togglePanel;
-            },
             clearValue() {
                 this.date = '';
             },
@@ -625,4 +622,10 @@
         .btn-cancle
             color #000
             background #fff
+        .toggle-enter-active,
+        .toggle-leave-active
+            transition opacity .5s, translateY .5s
+        .toggle-enter,
+        .toggle-leave-active
+            opacity 0
 </style>
