@@ -1,5 +1,5 @@
 #vue-datepicker
-基于 vuejs 2.x 可自定义主题的日期组件
+基于 vuejs 2.x 和 es6 可自定义主题的日期组件
 ##Usage
 
 只需要在项目中加入 calendar.vue，就可以使用了。
