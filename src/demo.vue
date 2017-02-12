@@ -23,13 +23,21 @@
 			:themenextmonthcolor='themeNextMonthColor'
 			:themenotallowcolor='themeNotAllowColor'
 			:themeborder='themeBorderR'
-			type='range'
+			:type='type'
 			v-on:getValue='getTimeValue'
 		></calendar>
 		<div class='select-wrapper'>
 			<div class='group'>
 				<label>getValue:</label>
 				<span>{{value}}</span>
+			</div>
+			<div class='group'>
+				<label>type:</label>
+				<select v-model='type' @change='changetype'>
+					<option>single</option>
+					<option>range</option>
+					<option>time</option>
+				</select>
 			</div>
 			<div class='group'>
 				<label>iconUrl:</label>
@@ -137,6 +145,7 @@
 		data() {
 			return {
 				value: '',
+				type: 'single',
 				iconUrl: '',
 				theme: '#e57373',
 				themePannelBg: '#ffffff',
@@ -174,6 +183,9 @@
 			getTimeValue(value) {
 				this.value = value;
 				console.log(this.value);
+			},
+			changetype() {
+				console.log(this.type)
 			}
 		},
 		computed: {

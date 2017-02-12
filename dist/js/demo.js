@@ -10098,6 +10098,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10105,6 +10113,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data() {
 		return {
 			value: '',
+			type: 'single',
 			iconUrl: '',
 			theme: '#e57373',
 			themePannelBg: '#ffffff',
@@ -10142,6 +10151,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getTimeValue(value) {
 			this.value = value;
 			console.log(this.value);
+		},
+		changetype() {
+			console.log(this.type);
 		}
 	},
 	computed: {
@@ -10198,7 +10210,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "themenextmonthcolor": _vm.themeNextMonthColor,
       "themenotallowcolor": _vm.themeNotAllowColor,
       "themeborder": _vm.themeBorderR,
-      "type": "range"
+      "type": _vm.type
     },
     on: {
       "getValue": _vm.getTimeValue
@@ -10208,6 +10220,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("getValue:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.value))])]), _vm._v(" "), _c('div', {
+    staticClass: "group"
+  }, [_c('label', [_vm._v("type:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.type),
+      expression: "type"
+    }],
+    on: {
+      "change": [function($event) {
+        _vm.type = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        })[0]
+      }, _vm.changetype]
+    }
+  }, [_c('option', [_vm._v("single")]), _vm._v(" "), _c('option', [_vm._v("range")]), _vm._v(" "), _c('option', [_vm._v("time")])])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("iconUrl:")]), _vm._v(" "), _c('input', {
     attrs: {
