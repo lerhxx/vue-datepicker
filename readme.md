@@ -18,7 +18,7 @@
 ```
 ![demo][2]
 ##Props
-* type(String): 默认 single（选择单天），可选 range（选择多天） / time（选择单天 + 时间）
+* `type(String)`: 默认 single（选择单天），可选 range（选择多天） / time（选择单天 + 时间）
 
 * `isAbandon(Boolean)`: 默认 true，早于系统日期的日期选项是否不可选
 
