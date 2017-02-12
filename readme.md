@@ -68,5 +68,8 @@
 
 * `themenotallowcolor(String)`: 默认 #aaa，无效日期的字体颜色，仅 isAbandon 为 true 有效
 
+##event
+`getValue()`: 获取选中的日期
+
 [1]: https://github.com/lerhxx/vue-datepicker/blob/master/images/native.png
 [2]: https://github.com/lerhxx/vue-datepicker/blob/master/images/demo.png

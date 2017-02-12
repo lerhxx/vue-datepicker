@@ -321,6 +321,7 @@
                     default:
                         this.value = '';
                 }
+                this.getValue();
             },
             clearValue() {
                 this.value = '';
@@ -387,6 +388,9 @@
             clearCheck() {
                 let self = this;
                 clearInterval(self.check);
+            },
+            getValue() {
+                this.$emit('getValue', this.value);
             }
         },
         computed: {
