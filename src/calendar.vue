@@ -1,12 +1,12 @@
 <template>
     <div class='calendar'>
         <div class='input-wrapper' v-show='showInput'>
-            <i class='date-icon'></i>
+            <i class='date-icon' :style='setIconUrl'></i>
             <div class='input' v-text='value' @click='onTogglePanel'></div>
             <span class='input-clear' @click='clearValue'></span>
         </div>
         <transition name='toggle'>
-            <div class='pannel-wrapper' :style='themePannel' v-show='togglePanel'>
+            <div class='pannel-wrapper' :style='themePannelBg' v-show='togglePanel'>
                 <div class='pannel-header' :style='themeHeaderBg'>
                     <span class='year' :style='themeHeaderYear' v-text='tmpYear' @click='showYearPannel'></span><span :style='themeHeaderSep'>/</span><span class='month' :style='themeHeaderMonth' v-text='tmpMonth + 1' @click='showMonthPannel'></span>
                     <span class='prev' @click='prevMonth' :style='themeLeftArrow' v-show='pannelType !== "month"'>&lt;</span>
@@ -71,7 +71,6 @@
                 format: '-',
                 weekList: [0, 1, 2, 3, 4, 5, 6],
                 monthList: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-                minDate: curDate.getDate(),
                 flag: true,
                 check: '',
             }
@@ -88,6 +87,10 @@
             showInput: {
                 type: Boolean,
                 default: true
+            },
+            iconUrl: {
+                type: String,
+                default: '../dist/imgs/calendar.svg'
             },
             theme: {
                 type: String,
@@ -139,7 +142,7 @@
             },
             themeselcolor: {
                 type:String,
-                default: '#fff'
+                default: '#fff',
             },
             themebtnborder: {
                 type: String,
@@ -419,7 +422,14 @@
                 }
                 return dateList;
             },
-            themePannel() {
+            setIconUrl() {
+                if(/.(?:jpeg|jpg|png|svg)/i.test(this.iconUrl)){
+                    return `background-image: url(${this.iconUrl})`;
+                }else {
+                    return '';
+                }
+            },
+            themePannelBg() {
                 return {
                     borderBottom: this.themeborder ? this.themeborder : `1px solid ${this.theme}`,
                     backgroundColor: this.themepannelbg
@@ -589,13 +599,12 @@
                 width 30px
                 outline none
                 text-align center
-        .selected
+        li.selected
             color #fff
             background-color header-color
             border-radius(20px)
         .group-btn
             margin 10px 0
-            border-group 1px solid header-color
             text-align center
         .btn
             padding 8px 15px

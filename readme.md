@@ -4,6 +4,11 @@
 ```
 <calendar></calendar>
 ```
+![native][1]
+```
+<caleendar theme='#800080' type='range' iconUrl='./images/demo.png'></caleendar>
+```
+![demo][2]
 ##Props
 * type(String): 默认 single（选择单天），可选 range（选择多天） / time（选择单天 + 时间）
 * isAbandon(Boolean): 默认 true，早于系统日期的日期选项是否不可选
@@ -18,7 +23,7 @@
 * themerightarrow(String): 默认为空，pannel 头部右箭头颜色，为空则跟随 themeheadercolor 值
 * themeheaderbg(String): 默认为空，pannel 头部背景颜色，为空则跟随 theme 值
 * themeweekcolor(String): 默认为空，星期字体颜色，为空则跟随 theme 值
-* themeborder(String): 默认为空，底部边框颜色，为空则跟随 theme 值
+* themeborder(String): 默认为空，底部边框，为空则 color 跟随 theme 值, width = 1px, style = solid
 * themeselbg(String): 默认为空，选中日期背景颜色，为空则跟随 theme 值
 * themeselcolor(String): 默认 #fff，选中日期字体颜色
 * themebtnborder(String): 默认为空，按钮边框颜色，为空则跟随 theme 值
@@ -30,3 +35,6 @@
 * themeprevmonthcolor(String): 默认 #aaa，上月日期的字体颜色
 * themenextmonthcolor(String): 默认 #aaa，下月份日期的字体颜色
 * themenotallowcolor(String): 默认 #aaa，无效日期的字体颜色，仅 isAbandon 为 true 有效
+
+[1]: ./images/native.png
+[2]: ./images/demo.png
