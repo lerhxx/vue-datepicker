@@ -10089,6 +10089,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -10664,7 +10668,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeBorderColor = $event.target.value
       }
     }
-  })])])], 1)
+  })])]), _vm._v(" "), _c('calendar', {
+    attrs: {
+      "theme": "#800080",
+      "type": "range",
+      "iconUrl": "./images/icon.png"
+    }
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

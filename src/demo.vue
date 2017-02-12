@@ -122,6 +122,10 @@
 				<input type='color' v-model='themeBorderColor'/>
 			</div>
 		</div>
+
+		
+		<calendar theme='#800080' type='range' iconUrl='./images/icon.png'></calendar>
+
 	</div>
 </template>
 

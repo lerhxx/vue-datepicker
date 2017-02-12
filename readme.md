@@ -14,7 +14,7 @@
 向组件传入 prop 即可改变 calendar 的样式
 
 ```
-<caleendar theme='#800080' type='range' iconUrl='./images/demo.png'></caleendar>
+<caleendar theme='#800080' type='range' iconUrl='./images/icon.png'></caleendar>
 ```
 ![demo][2]
 ##Props
