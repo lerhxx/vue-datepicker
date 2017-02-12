@@ -9042,7 +9042,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         let curDate = new Date();
         return {
             value: '',
-            togglePanel: true,
+            togglePanel: false,
             pannelType: 'date',
             curYear: curDate.getFullYear(),
             curMonth: curDate.getMonth(),
@@ -9179,9 +9179,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.changeValue();
     },
     methods: {
-        onTogglePanel() {
-            this.togglePanel = !this.togglePanel;
-        },
         clearValue() {
             this.date = '';
         },
@@ -9493,7 +9490,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n.calendar ul {\n  padding: 0;\n  margin: 0;\n}\n.calendar li {\n  display: inline-block;\n  list-style: none;\n}\n.calendar .input-wrapper {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  display: inline-block;\n}\n.calendar .date-icon {\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  width: 20px;\n  height: 20px;\n  background: url(" + __webpack_require__(6) + ");\n  background-size: contain;\n}\n.calendar .input {\n  width: 259px;\n  height: 30px;\n  padding: 5px;\n  padding-left: 30px;\n  border: 1px solid #ddd;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .input-clear {\n  position: absolute;\n  top: 6px;\n  right: 6px;\n  width: 16px;\n  height: 16px;\n}\n.calendar .input-clear:before,\n.calendar .input-clear:after {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  width: 100%;\n  height: 2px;\n  content: '';\n  background: #aaa;\n}\n.calendar .input-clear:before {\n  -webkit-transform: rotate(45deg);\n  -moz-transform: rotate(45deg);\n  -ms-transform: rotate(45deg);\n  -o-transform: rotate(45deg);\n  transform: rotate(45deg);\n}\n.calendar .input-clear:after {\n  -webkit-transform: rotate(-45deg);\n  -moz-transform: rotate(-45deg);\n  -ms-transform: rotate(-45deg);\n  -o-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n.calendar .pannel-wrapper {\n  width: 259px;\n  margin-top: 5px;\n  background: #fff;\n}\n.calendar .pannel-header {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  padding: 3px;\n  margin-bottom: 10px;\n  color: #fff;\n  text-align: center;\n  font-size: 1.5em;\n  background-color: #e57373;\n  -webkit-border-radius: 30px;\n  -moz-border-radius: 30px;\n  border-radius: 30px;\n}\n.calendar .year,\n.calendar .month {\n  display: inline-block;\n  margin: 0 5px;\n  cursor: pointer;\n}\n.calendar .prev,\n.calendar .next {\n  position: absolute;\n  top: 5px;\n  ((null)): 0;\n  cursor: pointer;\n}\n.calendar .prev {\n  left: 10px;\n}\n.calendar .next {\n  right: 10px;\n}\n.calendar .month-wrapper {\n  width: 157.5px;\n  margin: 0 auto;\n}\n.calendar .month-wrapper li {\n  width: 52.5px;\n  padding: 5px 0;\n  text-align: center;\n  cursor: pointer;\n}\n.calendar .date-list li {\n  width: 35px;\n  margin: 1px;\n  text-align: center;\n  font-size: 1em;\n  cursor: default;\n}\n.calendar .week {\n  margin-bottom: 5px;\n}\n.calendar .week li {\n  color: #e57373;\n  font-weight: bold;\n}\n.calendar .date li {\n  height: 35px;\n  color: #000;\n  line-height: 35px;\n  cursor: pointer;\n}\n.calendar .date .notCurMonth,\n.calendar .date .unvalid {\n  color: #aaa;\n}\n.calendar .date .unvalid {\n  cursor: not-allowed;\n}\n.calendar .time {\n  margin: 10px 0 15px;\n  text-align: center;\n}\n.calendar .time input {\n  width: 30px;\n  outline: none;\n  text-align: center;\n}\n.calendar li.selected {\n  color: #fff;\n  background-color: #e57373;\n  -webkit-border-radius: 20px;\n  -moz-border-radius: 20px;\n  border-radius: 20px;\n}\n.calendar .group-btn {\n  margin: 10px 0;\n  text-align: center;\n}\n.calendar .btn {\n  padding: 8px 15px;\n  margin: 0 15px;\n  border: 1px solid #e57373;\n  outline: none;\n  font-size: 16px;\n  background: #fff;\n  -webkit-border-radius: 10px;\n  -moz-border-radius: 10px;\n  border-radius: 10px;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .btn-confirm {\n  color: #fff;\n  background: #e57373;\n}\n.calendar .btn-cancle {\n  color: #000;\n  background: #fff;\n}\n", ""]);
+exports.push([module.i, "\n.calendar ul {\n  padding: 0;\n  margin: 0;\n}\n.calendar li {\n  display: inline-block;\n  list-style: none;\n}\n.calendar .input-wrapper {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  display: inline-block;\n}\n.calendar .date-icon {\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  width: 20px;\n  height: 20px;\n  background: url(" + __webpack_require__(6) + ");\n  background-size: contain;\n}\n.calendar .input {\n  width: 259px;\n  height: 30px;\n  padding: 5px;\n  padding-left: 30px;\n  border: 1px solid #ddd;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .input-clear {\n  position: absolute;\n  top: 6px;\n  right: 6px;\n  width: 16px;\n  height: 16px;\n}\n.calendar .input-clear:before,\n.calendar .input-clear:after {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  width: 100%;\n  height: 2px;\n  content: '';\n  background: #aaa;\n}\n.calendar .input-clear:before {\n  -webkit-transform: rotate(45deg);\n  -moz-transform: rotate(45deg);\n  -ms-transform: rotate(45deg);\n  -o-transform: rotate(45deg);\n  transform: rotate(45deg);\n}\n.calendar .input-clear:after {\n  -webkit-transform: rotate(-45deg);\n  -moz-transform: rotate(-45deg);\n  -ms-transform: rotate(-45deg);\n  -o-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n.calendar .pannel-wrapper {\n  width: 259px;\n  margin-top: 5px;\n  background: #fff;\n}\n.calendar .pannel-header {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  padding: 3px;\n  margin-bottom: 10px;\n  color: #fff;\n  text-align: center;\n  font-size: 1.5em;\n  background-color: #e57373;\n  -webkit-border-radius: 30px;\n  -moz-border-radius: 30px;\n  border-radius: 30px;\n}\n.calendar .year,\n.calendar .month {\n  display: inline-block;\n  margin: 0 5px;\n  cursor: pointer;\n}\n.calendar .prev,\n.calendar .next {\n  position: absolute;\n  top: 5px;\n  ((null)): 0;\n  cursor: pointer;\n}\n.calendar .prev {\n  left: 10px;\n}\n.calendar .next {\n  right: 10px;\n}\n.calendar .month-wrapper {\n  width: 157.5px;\n  margin: 0 auto;\n}\n.calendar .month-wrapper li {\n  width: 52.5px;\n  padding: 5px 0;\n  text-align: center;\n  cursor: pointer;\n}\n.calendar .date-list li {\n  width: 35px;\n  margin: 1px;\n  text-align: center;\n  font-size: 1em;\n  cursor: default;\n}\n.calendar .week {\n  margin-bottom: 5px;\n}\n.calendar .week li {\n  color: #e57373;\n  font-weight: bold;\n}\n.calendar .date li {\n  height: 35px;\n  color: #000;\n  line-height: 35px;\n  cursor: pointer;\n}\n.calendar .date .notCurMonth,\n.calendar .date .unvalid {\n  color: #aaa;\n}\n.calendar .date .unvalid {\n  cursor: not-allowed;\n}\n.calendar .time {\n  margin: 10px 0 15px;\n  text-align: center;\n}\n.calendar .time input {\n  width: 30px;\n  outline: none;\n  text-align: center;\n}\n.calendar li.selected {\n  color: #fff;\n  background-color: #e57373;\n  -webkit-border-radius: 20px;\n  -moz-border-radius: 20px;\n  border-radius: 20px;\n}\n.calendar .group-btn {\n  margin: 10px 0;\n  text-align: center;\n}\n.calendar .btn {\n  padding: 8px 15px;\n  margin: 0 15px;\n  border: 1px solid #e57373;\n  outline: none;\n  font-size: 16px;\n  background: #fff;\n  -webkit-border-radius: 10px;\n  -moz-border-radius: 10px;\n  border-radius: 10px;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .btn-confirm {\n  color: #fff;\n  background: #e57373;\n}\n.calendar .btn-cancle {\n  color: #000;\n  background: #fff;\n}\n.calendar .toggle-enter-active,\n.calendar .toggle-leave-active {\n  transition: opacity 0.5s, translateY 0.5s;\n}\n.calendar .toggle-enter,\n.calendar .toggle-leave-active {\n  opacity: 0;\n  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);\n}\n", ""]);
 
 // exports
 
@@ -9566,7 +9563,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "textContent": _vm._s(_vm.value)
     },
     on: {
-      "click": _vm.onTogglePanel
+      "click": function($event) {
+        _vm.togglePanel = !_vm.togglePanel
+      }
     }
   }), _vm._v(" "), _c('span', {
     staticClass: "input-clear",
@@ -10098,6 +10097,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10105,6 +10134,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data() {
 		return {
 			value: '',
+			type: 'single',
 			iconUrl: '',
 			theme: '#e57373',
 			themePannelBg: '#ffffff',
@@ -10141,8 +10171,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		getTimeValue(value) {
 			this.value = value;
-			console.log(this.value);
+		},
+		clearIconUrl() {
+			this.iconUrl = '';
+		},
+		clearTheme() {
+			this.theme = '';
+		},
+		clearPannelBg() {},
+		clear(type) {
+			switch (type) {
+				case 'theme':
+					this[type] = '#e57373';
+					break;
+				case 'themePannelBg':
+				case 'themeHeaderColor':
+				case 'themebtnConfirmColor':
+				case 'themeBtnCanBg':
+				case 'themeSelColor':
+					this[type] = '#ffffff';
+					break;
+				case 'themeHeaderBg':
+				case 'themeHeaderYear':
+				case 'themeHeaderMonth':
+				case 'themeHeaderSep':
+				case 'themeLeftArrow':
+				case 'themeRightArrow':
+				case 'themeWeekColor':
+				case 'themeBtnConBg':
+				case 'themeSelBg':
+					this[type] = '';
+					break;
+				case 'themebtnCancleColor':
+				case 'themeCurmonthColor':
+					this[type] = '#000000';
+					break;
+				case 'themePrevMonthColor':
+				case 'themeNextMonthColor':
+				case 'themeNotAllowColor':
+					this[type] = '#aaaaaa';
+					break;
+				case 'themeBorder':
+					this.themeBorderColor = '';
+					this.themeBorderWidth = '1';
+					this.themeBorderColorStyle = 'solid';
+					break;
+				default:
+					this[type] = '';
+			}
 		}
+
 	},
 	computed: {
 		themeBorderR() {
@@ -10198,7 +10276,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "themenextmonthcolor": _vm.themeNextMonthColor,
       "themenotallowcolor": _vm.themeNotAllowColor,
       "themeborder": _vm.themeBorderR,
-      "type": "range"
+      "type": _vm.type
     },
     on: {
       "getValue": _vm.getTimeValue
@@ -10209,6 +10287,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "group"
   }, [_c('label', [_vm._v("getValue:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.value))])]), _vm._v(" "), _c('div', {
     staticClass: "group"
+  }, [_c('label', [_vm._v("type:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.type),
+      expression: "type"
+    }],
+    on: {
+      "change": function($event) {
+        _vm.type = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        })[0]
+      }
+    }
+  }, [_c('option', [_vm._v("single")]), _vm._v(" "), _c('option', [_vm._v("range")]), _vm._v(" "), _c('option', [_vm._v("time")])])]), _vm._v(" "), _c('div', {
+    staticClass: "group"
   }, [_c('label', [_vm._v("iconUrl:")]), _vm._v(" "), _c('input', {
     attrs: {
       "type": "file"
@@ -10216,7 +10313,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "change": _vm.setIconUrl
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("iconUrl")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("theme:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10237,7 +10340,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.theme = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("theme")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themepannelbg:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10258,7 +10367,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themePannelBg = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themePannelBg")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeheadercolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10279,7 +10394,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeHeaderColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeHeaderColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeheaderbg:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10300,7 +10421,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeHeaderBg = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeHeaderBg")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeheaderyear:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10321,7 +10448,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeHeaderYear = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeHeaderYear")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeheadermonth:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10342,7 +10475,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeHeaderMonth = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeHeaderMonth")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeheadersep:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10363,7 +10502,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeHeaderSep = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeHeaderSep")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeleftarrow:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10384,7 +10529,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeLeftArrow = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeLeftArrow")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themerightarrow:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10405,7 +10556,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeRightArrow = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeRightArrow")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeweekcolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10426,7 +10583,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeWeekColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeWeekColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themebtnconbg:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10447,7 +10610,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeBtnConBg = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeBtnConBg")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themebtnconfirmcolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10468,7 +10637,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themebtnConfirmColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themebtnConfirmColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themebtncanbg:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10489,7 +10664,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeBtnCanBg = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeBtnCanBg")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themebtncanclecolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10510,7 +10691,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themebtnCancleColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themebtnCancleColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeselbg:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10531,7 +10718,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeSelBg = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeSelBg")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeselcolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10552,7 +10745,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeSelColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeSelColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themecurmonthcolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10573,7 +10772,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeCurmonthColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeCurmonthColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeprevmonthcolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10594,7 +10799,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themePrevMonthColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themePrevMonthColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themenextmonthcolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10615,7 +10826,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeNextMonthColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeNextMonthColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themenotallowcolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10636,7 +10853,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeNotAllowColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeNotAllowColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeborder:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10697,7 +10920,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeBorderColor = $event.target.value
       }
     }
-  })])])], 1)
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeBorder")
+      }
+    }
+  }, [_vm._v("clear")])])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

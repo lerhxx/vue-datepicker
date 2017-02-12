@@ -1,5 +1,9 @@
 #vue-datepicker
+
 基于 vuejs 2.x 和 es6 可自定义主题的日期组件
+
+[DEMO][3]
+
 ##Usage
 
 只需要在项目中加入 calendar.vue，就可以使用了。
@@ -71,5 +75,6 @@
 ##event
 `getValue()`: 获取选中的日期
 
-[1]: https://github.com/lerhxx/vue-datepicker/blob/master/images/native.png
-[2]: https://github.com/lerhxx/vue-datepicker/blob/master/images/demo.png
+[1]: https://github.com/lerhxx/vue-datepicker/blob/gh-pages/images/native.png
+[2]: https://github.com/lerhxx/vue-datepicker/blob/gh-pages/images/demo.png
+[3]: https://lerhxx.github.io/vue-datepicker/demo.html
