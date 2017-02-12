@@ -10106,6 +10106,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10150,11 +10172,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		getTimeValue(value) {
 			this.value = value;
-			console.log(this.value);
 		},
-		changetype() {
-			console.log(this.type);
+		clearIconUrl() {
+			this.iconUrl = '';
+		},
+		clearTheme() {
+			this.theme = '';
+		},
+		clearPannelBg() {},
+		clear(type) {
+			switch (type) {
+				case 'theme':
+					this[type] = '#e57373';
+					break;
+				case 'themePannelBg':
+				case 'themeHeaderColor':
+				case 'themebtnConfirmColor':
+				case 'themeBtnCanBg':
+				case 'themeSelColor':
+					this[type] = '#ffffff';
+					break;
+				case 'themeHeaderBg':
+				case 'themeHeaderYear':
+				case 'themeHeaderMonth':
+				case 'themeHeaderSep':
+				case 'themeLeftArrow':
+				case 'themeRightArrow':
+				case 'themeWeekColor':
+				case 'themeBtnConBg':
+				case 'themeSelBg':
+					this[type] = '';
+					break;
+				case 'themebtnCancleColor':
+				case 'themeCurmonthColor':
+					this[type] = '#000000';
+					break;
+				case 'themePrevMonthColor':
+				case 'themeNextMonthColor':
+				case 'themeNotAllowColor':
+					this[type] = '#aaaaaa';
+					break;
+				case 'themeBorder':
+					this.themeBorderColor = '';
+					this.themeBorderWidth = '1';
+					this.themeBorderColorStyle = 'solid';
+					break;
+				default:
+					this[type] = '';
+			}
 		}
+
 	},
 	computed: {
 		themeBorderR() {
@@ -10229,14 +10296,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "type"
     }],
     on: {
-      "change": [function($event) {
+      "change": function($event) {
         _vm.type = Array.prototype.filter.call($event.target.options, function(o) {
           return o.selected
         }).map(function(o) {
           var val = "_value" in o ? o._value : o.value;
           return val
         })[0]
-      }, _vm.changetype]
+      }
     }
   }, [_c('option', [_vm._v("single")]), _vm._v(" "), _c('option', [_vm._v("range")]), _vm._v(" "), _c('option', [_vm._v("time")])])]), _vm._v(" "), _c('div', {
     staticClass: "group"
@@ -10247,7 +10314,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "change": _vm.setIconUrl
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("iconUrl")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("theme:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10268,7 +10341,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.theme = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("theme")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themepannelbg:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10289,7 +10368,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themePannelBg = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themePannelBg")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeheadercolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10310,7 +10395,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeHeaderColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeHeaderColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeheaderbg:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10331,7 +10422,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeHeaderBg = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeHeaderBg")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeheaderyear:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10352,7 +10449,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeHeaderYear = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeHeaderYear")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeheadermonth:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10373,7 +10476,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeHeaderMonth = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeHeaderMonth")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeheadersep:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10394,7 +10503,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeHeaderSep = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeHeaderSep")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeleftarrow:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10415,7 +10530,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeLeftArrow = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeLeftArrow")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themerightarrow:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10436,7 +10557,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeRightArrow = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeRightArrow")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeweekcolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10457,7 +10584,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeWeekColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeWeekColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themebtnconbg:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10478,7 +10611,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeBtnConBg = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeBtnConBg")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themebtnconfirmcolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10499,7 +10638,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themebtnConfirmColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themebtnConfirmColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themebtncanbg:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10520,7 +10665,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeBtnCanBg = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeBtnCanBg")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themebtncanclecolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10541,7 +10692,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themebtnCancleColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themebtnCancleColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeselbg:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10562,7 +10719,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeSelBg = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeSelBg")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeselcolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10583,7 +10746,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeSelColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeSelColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themecurmonthcolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10604,7 +10773,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeCurmonthColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeCurmonthColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeprevmonthcolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10625,7 +10800,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themePrevMonthColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themePrevMonthColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themenextmonthcolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10646,7 +10827,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeNextMonthColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeNextMonthColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themenotallowcolor:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10667,7 +10854,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeNotAllowColor = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeNotAllowColor")
+      }
+    }
+  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
     staticClass: "group"
   }, [_c('label', [_vm._v("themeborder:")]), _vm._v(" "), _c('input', {
     directives: [{
@@ -10728,7 +10921,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.themeBorderColor = $event.target.value
       }
     }
-  })])])], 1)
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("themeBorder")
+      }
+    }
+  }, [_vm._v("clear")])])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
