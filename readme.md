@@ -36,5 +36,5 @@
 * themenextmonthcolor(String): 默认 #aaa，下月份日期的字体颜色
 * themenotallowcolor(String): 默认 #aaa，无效日期的字体颜色，仅 isAbandon 为 true 有效
 
-[1]: ./images/native.png
-[2]: ./images/demo.png
+[1]: https://github.com/lerhxx/vue-datepicker/blob/master/images/native.png
+[2]: https://github.com/lerhxx/vue-datepicker/blob/master/images/demo.png
