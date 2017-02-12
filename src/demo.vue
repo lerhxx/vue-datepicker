@@ -24,8 +24,13 @@
 			:themenotallowcolor='themeNotAllowColor'
 			:themeborder='themeBorderR'
 			type='range'
+			v-on:getValue='getTimeValue'
 		></calendar>
 		<div class='select-wrapper'>
+			<div class='group'>
+				<label>getValue:</label>
+				<span>{{value}}</span>
+			</div>
 			<div class='group'>
 				<label>iconUrl:</label>
 				<input type='file' @change='setIconUrl'/>
@@ -122,10 +127,6 @@
 				<input type='color' v-model='themeBorderColor'/>
 			</div>
 		</div>
-
-		
-		<calendar theme='#800080' type='range' iconUrl='./images/icon.png'></calendar>
-
 	</div>
 </template>
 
@@ -135,6 +136,7 @@
 	export default {
 		data() {
 			return {
+				value: '',
 				iconUrl: '',
 				theme: '#e57373',
 				themePannelBg: '#ffffff',
@@ -168,6 +170,10 @@
 			setIconUrl(e) {
 				let file = e.target.files || e.dataTransfer.files;
 				this.iconUrl = `./images/${file[0].name}`;
+			},
+			getTimeValue(value) {
+				this.value = value;
+				console.log(this.value);
 			}
 		},
 		computed: {
