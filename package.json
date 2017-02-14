@@ -1,6 +1,6 @@
 {
   "name": "auto-calendar",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "datepicker component for vue",
   "main": "src/calendar.vue",
   "scripts": {
