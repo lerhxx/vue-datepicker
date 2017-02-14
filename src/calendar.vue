@@ -90,7 +90,7 @@
             },
             iconUrl: {
                 type: String,
-                default: './src/imgs/calendar.png'
+                default: ''
             },
             theme: {
                 type: String,
@@ -511,7 +511,7 @@
             absolute(top 5px left 5px)
             width 20px
             height 20px
-            background url(./src/imgs/calendar.png)
+            background url(./imgs/calendar.png)
             background-size contain
         .input
             width width

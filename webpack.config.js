@@ -25,7 +25,7 @@ module.exports = {
 		}, {
 			test: /\.(png|jpg|gif|svg)$/,
 			exclude: /node_modules/,
-			loader: 'url-loader?name=[name].[ext]?[hash]'
+			loader: 'url-loader?limit=8192'
 		}]
     },
 	plugins: [
