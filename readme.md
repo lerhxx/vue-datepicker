@@ -3,6 +3,12 @@
 
 [DEMO][3]
 
+##Installation
+
+```
+npm install aotu-calendar --save
+```
+
 ##Usage
 
 只需要在项目中加入 calendar.vue，就可以使用了。
