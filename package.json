@@ -1,20 +1,29 @@
 {
   "name": "auto-calendar",
   "version": "1.0.0",
-  "description": "datepicker for vue",
+  "description": "datepicker component for vue",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node wpServer"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "datepicker",
+    "vue",
+    "date",
+    "calendar"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lerhxx/vue-datepicker.git"
   },
-  "author": "",
+  "author": "xuehuan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lerhxx/vue-datepicker/issues"
+    "url": "https://github.com/lerhxx/vue-datepicker/issues",
+    "email": "hxuehuan@gmail.com"
   },
   "homepage": "https://github.com/lerhxx/vue-datepicker#readme",
   "dependencies": {
