@@ -193,7 +193,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         iconUrl: {
             type: String,
-            default: '../dist/imgs/calendar.svg'
+            default: '.src/imgs/calendar.svg'
         },
         theme: {
             type: String,

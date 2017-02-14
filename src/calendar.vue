@@ -90,7 +90,7 @@
             },
             iconUrl: {
                 type: String,
-                default: '../dist/imgs/calendar.svg'
+                default: '.src/imgs/calendar.svg'
             },
             theme: {
                 type: String,
