@@ -541,6 +541,7 @@
             width width
             margin-top 5px
             background #fff
+            z-index 9
         .pannel-header
             relative()
             padding 3px
