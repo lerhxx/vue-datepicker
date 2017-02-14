@@ -1,7 +1,7 @@
 <template>
     <div class='calendar'>
         <div class='input-wrapper' v-show='showInput'>
-            <i class='date-icon' :style='setIconUrl'></i>
+            <!--<i class='date-icon' :style='setIconUrl'></i>-->
             <div class='input' v-text='value' @click='togglePanel = !togglePanel'></div>
             <span class='input-clear' @click='clearValue'></span>
         </div>
@@ -423,13 +423,13 @@
                 }
                 return dateList;
             },
-            setIconUrl() {
-                if(/.(?:jpeg|jpg|png|svg)/i.test(this.iconUrl)){
-                    return `background-image: url(${this.iconUrl})`;
-                }else {
-                    return '';
-                }
-            },
+            // setIconUrl() {
+            //     if(/.(?:jpeg|jpg|png|svg)/i.test(this.iconUrl)){
+            //         return `background-image: url(${this.iconUrl})`;
+            //     }else {
+            //         return '';
+            //     }
+            // },
             themePannelBg() {
                 return {
                     borderBottom: this.themeborder ? this.themeborder : `1px solid ${this.theme}`,
@@ -507,17 +507,16 @@
         .input-wrapper
             relative()
             display inline-block
-        .date-icon
+        /*.date-icon
             absolute(top 5px left 5px)
             width 20px
             height 20px
             background url(./imgs/calendar.png)
-            background-size contain
+            background-size contain*/
         .input
             width width
             height 30px
             padding 5px
-            padding-left 30px
             border 1px solid #ddd
             text-align left
             box-sizing border-box

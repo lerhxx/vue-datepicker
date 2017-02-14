@@ -63,74 +63,21 @@
 /******/ 	__webpack_require__.p = "/dist/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 16);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  scopeId,
-  cssModules
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  // inject cssModules
-  if (cssModules) {
-    var computed = options.computed || (options.computed = {})
-    Object.keys(cssModules).forEach(function (key) {
-      var module = cssModules[key]
-      computed[key] = function () { return module }
-    })
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _vue = __webpack_require__(14);
+var _vue = __webpack_require__(10);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _calendar = __webpack_require__(8);
+var _calendar = __webpack_require__(4);
 
 var _calendar2 = _interopRequireDefault(_calendar);
 
@@ -143,9 +90,7 @@ var vm = new _vue2.default({
 }).$mount('#app');
 
 /***/ }),
-/* 2 */,
-/* 3 */,
-/* 4 */
+/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -574,13 +519,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
             return dateList;
         },
-        setIconUrl() {
-            if (/.(?:jpeg|jpg|png|svg)/i.test(this.iconUrl)) {
-                return `background-image: url(${this.iconUrl})`;
-            } else {
-                return '';
-            }
-        },
+        // setIconUrl() {
+        //     if(/.(?:jpeg|jpg|png|svg)/i.test(this.iconUrl)){
+        //         return `background-image: url(${this.iconUrl})`;
+        //     }else {
+        //         return '';
+        //     }
+        // },
         themePannelBg() {
             return {
                 borderBottom: this.themeborder ? this.themeborder : `1px solid ${this.theme}`,
@@ -640,21 +585,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 5 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(3)();
 // imports
 
 
 // module
-exports.push([module.i, "\n.calendar ul {\n  padding: 0;\n  margin: 0;\n}\n.calendar li {\n  display: inline-block;\n  list-style: none;\n}\n.calendar .input-wrapper {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  display: inline-block;\n}\n.calendar .date-icon {\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  width: 20px;\n  height: 20px;\n  background: url(" + __webpack_require__(17) + ");\n  background-size: contain;\n}\n.calendar .input {\n  width: 259px;\n  height: 30px;\n  padding: 5px;\n  padding-left: 30px;\n  border: 1px solid #ddd;\n  text-align: left;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .input-clear {\n  position: absolute;\n  top: 6px;\n  right: 6px;\n  width: 16px;\n  height: 16px;\n}\n.calendar .input-clear:before,\n.calendar .input-clear:after {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  width: 100%;\n  height: 2px;\n  content: '';\n  background: #aaa;\n}\n.calendar .input-clear:before {\n  -webkit-transform: rotate(45deg);\n  -moz-transform: rotate(45deg);\n  -ms-transform: rotate(45deg);\n  -o-transform: rotate(45deg);\n  transform: rotate(45deg);\n}\n.calendar .input-clear:after {\n  -webkit-transform: rotate(-45deg);\n  -moz-transform: rotate(-45deg);\n  -ms-transform: rotate(-45deg);\n  -o-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n.calendar .pannel-wrapper {\n  width: 259px;\n  margin-top: 5px;\n  background: #fff;\n}\n.calendar .pannel-header {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  padding: 3px;\n  margin-bottom: 10px;\n  color: #fff;\n  text-align: center;\n  font-size: 1.5em;\n  background-color: #e57373;\n  -webkit-border-radius: 30px;\n  -moz-border-radius: 30px;\n  border-radius: 30px;\n}\n.calendar .year,\n.calendar .month {\n  display: inline-block;\n  margin: 0 5px;\n  cursor: pointer;\n}\n.calendar .prev,\n.calendar .next {\n  position: absolute;\n  top: 5px;\n  ((null)): 0;\n  cursor: pointer;\n}\n.calendar .prev {\n  left: 10px;\n}\n.calendar .next {\n  right: 10px;\n}\n.calendar .month-wrapper {\n  width: 157.5px;\n  margin: 0 auto;\n}\n.calendar .month-wrapper li {\n  width: 52.5px;\n  padding: 5px 0;\n  text-align: center;\n  cursor: pointer;\n}\n.calendar .date-list li {\n  width: 35px;\n  margin: 1px;\n  text-align: center;\n  font-size: 1em;\n  cursor: default;\n}\n.calendar .week {\n  margin-bottom: 5px;\n}\n.calendar .week li {\n  color: #e57373;\n  font-weight: bold;\n}\n.calendar .date li {\n  height: 35px;\n  color: #000;\n  line-height: 35px;\n  cursor: pointer;\n}\n.calendar .date .notCurMonth,\n.calendar .date .unvalid {\n  color: #aaa;\n}\n.calendar .date .unvalid {\n  cursor: not-allowed;\n}\n.calendar .time {\n  margin: 10px 0 15px;\n  text-align: center;\n}\n.calendar .time input {\n  width: 30px;\n  outline: none;\n  text-align: center;\n}\n.calendar li.selected {\n  color: #fff;\n  background-color: #e57373;\n  -webkit-border-radius: 20px;\n  -moz-border-radius: 20px;\n  border-radius: 20px;\n}\n.calendar .group-btn {\n  margin: 10px 0;\n  text-align: center;\n}\n.calendar .btn {\n  padding: 8px 15px;\n  margin: 0 15px;\n  border: 1px solid #e57373;\n  outline: none;\n  font-size: 16px;\n  background: #fff;\n  -webkit-border-radius: 10px;\n  -moz-border-radius: 10px;\n  border-radius: 10px;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .btn-confirm {\n  color: #fff;\n  background: #e57373;\n}\n.calendar .btn-cancle {\n  color: #000;\n  background: #fff;\n}\n.calendar .toggle-enter-active,\n.calendar .toggle-leave-active {\n  transition: opacity 0.5s, translateY 0.5s;\n}\n.calendar .toggle-enter,\n.calendar .toggle-leave-active {\n  opacity: 0;\n  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);\n}\n", ""]);
+exports.push([module.i, "\n.calendar ul {\n  padding: 0;\n  margin: 0;\n}\n.calendar li {\n  display: inline-block;\n  list-style: none;\n}\n.calendar .input-wrapper {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  display: inline-block;\n}\n.calendar .input {\n  width: 259px;\n  height: 30px;\n  padding: 5px;\n  border: 1px solid #ddd;\n  text-align: left;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .input-clear {\n  position: absolute;\n  top: 6px;\n  right: 6px;\n  width: 16px;\n  height: 16px;\n}\n.calendar .input-clear:before,\n.calendar .input-clear:after {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  width: 100%;\n  height: 2px;\n  content: '';\n  background: #aaa;\n}\n.calendar .input-clear:before {\n  -webkit-transform: rotate(45deg);\n  -moz-transform: rotate(45deg);\n  -ms-transform: rotate(45deg);\n  -o-transform: rotate(45deg);\n  transform: rotate(45deg);\n}\n.calendar .input-clear:after {\n  -webkit-transform: rotate(-45deg);\n  -moz-transform: rotate(-45deg);\n  -ms-transform: rotate(-45deg);\n  -o-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n.calendar .pannel-wrapper {\n  width: 259px;\n  margin-top: 5px;\n  background: #fff;\n}\n.calendar .pannel-header {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  padding: 3px;\n  margin-bottom: 10px;\n  color: #fff;\n  text-align: center;\n  font-size: 1.5em;\n  background-color: #e57373;\n  -webkit-border-radius: 30px;\n  -moz-border-radius: 30px;\n  border-radius: 30px;\n}\n.calendar .year,\n.calendar .month {\n  display: inline-block;\n  margin: 0 5px;\n  cursor: pointer;\n}\n.calendar .prev,\n.calendar .next {\n  position: absolute;\n  top: 5px;\n  ((null)): 0;\n  cursor: pointer;\n}\n.calendar .prev {\n  left: 10px;\n}\n.calendar .next {\n  right: 10px;\n}\n.calendar .month-wrapper {\n  width: 157.5px;\n  margin: 0 auto;\n}\n.calendar .month-wrapper li {\n  width: 52.5px;\n  padding: 5px 0;\n  text-align: center;\n  cursor: pointer;\n}\n.calendar .date-list li {\n  width: 35px;\n  margin: 1px;\n  text-align: center;\n  font-size: 1em;\n  cursor: default;\n}\n.calendar .week {\n  margin-bottom: 5px;\n}\n.calendar .week li {\n  color: #e57373;\n  font-weight: bold;\n}\n.calendar .date li {\n  height: 35px;\n  color: #000;\n  line-height: 35px;\n  cursor: pointer;\n}\n.calendar .date .notCurMonth,\n.calendar .date .unvalid {\n  color: #aaa;\n}\n.calendar .date .unvalid {\n  cursor: not-allowed;\n}\n.calendar .time {\n  margin: 10px 0 15px;\n  text-align: center;\n}\n.calendar .time input {\n  width: 30px;\n  outline: none;\n  text-align: center;\n}\n.calendar li.selected {\n  color: #fff;\n  background-color: #e57373;\n  -webkit-border-radius: 20px;\n  -moz-border-radius: 20px;\n  border-radius: 20px;\n}\n.calendar .group-btn {\n  margin: 10px 0;\n  text-align: center;\n}\n.calendar .btn {\n  padding: 8px 15px;\n  margin: 0 15px;\n  border: 1px solid #e57373;\n  outline: none;\n  font-size: 16px;\n  background: #fff;\n  -webkit-border-radius: 10px;\n  -moz-border-radius: 10px;\n  border-radius: 10px;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .btn-confirm {\n  color: #fff;\n  background: #e57373;\n}\n.calendar .btn-cancle {\n  color: #000;\n  background: #fff;\n}\n.calendar .toggle-enter-active,\n.calendar .toggle-leave-active {\n  transition: opacity 0.5s, translateY 0.5s;\n}\n.calendar .toggle-enter,\n.calendar .toggle-leave-active {\n  opacity: 0;\n  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 6 */
+/* 3 */
 /***/ (function(module, exports) {
 
 /*
@@ -710,19 +655,18 @@ module.exports = function() {
 
 
 /***/ }),
-/* 7 */,
-/* 8 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(11)
+__webpack_require__(7)
 
-var Component = __webpack_require__(0)(
+var Component = __webpack_require__(5)(
   /* script */
-  __webpack_require__(4),
+  __webpack_require__(1),
   /* template */
-  __webpack_require__(10),
+  __webpack_require__(6),
   /* scopeId */
   null,
   /* cssModules */
@@ -749,8 +693,60 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 9 */,
-/* 10 */
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  scopeId,
+  cssModules
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  // inject cssModules
+  if (cssModules) {
+    var computed = options.computed || (options.computed = {})
+    Object.keys(cssModules).forEach(function (key) {
+      var module = cssModules[key]
+      computed[key] = function () { return module }
+    })
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -764,10 +760,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "showInput"
     }],
     staticClass: "input-wrapper"
-  }, [_c('i', {
-    staticClass: "date-icon",
-    style: (_vm.setIconUrl)
-  }), _vm._v(" "), _c('div', {
+  }, [_c('div', {
     staticClass: "input",
     domProps: {
       "textContent": _vm._s(_vm.value)
@@ -1043,17 +1036,17 @@ if (false) {
 }
 
 /***/ }),
-/* 11 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(5);
+var content = __webpack_require__(2);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(12)("49930904", content, false);
+var update = __webpack_require__(8)("49930904", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -1069,7 +1062,7 @@ if(false) {
 }
 
 /***/ }),
-/* 12 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -1088,7 +1081,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(13)
+var listToStyles = __webpack_require__(9)
 
 /*
 type StyleObject = {
@@ -1305,7 +1298,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 13 */
+/* 9 */
 /***/ (function(module, exports) {
 
 /**
@@ -1338,7 +1331,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 14 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -9910,10 +9903,10 @@ return Vue$3;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ }),
-/* 15 */
+/* 11 */
 /***/ (function(module, exports) {
 
 var g;
@@ -9940,17 +9933,11 @@ module.exports = g;
 
 
 /***/ }),
-/* 16 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1);
+module.exports = __webpack_require__(0);
 
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACiklEQVRYR+1X7XHTQBDdrSBQQZwK4lRA3jVAUgHpgKQC7A5MBYQKEhrQOhVgV0DowFSwzBMr5SQkSx6ZGWZg/9m62323n29VBsTM5iLyICKPAO6GzvO7ma1E5K2IXAPY7LujQwrN7F5E3sW5iyGFAfhrnP8M4GYSgKIo1qr6JpQAwHqfQjO7pBN4xt2fUkr83SsND8TlypgAWLYBhKb6TEvzU/xuADCzBfEEqHVKqTonJQAzm0WcGe9aAGgHAL7oQ8+TliJCD7UBlMYzYV4wP55LAJURd/+uqo8isuP/ABY9HuhzaxWeLg9Q5St3v1LVUxHZALjQeP03d/+hqjMApfFKjp0DZkYQz6p6IiJnBFAmTV/CmBk9wpKiHFoFXwBctcOVPQpjAFDBg7tvU0qNHOlL7aIoNqp6HnHmAxpyEIA+I1P+/w+g0wNTXDrh7ksSTlAy5epwFUzRvqdKqvnyFwOIDvlJRNioVm0uYGYcs9VMuAPQqPfgBO9jNrDv1x12VBm2eAC9SSW1kaIodtFO+W0H4HXl8gBH8JV8BHDb0d77Q9Bqwb8BMLPGhOPk3AOgQUzGemDu7kyWk645ETM+DwFpWCkxcHj3PIbcZc6kRgHIlM37aBgN8Vx7gg7dPQjAv1uGEcuZu5+q6rbLzeQS7u45xxvjsVEhMLOSB4RCcjgy4rqWW2XaKLMhEKMAtKhY5NoLJd9XhkcB0NGIGnQsb0QksyklMutRMsoDUWIrd5+p6j0Abki1cANy95WqMiyLoY0pv9vHB0qaPOoJEw9lnPFX+8ziyX7Nttmg5hPt5V5j4+KeWXZNtu8KAFenvm3nWPbbepZcfPIBcuvuN0Gn/5RRLqzbyKnSCz8BZEU4Wq+blD8AAAAASUVORK5CYII="
 
 /***/ })
 /******/ ]);
