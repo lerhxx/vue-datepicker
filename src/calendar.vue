@@ -2,7 +2,7 @@
     <div class='calendar'>
         <div class='input-wrapper' v-show='showInput'>
             <!--<i class='date-icon' :style='setIconUrl'></i>-->
-            <div class='input' v-text='value' @click='togglePanel = !togglePanel'></div>
+            <div class='input' v-text='value' :style='{width: inputWidth}' @click='togglePanel = !togglePanel'></div>
             <span class='input-clear' @click='clearValue'></span>
         </div>
         <transition name='toggle'>
@@ -88,9 +88,9 @@
                 type: Boolean,
                 default: true
             },
-            iconUrl: {
+            inputWidth: {
                 type: String,
-                default: ''
+                default: '259px'
             },
             theme: {
                 type: String,
