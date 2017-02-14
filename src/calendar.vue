@@ -498,6 +498,7 @@
     header-color = #e57373
 
     .calendar
+        relative()
         ul
             padding 0
             margin 0
@@ -536,6 +537,7 @@
             &:after
                 transform rotate(-45deg)
         .pannel-wrapper
+            absolute(top 25px left 0)
             width width
             margin-top 5px
             background #fff
