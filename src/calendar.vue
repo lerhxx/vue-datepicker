@@ -430,6 +430,9 @@
             //         return '';
             //     }
             // },
+            inputWidth() {
+                return /(?:px|%|vh|vw|vmin|vmax)/.test(this.inputwidth) ? this.inputwidth : '259px';
+            },
             themePannelBg() {
                 return {
                     borderBottom: this.themeborder ? this.themeborder : `1px solid ${this.theme}`,
