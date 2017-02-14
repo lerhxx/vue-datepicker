@@ -1,0 +1,26 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'D:\\node\\node.exe',
+1 verbose cli   'D:\\node\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'version',
+1 verbose cli   '1.0.7' ]
+2 info using npm@3.8.9
+3 info using node@v6.2.0
+4 info git [ 'status', '--porcelain' ]
+5 verbose stack Error: Git working directory not clean.
+5 verbose stack M src/calendar.vue
+5 verbose stack     at D:\node\node_modules\npm\lib\version.js:246:19
+5 verbose stack     at ChildProcess.exithandler (child_process.js:193:7)
+5 verbose stack     at emitTwo (events.js:106:13)
+5 verbose stack     at ChildProcess.emit (events.js:191:7)
+5 verbose stack     at maybeClose (internal/child_process.js:850:16)
+5 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:215:5)
+6 verbose cwd D:\code\vue-datepicker
+7 error Windows_NT 6.1.7601
+8 error argv "D:\\node\\node.exe" "D:\\node\\node_modules\\npm\\bin\\npm-cli.js" "version" "1.0.7"
+9 error node v6.2.0
+10 error npm  v3.8.9
+11 error Git working directory not clean.
+11 error M src/calendar.vue
+12 error If you need help, you may report this error at:
+12 error     <https://github.com/npm/npm/issues>
+13 verbose exit [ 1, true ]

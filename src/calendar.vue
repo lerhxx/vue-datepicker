@@ -90,7 +90,7 @@
             },
             iconUrl: {
                 type: String,
-                default: '.src/imgs/calendar.svg'
+                default: './src/imgs/calendar.svg'
             },
             theme: {
                 type: String,
@@ -511,7 +511,7 @@
             absolute(top 5px left 5px)
             width 20px
             height 20px
-            background url(../dist/imgs/calendar.svg)
+            background url(./src/imgs/calendar.svg)
             background-size contain
         .input
             width width
