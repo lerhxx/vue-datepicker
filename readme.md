@@ -34,7 +34,7 @@ npm install aotu-calendar --save
 
 * `showInput(Boolean)`: 默认 true，是否展示输入框
 
-* `inputWidth`: 默认“259px”，显示框的宽度
+* `inputwidth`: 默认“259px”，显示框的宽度
 
 * `theme(String)`: 默认 #e57373，主题色
 
