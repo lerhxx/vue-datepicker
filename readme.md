@@ -82,7 +82,9 @@ npm install aotu-calendar --save
 
 ##event
 `getValue()`: 获取选中的日期
+
 `getStartTime()`: 获取选中的开始日期
+
 `getEndTime()`: 获取选中的结束日期
 
 [1]: https://github.com/lerhxx/vue-datepicker/blob/gh-pages/images/native.png
