@@ -319,6 +319,8 @@
                         this.value = '';
                 }
                 this.getValue();
+                this.getStartTime();
+                this.getEndTime();
             },
             clearValue() {
                 this.value = '';
