@@ -439,7 +439,7 @@
             //     }
             // },
             inputWidth() {
-                return /(?:px|%|vh|vw|vmin|vmax)/.test(this.inputwidth) ? this.inputwidth : '259px';
+                return /(?:px|%|vh|vw|vmin|vmax)/.test(this.inputwidth) ? this.inputwidth : '';
             },
             themePannelBg() {
                 return {
