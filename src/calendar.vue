@@ -90,7 +90,7 @@
             },
             inputwidth: {
                 type: String,
-                default: '259px'
+                default: ''
             },
             theme: {
                 type: String,
