@@ -392,10 +392,10 @@
                 this.$emit('getValue', this.value);
             },
             getStartTime() {
-                this.$emit('getStartTime', `${this.startYear}-${this.startMonth}-${this.startDate} ${this.startHour}:${this.startMin}`);
+                this.$emit('getStartTime', `${this.startYear}-${this.startMonth + 1}-${this.startDate} ${this.startHour}:${this.startMin}`);
             },
             getEndTime() {
-                this.$emit('getEndTime', `${this.endYear}-${this.endMonth}-${this.endDate} ${this.endHour}:${this.endMin}`);
+                this.$emit('getEndTime', `${this.endYear}-${this.endMonth + 1}-${this.endDate} ${this.endHour}:${this.endMin}`);
             }
         },
         computed: {

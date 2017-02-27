@@ -63,21 +63,28 @@
 /******/ 	__webpack_require__.p = "/dist/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(1);
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
-var _vue = __webpack_require__(10);
+var _vue = __webpack_require__(2);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _calendar = __webpack_require__(4);
+var _calendar = __webpack_require__(7);
 
 var _calendar2 = _interopRequireDefault(_calendar);
 
@@ -90,1264 +97,7 @@ new _vue2.default({
 }).$mount('#app');
 
 /***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = {
-    data() {
-        let curDate = new Date();
-        return {
-            value: '',
-            togglePanel: false,
-            pannelType: 'date',
-            curYear: curDate.getFullYear(),
-            curMonth: curDate.getMonth(),
-            curDate: curDate.getDate(),
-            tmpYear: curDate.getFullYear(),
-            tmpMonth: curDate.getMonth(),
-            tmpDate: curDate.getDate(),
-            startYear: curDate.getFullYear(),
-            startMonth: curDate.getMonth(),
-            startDate: curDate.getDate(),
-            endYear: curDate.getFullYear(),
-            endMonth: curDate.getMonth(),
-            endDate: curDate.getDate(),
-            startHour: '0',
-            startMin: '0',
-            endHour: '23',
-            endMin: '59',
-            page: 0,
-            lang: 'zh',
-            format: '-',
-            weekList: [0, 1, 2, 3, 4, 5, 6],
-            monthList: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-            flag: true,
-            check: ''
-        };
-    },
-    props: {
-        type: {
-            type: String,
-            default: 'single' //range/time
-        },
-        isAbandon: {
-            type: Boolean,
-            default: true
-        },
-        showInput: {
-            type: Boolean,
-            default: true
-        },
-        inputwidth: {
-            type: String,
-            default: ''
-        },
-        theme: {
-            type: String,
-            default: '#e57373'
-        },
-        themepannelbg: {
-            type: String,
-            default: '#fff'
-        },
-        themeheadercolor: {
-            type: String,
-            default: '#fff'
-        },
-        themeheaderyear: {
-            type: String,
-            default: ''
-        },
-        themeheadermonth: {
-            type: String,
-            default: ''
-        },
-        themeheadersep: {
-            type: String,
-            default: ''
-        },
-        themeleftarrow: {
-            type: String,
-            default: ''
-        },
-        themerightarrow: {
-            type: String,
-            default: ''
-        },
-        themeheaderbg: {
-            type: String,
-            default: ''
-        },
-        themeweekcolor: {
-            type: String,
-            default: ''
-        },
-        themeborder: {
-            type: String,
-            default: ''
-        },
-        themeselbg: {
-            type: String,
-            default: ''
-        },
-        themeselcolor: {
-            type: String,
-            default: '#fff'
-        },
-        themebtnborder: {
-            type: String,
-            default: ''
-        },
-        themebtnconbg: {
-            type: String,
-            default: ''
-        },
-        themebtncanbg: {
-            type: String,
-            default: '#fff'
-        },
-        themebtnconfirmcolor: {
-            type: String,
-            default: '#fff'
-        },
-        themebtncanclecolor: {
-            type: String,
-            default: '#000'
-        },
-        themecurmonthcolor: {
-            type: String,
-            default: '#000'
-        },
-        themeprevmonthcolor: {
-            type: String,
-            default: '#aaa'
-        },
-        themenextmonthcolor: {
-            type: String,
-            default: '#aaa'
-        },
-        themenotallowcolor: {
-            type: String,
-            default: '#aaa'
-        }
-    },
-    created() {
-        this.changeValue();
-    },
-    methods: {
-        clearValue() {
-            this.date = '';
-        },
-        showYearPannel() {
-            this.pannelType = 'year';
-        },
-        showMonthPannel() {
-            this.pannelType = 'month';
-        },
-        isSelected(item, type) {
-            switch (type) {
-                case 'year':
-                    return item === this.tmpYear;
-                case 'month':
-                    return item === this.tmpMonth;
-                case 'date':
-                    let mon = this.tmpMonth;
-                    let time;
-                    item.isPrevMonth && mon--;
-                    item.isNextMonth && mon++;
-
-                    time = new Date(this.tmpYear, mon, item.value).getTime();
-
-                    return time >= new Date(this.startYear, this.startMonth, this.startDate).getTime() && time <= new Date(this.endYear, this.endMonth, this.endDate).getTime();
-            }
-        },
-        month(item, lang) {
-            switch (lang) {
-                case 'en':
-                    return { 0: 'Jan', 1: 'Feb', 2: 'Mar', 3: 'Apr', 4: 'May', 5: 'Jun', 6: 'Jul', 7: 'Aug', 8: 'Sep', 9: 'Oct', 10: 'Nov', 11: 'Dec' }[item];
-                case 'zh':
-                    return { 0: '一', 1: '二', 2: '三', 3: '四', 4: '五', 5: '六', 6: '七', 7: '八', 8: '九', 9: '十', 10: '十一', 11: '十二' }[item];
-                default:
-                    return item;
-            }
-        },
-        week(item, lang) {
-            switch (lang) {
-                case 'en':
-                    return { 0: 'Su', 1: 'Mo', 2: 'Tu', 3: 'We', 4: 'Th', 5: 'Fr', 6: 'Sa' }[item];
-                case 'zh':
-                    return { 0: '日', 1: '一', 2: '二', 3: '三', 4: '四', 5: '五', 6: '六' }[item];
-                default:
-                    return item;
-            }
-        },
-        validDate(item) {
-            if (this.isAbandon) {
-                let mon = item.isCurMonth ? this.tmpMonth : item.isPrevMonth ? this.tmpMonth - 1 : this.tmpMonth + 1;
-                return new Date(this.tmpYear, mon, item.value).getTime() >= new Date(this.curYear, this.curMonth, this.curDate).getTime();
-            }
-            return true;
-        },
-        selectYear(item) {
-            this.tmpYear = item;
-        },
-        selectMonth(item) {
-            this.tmpMonth = item;
-        },
-        selectDate(item) {
-            if (!this.validDate(item)) return;
-            //是否修改月份
-            item.isPrevMonth ? this.tmpMonth === 0 ? (--this.tmpYear, this.tmpMonth = 11) : --this.tmpMonth : item.isNextMonth ? this.tmpMonth === 11 ? (++this.tmpYear, this.tmpMonth = 0) : ++this.tmpMonth : (this.tmpYear, this.tmpMonth);
-
-            switch (this.type) {
-                case 'single':
-                case 'time':
-                    this.startDate = this.endDate = item.value;
-                    this.startMonth = this.endMonth = this.tmpMonth;
-                    this.startYear = this.endYear = this.tmpYear;
-                    break;
-                case 'range':
-                    if (this.startYear && this.startMonth && this.startDate && this.endYear && this.endMonth && this.endDate) {
-                        let selTime = new Date(this.tmpYear, this.tmpMonth, item.value).getTime(),
-                            startTime = new Date(this.startYear, this.startMonth, this.startDate).getTime(),
-                            endTime = new Date(this.endYear, this.endMonth, this.endDate).getTime();
-
-                        if (selTime < startTime) {
-                            this.startYear = this.tmpYear;
-                            this.startMonth = this.tmpMonth;
-                            this.startDate = item.value;
-                            this.flag = true;
-                        } else if (selTime > endTime) {
-                            this.endYear = this.tmpYear;
-                            this.endMonth = this.tmpMonth;
-                            this.endDate = item.value;
-                            this.flag = false;
-                        } else if (selTime > startTime && selTime < endTime) {
-                            this.flag ? (this.startYear = this.tmpYear, this.startMonth = this.tmpMonth, this.startDate = item.value) : (this.endYear = this.tmpYear, this.endMonth = this.tmpMonth, this.endDate = item.value);
-                        }
-                    } else {
-                        this.startDate = this.endDate = item.value;
-                        this.startMonth = this.endMonth = this.tmpMonth;
-                        this.startYear = this.endYear = this.tmpYear;
-                    }
-                    break;
-                default:
-                    this.value = '';
-            }
-        },
-        prevMonth() {
-            if (this.pannelType === 'date') {
-                this.tmpMonth === 0 ? (--this.tmpYear, this.tmpMonth = 11) : --this.tmpMonth;
-            } else if (this.pannelType === 'year') {
-                --this.page;
-            }
-        },
-        nextMonth() {
-            if (this.pannelType === 'date') {
-                this.tmpMonth === 11 ? (++this.tmpYear, this.tmpMonth = 0) : ++this.tmpMonth;
-            } else if (this.pannelType === 'year') {
-                ++this.page;
-            }
-        },
-        changeValue() {
-            switch (this.type) {
-                case 'single':
-                    this.value = `${this.startYear}${this.format}${this.startMonth + 1}${this.format}${this.startDate}`;
-                    break;
-                case 'range':
-                    this.value = `${this.startYear}${this.format}${this.startMonth + 1}${this.format}${this.startDate} -- ${this.endYear}${this.format}${this.endMonth + 1}${this.format}${this.endDate}`;
-                    break;
-                case 'time':
-                    let date = `${this.startYear}${this.format}${this.startMonth + 1}${this.format}${this.startDate}`;
-                    this.startHour = this.startHour > 9 ? this.startHour : '0' + this.startHour * 1;
-                    this.startMin = this.startMin > 9 ? this.startMin : '0' + this.startMin * 1;
-                    this.endHour = this.endHour > 9 ? this.endHour : '0' + this.endHour * 1;
-                    this.endMin = this.endMin > 9 ? this.endMin : '0' + this.endMin * 1;
-                    this.value = `${date} ${this.startHour}:${this.startMin} - ${this.endHour}:${this.endMin}`;
-                    break;
-                default:
-                    this.value = '';
-            }
-            this.getValue();
-            this.getStartTime();
-            this.getEndTime();
-        },
-        clearValue() {
-            this.value = '';
-            this.startYear = this.startMonth = this.startDate = this.endYear = this.endMonth = this.endDate = '';
-        },
-        confirmSelect() {
-            if (this.pannelType === 'year') {
-                this.pannelType = 'month';
-            } else if (this.pannelType === 'month') {
-                this.pannelType = 'date';
-                this.startYear = this.startMonth = this.startDate = this.endYear = this.endMonth = this.endDate = '';
-            } else {
-                if (this.endHour < this.startHour) {
-                    this.endHour = this.startHour;
-                } else if (this.endHour == this.startHour && this.endMin < this.startMin) {
-                    this.endMin = this.startMin;
-                }
-                this.changeValue();
-                this.togglePanel = !this.togglePanel;
-            }
-        },
-        cancleSelect() {
-            this.togglePanel = !this.togglePanel;
-            this.pannelType = 'date';
-            this.tmpYear = this.startYear = this.endYear = this.curYear;
-            this.tmpMonth = this.startMonth = this.endMonth = this.curMonth;
-            this.tmpDate = this.startDate = this.endDate = this.curDate;
-            this.startHour = '0';
-            this.startMin = '0';
-            this.endHour = '23';
-            this.endMin = '59';
-        },
-        setSeltheme(item, type) {
-            if (!this.validDate(item)) {
-                return `color:${this.themenotallowcolor}`;
-            } else if (this.isSelected(item, type)) {
-                let bg = this.themeselbg ? this.themeselbg : this.theme;
-                return `backgroundColor:${bg};color:${this.themeselcolor}`;
-            } else {
-                if (item.isCurMonth) {
-                    return `color:${this.themecurmonthcolor}`;
-                } else if (item.isPrevMonth) {
-                    return `color:${this.themeprevmonthcolor}`;
-                } else {
-                    return `color:${this.themenextmonthcolor}`;
-                }
-            }
-        },
-        checkTime(type) {
-            let self = this;
-            this.check = setInterval(function () {
-                switch (type) {
-                    case 'startHour':
-                    case 'endHour':
-                        self[type] = self[type] > 23 ? 23 : self[type] > 0 ? self[type] * 1 : 0;
-                        break;
-                    case 'startMin':
-                    case 'endMin':
-                        self[type] = self[type] > 59 ? 59 : self[type] > 0 ? self[type] * 1 : 0;
-                        break;
-                }
-            }, 500);
-        },
-        clearCheck() {
-            let self = this;
-            clearInterval(self.check);
-        },
-        getValue() {
-            this.$emit('getValue', this.value);
-        },
-        getStartTime() {
-            this.$emit('getStartTime', `${this.startYear}-${this.startMonth}-${this.startDate} ${this.startHour}:${this.startMin}`);
-        },
-        getEndTime() {
-            this.$emit('getEndTime', `${this.endYear}-${this.endMonth}-${this.endDate} ${this.endHour}:${this.endMin}`);
-        }
-    },
-    computed: {
-        yearList() {
-            return Array.from({ length: 12 }, (val, index) => {
-                return this.curYear + index + 12 * this.page;
-            });
-        },
-        dateList() {
-            let tmpMonthLength = new Date(this.tmpYear, this.tmpMonth + 1, 0).getDate();
-            let dateList = Array.from({ length: tmpMonthLength }, (val, index) => {
-                return {
-                    isCurMonth: true,
-                    value: index + 1
-                };
-            });
-            let firstDay = new Date(this.tmpYear, this.tmpMonth, 1).getDay();
-            let lastMonthLength = new Date(this.tmpYear, this.tmpMonth, 0).getDate();
-            let len, i;
-
-            for (i = lastMonthLength; i > lastMonthLength - firstDay; --i) {
-                dateList.unshift({
-                    isPrevMonth: true,
-                    value: i
-                });
-            }
-            for (i = 0, len = dateList.length; i + len < 42; ++i) {
-                dateList.push({
-                    isNextMonth: true,
-                    value: i + 1
-                });
-            }
-            return dateList;
-        },
-        // setIconUrl() {
-        //     if(/.(?:jpeg|jpg|png|svg)/i.test(this.iconUrl)){
-        //         return `background-image: url(${this.iconUrl})`;
-        //     }else {
-        //         return '';
-        //     }
-        // },
-        inputWidth() {
-            console.log(this.inputwidth);
-            return (/(?:px|%|vh|vw|vmin|vmax)/.test(this.inputwidth) ? this.inputwidth : ''
-            );
-        },
-        themePannelBg() {
-            return {
-                borderBottom: this.themeborder ? this.themeborder : `1px solid ${this.theme}`,
-                backgroundColor: this.themepannelbg
-            };
-        },
-        themeHeaderBg() {
-            return {
-                backgroundColor: this.themeheaderbg ? this.themeheaderbg : this.theme
-            };
-        },
-        themeHeaderYear() {
-            return {
-                color: this.themeheaderyear ? this.themeheaderyear : this.themeheadercolor
-            };
-        },
-        themeHeaderMonth() {
-            return {
-                color: this.themeheadermonth ? this.themeheadermonth : this.themeheadercolor
-            };
-        },
-        themeHeaderSep() {
-            return {
-                color: this.themeheadersep ? this.themeheadersep : this.themeheadercolor
-            };
-        },
-        themeLeftArrow() {
-            return {
-                color: this.themeleftarrow ? this.themeleftarrow : this.themeheadercolor
-            };
-        },
-        themeRightArrow() {
-            return {
-                color: this.themerightarrow ? this.themerightarrow : this.themeheadercolor
-            };
-        },
-        themeWeekColor() {
-            return {
-                color: this.themeweekcolor ? this.themeweekcolor : this.theme
-            };
-        },
-        themeBtnCon() {
-            return {
-                border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
-                color: this.themebtnconfirmcolor,
-                backgroundColor: this.themebtnconbg ? this.themebtnconbg : this.theme
-            };
-        },
-        themeBtnCan() {
-            return {
-                border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
-                color: this.themebtncanclecolor,
-                backgroundColor: this.themebtncanbg ? this.themebtncanbg : this.theme
-            };
-        }
-    }
-};
-
-/***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)();
-// imports
-
-
-// module
-exports.push([module.i, "\n.calendar {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n/*.date-icon\n        absolute(top 5px left 5px)\n        width 20px\n        height 20px\n        background url(./imgs/calendar.png)\n        background-size contain*/\n}\n.calendar ul {\n  padding: 0;\n  margin: 0;\n}\n.calendar li {\n  display: inline-block;\n  list-style: none;\n}\n.calendar .input-wrapper {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  display: inline-block;\n}\n.calendar .input {\n  width: 259px;\n  height: 30px;\n  padding: 5px;\n  border: 1px solid #ddd;\n  text-align: left;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .input-clear {\n  position: absolute;\n  top: 6px;\n  right: 6px;\n  width: 16px;\n  height: 16px;\n}\n.calendar .input-clear:before,\n.calendar .input-clear:after {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  width: 100%;\n  height: 2px;\n  content: '';\n  background: #aaa;\n}\n.calendar .input-clear:before {\n  -webkit-transform: rotate(45deg);\n  -moz-transform: rotate(45deg);\n  -ms-transform: rotate(45deg);\n  -o-transform: rotate(45deg);\n  transform: rotate(45deg);\n}\n.calendar .input-clear:after {\n  -webkit-transform: rotate(-45deg);\n  -moz-transform: rotate(-45deg);\n  -ms-transform: rotate(-45deg);\n  -o-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n.calendar .pannel-wrapper {\n  position: absolute;\n  top: 25px;\n  left: 0;\n  width: 259px;\n  margin-top: 5px;\n  background: #fff;\n  z-index: 9;\n}\n.calendar .pannel-header {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  padding: 3px;\n  margin-bottom: 10px;\n  color: #fff;\n  text-align: center;\n  font-size: 1.5em;\n  background-color: #e57373;\n  -webkit-border-radius: 30px;\n  -moz-border-radius: 30px;\n  border-radius: 30px;\n}\n.calendar .year,\n.calendar .month {\n  display: inline-block;\n  margin: 0 5px;\n  cursor: pointer;\n}\n.calendar .prev,\n.calendar .next {\n  position: absolute;\n  top: 5px;\n  ((null)): 0;\n  cursor: pointer;\n}\n.calendar .prev {\n  left: 10px;\n}\n.calendar .next {\n  right: 10px;\n}\n.calendar .month-wrapper {\n  width: 157.5px;\n  margin: 0 auto;\n}\n.calendar .month-wrapper li {\n  width: 52.5px;\n  padding: 5px 0;\n  text-align: center;\n  cursor: pointer;\n}\n.calendar .date-list li {\n  width: 35px;\n  margin: 1px;\n  text-align: center;\n  font-size: 1em;\n  cursor: default;\n}\n.calendar .week {\n  margin-bottom: 5px;\n}\n.calendar .week li {\n  color: #e57373;\n  font-weight: bold;\n}\n.calendar .date li {\n  height: 35px;\n  color: #000;\n  line-height: 35px;\n  cursor: pointer;\n}\n.calendar .date .notCurMonth,\n.calendar .date .unvalid {\n  color: #aaa;\n}\n.calendar .date .unvalid {\n  cursor: not-allowed;\n}\n.calendar .time {\n  margin: 10px 0 15px;\n  text-align: center;\n}\n.calendar .time input {\n  width: 30px;\n  outline: none;\n  text-align: center;\n}\n.calendar li.selected {\n  color: #fff;\n  background-color: #e57373;\n  -webkit-border-radius: 20px;\n  -moz-border-radius: 20px;\n  border-radius: 20px;\n}\n.calendar .group-btn {\n  margin: 10px 0;\n  text-align: center;\n}\n.calendar .btn {\n  padding: 8px 15px;\n  margin: 0 15px;\n  border: 1px solid #e57373;\n  outline: none;\n  font-size: 16px;\n  background: #fff;\n  -webkit-border-radius: 10px;\n  -moz-border-radius: 10px;\n  border-radius: 10px;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .btn-confirm {\n  color: #fff;\n  background: #e57373;\n}\n.calendar .btn-cancle {\n  color: #000;\n  background: #fff;\n}\n.calendar .toggle-enter-active,\n.calendar .toggle-leave-active {\n  transition: opacity 0.5s, translateY 0.5s;\n}\n.calendar .toggle-enter,\n.calendar .toggle-leave-active {\n  opacity: 0;\n  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function() {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		var result = [];
-		for(var i = 0; i < this.length; i++) {
-			var item = this[i];
-			if(item[2]) {
-				result.push("@media " + item[2] + "{" + item[1] + "}");
-			} else {
-				result.push(item[1]);
-			}
-		}
-		return result.join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/* styles */
-__webpack_require__(7)
-
-var Component = __webpack_require__(5)(
-  /* script */
-  __webpack_require__(1),
-  /* template */
-  __webpack_require__(6),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "D:\\code\\vue-datepicker\\src\\calendar.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] calendar.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-db59c2d2", Component.options)
-  } else {
-    hotAPI.reload("data-v-db59c2d2", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  scopeId,
-  cssModules
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  // inject cssModules
-  if (cssModules) {
-    var computed = options.computed || (options.computed = {})
-    Object.keys(cssModules).forEach(function (key) {
-      var module = cssModules[key]
-      computed[key] = function () { return module }
-    })
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "calendar"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showInput),
-      expression: "showInput"
-    }],
-    staticClass: "input-wrapper"
-  }, [_c('div', {
-    staticClass: "input",
-    style: ({
-      width: _vm.inputWidth
-    }),
-    domProps: {
-      "textContent": _vm._s(_vm.value)
-    },
-    on: {
-      "click": function($event) {
-        _vm.togglePanel = !_vm.togglePanel
-      }
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "input-clear",
-    on: {
-      "click": _vm.clearValue
-    }
-  })]), _vm._v(" "), _c('transition', {
-    attrs: {
-      "name": "toggle"
-    }
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.togglePanel),
-      expression: "togglePanel"
-    }],
-    staticClass: "pannel-wrapper",
-    style: (_vm.themePannelBg)
-  }, [_c('div', {
-    staticClass: "pannel-header",
-    style: (_vm.themeHeaderBg)
-  }, [_c('span', {
-    staticClass: "year",
-    style: (_vm.themeHeaderYear),
-    domProps: {
-      "textContent": _vm._s(_vm.tmpYear)
-    },
-    on: {
-      "click": _vm.showYearPannel
-    }
-  }), _c('span', {
-    style: (_vm.themeHeaderSep)
-  }, [_vm._v("/")]), _c('span', {
-    staticClass: "month",
-    style: (_vm.themeHeaderMonth),
-    domProps: {
-      "textContent": _vm._s(_vm.tmpMonth + 1)
-    },
-    on: {
-      "click": _vm.showMonthPannel
-    }
-  }), _vm._v(" "), _c('span', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.pannelType !== "month"),
-      expression: "pannelType !== \"month\""
-    }],
-    staticClass: "prev",
-    style: (_vm.themeLeftArrow),
-    on: {
-      "click": _vm.prevMonth
-    }
-  }, [_vm._v("<")]), _vm._v(" "), _c('span', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.pannelType !== "month"),
-      expression: "pannelType !== \"month\""
-    }],
-    staticClass: "next",
-    style: (_vm.themeRightArrow),
-    on: {
-      "click": _vm.nextMonth
-    }
-  }, [_vm._v(">")])]), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.pannelType === "year"),
-      expression: "pannelType === \"year\""
-    }],
-    staticClass: "year-list"
-  }, [_c('ul', {
-    staticClass: "month-wrapper"
-  }, _vm._l((_vm.yearList), function(item) {
-    return _c('li', {
-      class: {
-        selected: _vm.isSelected(item, 'year')
-      },
-      on: {
-        "click": function($event) {
-          _vm.selectYear(item)
-        }
-      }
-    }, [_vm._v(_vm._s(item))])
-  }))]), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.pannelType === "month"),
-      expression: "pannelType === \"month\""
-    }],
-    staticClass: "month-list"
-  }, [_c('ul', {
-    staticClass: "month-wrapper"
-  }, _vm._l((_vm.monthList), function(item) {
-    return _c('li', {
-      class: {
-        selected: _vm.isSelected(item, 'month')
-      },
-      on: {
-        "click": function($event) {
-          _vm.selectMonth(item)
-        }
-      }
-    }, [_vm._v(_vm._s(_vm.month(item, _vm.lang)))])
-  }))]), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.pannelType === "date"),
-      expression: "pannelType === \"date\""
-    }],
-    staticClass: "date-list"
-  }, [_c('ul', {
-    staticClass: "week"
-  }, _vm._l((_vm.weekList), function(item) {
-    return _c('li', {
-      style: (_vm.themeWeekColor)
-    }, [_vm._v(_vm._s(_vm.week(item, _vm.lang)))])
-  })), _vm._v(" "), _c('ul', {
-    staticClass: "date"
-  }, _vm._l((_vm.dateList), function(item) {
-    return _c('li', {
-      class: {
-        selected: _vm.isSelected(item, 'date'), 'notCurMonth': !item.isCurMonth, unvalid: !_vm.validDate(item)
-      },
-      style: (_vm.setSeltheme(item, "date")),
-      on: {
-        "click": function($event) {
-          _vm.selectDate(item)
-        }
-      }
-    }, [_vm._v(_vm._s(item.value))])
-  })), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.type === "time"),
-      expression: "type === \"time\""
-    }],
-    staticClass: "time"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.startHour),
-      expression: "startHour"
-    }],
-    attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.startHour)
-    },
-    on: {
-      "focus": function($event) {
-        _vm.checkTime("startHour")
-      },
-      "blur": _vm.clearCheck,
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.startHour = $event.target.value
-      }
-    }
-  }), _vm._v(" : "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.startMin),
-      expression: "startMin"
-    }],
-    attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.startMin)
-    },
-    on: {
-      "focus": function($event) {
-        _vm.checkTime("startMin")
-      },
-      "blur": _vm.clearCheck,
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.startMin = $event.target.value
-      }
-    }
-  }), _vm._v(" - "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.endHour),
-      expression: "endHour"
-    }],
-    attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.endHour)
-    },
-    on: {
-      "focus": function($event) {
-        _vm.checkTime("endHour")
-      },
-      "blur": _vm.clearCheck,
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.endHour = $event.target.value
-      }
-    }
-  }), _vm._v(" : "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.endMin),
-      expression: "endMin"
-    }],
-    attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.endMin)
-    },
-    on: {
-      "focus": function($event) {
-        _vm.checkTime("endMin")
-      },
-      "blur": _vm.clearCheck,
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.endMin = $event.target.value
-      }
-    }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "group-btn"
-  }, [_c('button', {
-    staticClass: "btn btn-confirm",
-    style: (_vm.themeBtnCon),
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": _vm.confirmSelect
-    }
-  }, [_vm._v("确认")]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-cancle",
-    style: (_vm.themeBtnCan),
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": _vm.cancleSelect
-    }
-  }, [_vm._v("取消")])])])])], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-db59c2d2", module.exports)
-  }
-}
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(2);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(8)("49930904", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-db59c2d2!./../node_modules/stylus-loader/index.js!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./calendar.vue", function() {
-     var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-db59c2d2!./../node_modules/stylus-loader/index.js!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./calendar.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-  Modified by Evan You @yyx990803
-*/
-
-var hasDocument = typeof document !== 'undefined'
-
-if (typeof DEBUG !== 'undefined' && DEBUG) {
-  if (!hasDocument) {
-    throw new Error(
-    'vue-style-loader cannot be used in a non-browser environment. ' +
-    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
-  ) }
-}
-
-var listToStyles = __webpack_require__(9)
-
-/*
-type StyleObject = {
-  id: number;
-  parts: Array<StyleObjectPart>
-}
-
-type StyleObjectPart = {
-  css: string;
-  media: string;
-  sourceMap: ?string
-}
-*/
-
-var stylesInDom = {/*
-  [id: number]: {
-    id: number,
-    refs: number,
-    parts: Array<(obj?: StyleObjectPart) => void>
-  }
-*/}
-
-var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
-var singletonElement = null
-var singletonCounter = 0
-var isProduction = false
-var noop = function () {}
-
-// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-// tags it will allow on a page
-var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
-
-module.exports = function (parentId, list, _isProduction) {
-  isProduction = _isProduction
-
-  var styles = listToStyles(parentId, list)
-  addStylesToDom(styles)
-
-  return function update (newList) {
-    var mayRemove = []
-    for (var i = 0; i < styles.length; i++) {
-      var item = styles[i]
-      var domStyle = stylesInDom[item.id]
-      domStyle.refs--
-      mayRemove.push(domStyle)
-    }
-    if (newList) {
-      styles = listToStyles(parentId, newList)
-      addStylesToDom(styles)
-    } else {
-      styles = []
-    }
-    for (var i = 0; i < mayRemove.length; i++) {
-      var domStyle = mayRemove[i]
-      if (domStyle.refs === 0) {
-        for (var j = 0; j < domStyle.parts.length; j++) {
-          domStyle.parts[j]()
-        }
-        delete stylesInDom[domStyle.id]
-      }
-    }
-  }
-}
-
-function addStylesToDom (styles /* Array<StyleObject> */) {
-  for (var i = 0; i < styles.length; i++) {
-    var item = styles[i]
-    var domStyle = stylesInDom[item.id]
-    if (domStyle) {
-      domStyle.refs++
-      for (var j = 0; j < domStyle.parts.length; j++) {
-        domStyle.parts[j](item.parts[j])
-      }
-      for (; j < item.parts.length; j++) {
-        domStyle.parts.push(addStyle(item.parts[j]))
-      }
-      if (domStyle.parts.length > item.parts.length) {
-        domStyle.parts.length = item.parts.length
-      }
-    } else {
-      var parts = []
-      for (var j = 0; j < item.parts.length; j++) {
-        parts.push(addStyle(item.parts[j]))
-      }
-      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
-    }
-  }
-}
-
-function listToStyles (parentId, list) {
-  var styles = []
-  var newStyles = {}
-  for (var i = 0; i < list.length; i++) {
-    var item = list[i]
-    var id = item[0]
-    var css = item[1]
-    var media = item[2]
-    var sourceMap = item[3]
-    var part = { css: css, media: media, sourceMap: sourceMap }
-    if (!newStyles[id]) {
-      part.id = parentId + ':0'
-      styles.push(newStyles[id] = { id: id, parts: [part] })
-    } else {
-      part.id = parentId + ':' + newStyles[id].parts.length
-      newStyles[id].parts.push(part)
-    }
-  }
-  return styles
-}
-
-function createStyleElement () {
-  var styleElement = document.createElement('style')
-  styleElement.type = 'text/css'
-  head.appendChild(styleElement)
-  return styleElement
-}
-
-function addStyle (obj /* StyleObjectPart */) {
-  var update, remove
-  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
-  var hasSSR = styleElement != null
-
-  // if in production mode and style is already provided by SSR,
-  // simply do nothing.
-  if (hasSSR && isProduction) {
-    return noop
-  }
-
-  if (isOldIE) {
-    // use singleton mode for IE9.
-    var styleIndex = singletonCounter++
-    styleElement = singletonElement || (singletonElement = createStyleElement())
-    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
-    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
-  } else {
-    // use multi-style-tag mode in all other cases
-    styleElement = styleElement || createStyleElement()
-    update = applyToTag.bind(null, styleElement)
-    remove = function () {
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
-
-  if (!hasSSR) {
-    update(obj)
-  }
-
-  return function updateStyle (newObj /* StyleObjectPart */) {
-    if (newObj) {
-      if (newObj.css === obj.css &&
-          newObj.media === obj.media &&
-          newObj.sourceMap === obj.sourceMap) {
-        return
-      }
-      update(obj = newObj)
-    } else {
-      remove()
-    }
-  }
-}
-
-var replaceText = (function () {
-  var textStore = []
-
-  return function (index, replacement) {
-    textStore[index] = replacement
-    return textStore.filter(Boolean).join('\n')
-  }
-})()
-
-function applyToSingletonTag (styleElement, index, remove, obj) {
-  var css = remove ? '' : obj.css
-
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = replaceText(index, css)
-  } else {
-    var cssNode = document.createTextNode(css)
-    var childNodes = styleElement.childNodes
-    if (childNodes[index]) styleElement.removeChild(childNodes[index])
-    if (childNodes.length) {
-      styleElement.insertBefore(cssNode, childNodes[index])
-    } else {
-      styleElement.appendChild(cssNode)
-    }
-  }
-}
-
-function applyToTag (styleElement, obj) {
-  var css = obj.css
-  var media = obj.media
-  var sourceMap = obj.sourceMap
-
-  if (media) {
-    styleElement.setAttribute('media', media)
-  }
-
-  if (sourceMap) {
-    // https://developer.chrome.com/devtools/docs/javascript-debugging
-    // this makes source maps inside style tags work properly in Chrome
-    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
-    // http://stackoverflow.com/a/26603875
-    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
-  }
-
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = css
-  } else {
-    while (styleElement.firstChild) {
-      styleElement.removeChild(styleElement.firstChild)
-    }
-    styleElement.appendChild(document.createTextNode(css))
-  }
-}
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-/**
- * Translates the list format produced by css-loader into something
- * easier to manipulate.
- */
-module.exports = function listToStyles (parentId, list) {
-  var styles = []
-  var newStyles = {}
-  for (var i = 0; i < list.length; i++) {
-    var item = list[i]
-    var id = item[0]
-    var css = item[1]
-    var media = item[2]
-    var sourceMap = item[3]
-    var part = {
-      id: parentId + ':' + i,
-      css: css,
-      media: media,
-      sourceMap: sourceMap
-    }
-    if (!newStyles[id]) {
-      styles.push(newStyles[id] = { id: id, parts: [part] })
-    } else {
-      newStyles[id].parts.push(part)
-    }
-  }
-  return styles
-}
-
-
-/***/ }),
-/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -9919,10 +8669,10 @@ return Vue$3;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 11 */
+/* 3 */
 /***/ (function(module, exports) {
 
 var g;
@@ -9949,10 +8699,1260 @@ module.exports = g;
 
 
 /***/ }),
-/* 12 */
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    data() {
+        let curDate = new Date();
+        return {
+            value: '',
+            togglePanel: false,
+            pannelType: 'date',
+            curYear: curDate.getFullYear(),
+            curMonth: curDate.getMonth(),
+            curDate: curDate.getDate(),
+            tmpYear: curDate.getFullYear(),
+            tmpMonth: curDate.getMonth(),
+            tmpDate: curDate.getDate(),
+            startYear: curDate.getFullYear(),
+            startMonth: curDate.getMonth(),
+            startDate: curDate.getDate(),
+            endYear: curDate.getFullYear(),
+            endMonth: curDate.getMonth(),
+            endDate: curDate.getDate(),
+            startHour: '0',
+            startMin: '0',
+            endHour: '23',
+            endMin: '59',
+            page: 0,
+            lang: 'zh',
+            format: '-',
+            weekList: [0, 1, 2, 3, 4, 5, 6],
+            monthList: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+            flag: true,
+            check: ''
+        };
+    },
+    props: {
+        type: {
+            type: String,
+            default: 'single' //range/time
+        },
+        isAbandon: {
+            type: Boolean,
+            default: true
+        },
+        showInput: {
+            type: Boolean,
+            default: true
+        },
+        inputwidth: {
+            type: String,
+            default: ''
+        },
+        theme: {
+            type: String,
+            default: '#e57373'
+        },
+        themepannelbg: {
+            type: String,
+            default: '#fff'
+        },
+        themeheadercolor: {
+            type: String,
+            default: '#fff'
+        },
+        themeheaderyear: {
+            type: String,
+            default: ''
+        },
+        themeheadermonth: {
+            type: String,
+            default: ''
+        },
+        themeheadersep: {
+            type: String,
+            default: ''
+        },
+        themeleftarrow: {
+            type: String,
+            default: ''
+        },
+        themerightarrow: {
+            type: String,
+            default: ''
+        },
+        themeheaderbg: {
+            type: String,
+            default: ''
+        },
+        themeweekcolor: {
+            type: String,
+            default: ''
+        },
+        themeborder: {
+            type: String,
+            default: ''
+        },
+        themeselbg: {
+            type: String,
+            default: ''
+        },
+        themeselcolor: {
+            type: String,
+            default: '#fff'
+        },
+        themebtnborder: {
+            type: String,
+            default: ''
+        },
+        themebtnconbg: {
+            type: String,
+            default: ''
+        },
+        themebtncanbg: {
+            type: String,
+            default: '#fff'
+        },
+        themebtnconfirmcolor: {
+            type: String,
+            default: '#fff'
+        },
+        themebtncanclecolor: {
+            type: String,
+            default: '#000'
+        },
+        themecurmonthcolor: {
+            type: String,
+            default: '#000'
+        },
+        themeprevmonthcolor: {
+            type: String,
+            default: '#aaa'
+        },
+        themenextmonthcolor: {
+            type: String,
+            default: '#aaa'
+        },
+        themenotallowcolor: {
+            type: String,
+            default: '#aaa'
+        }
+    },
+    created() {
+        this.changeValue();
+    },
+    methods: {
+        clearValue() {
+            this.date = '';
+        },
+        showYearPannel() {
+            this.pannelType = 'year';
+        },
+        showMonthPannel() {
+            this.pannelType = 'month';
+        },
+        isSelected(item, type) {
+            switch (type) {
+                case 'year':
+                    return item === this.tmpYear;
+                case 'month':
+                    return item === this.tmpMonth;
+                case 'date':
+                    let mon = this.tmpMonth;
+                    let time;
+                    item.isPrevMonth && mon--;
+                    item.isNextMonth && mon++;
+
+                    time = new Date(this.tmpYear, mon, item.value).getTime();
+
+                    return time >= new Date(this.startYear, this.startMonth, this.startDate).getTime() && time <= new Date(this.endYear, this.endMonth, this.endDate).getTime();
+            }
+        },
+        month(item, lang) {
+            switch (lang) {
+                case 'en':
+                    return { 0: 'Jan', 1: 'Feb', 2: 'Mar', 3: 'Apr', 4: 'May', 5: 'Jun', 6: 'Jul', 7: 'Aug', 8: 'Sep', 9: 'Oct', 10: 'Nov', 11: 'Dec' }[item];
+                case 'zh':
+                    return { 0: '一', 1: '二', 2: '三', 3: '四', 4: '五', 5: '六', 6: '七', 7: '八', 8: '九', 9: '十', 10: '十一', 11: '十二' }[item];
+                default:
+                    return item;
+            }
+        },
+        week(item, lang) {
+            switch (lang) {
+                case 'en':
+                    return { 0: 'Su', 1: 'Mo', 2: 'Tu', 3: 'We', 4: 'Th', 5: 'Fr', 6: 'Sa' }[item];
+                case 'zh':
+                    return { 0: '日', 1: '一', 2: '二', 3: '三', 4: '四', 5: '五', 6: '六' }[item];
+                default:
+                    return item;
+            }
+        },
+        validDate(item) {
+            if (this.isAbandon) {
+                let mon = item.isCurMonth ? this.tmpMonth : item.isPrevMonth ? this.tmpMonth - 1 : this.tmpMonth + 1;
+                return new Date(this.tmpYear, mon, item.value).getTime() >= new Date(this.curYear, this.curMonth, this.curDate).getTime();
+            }
+            return true;
+        },
+        selectYear(item) {
+            this.tmpYear = item;
+        },
+        selectMonth(item) {
+            this.tmpMonth = item;
+        },
+        selectDate(item) {
+            if (!this.validDate(item)) return;
+            //是否修改月份
+            item.isPrevMonth ? this.tmpMonth === 0 ? (--this.tmpYear, this.tmpMonth = 11) : --this.tmpMonth : item.isNextMonth ? this.tmpMonth === 11 ? (++this.tmpYear, this.tmpMonth = 0) : ++this.tmpMonth : (this.tmpYear, this.tmpMonth);
+
+            switch (this.type) {
+                case 'single':
+                case 'time':
+                    this.startDate = this.endDate = item.value;
+                    this.startMonth = this.endMonth = this.tmpMonth;
+                    this.startYear = this.endYear = this.tmpYear;
+                    break;
+                case 'range':
+                    if (this.startYear && this.startMonth && this.startDate && this.endYear && this.endMonth && this.endDate) {
+                        let selTime = new Date(this.tmpYear, this.tmpMonth, item.value).getTime(),
+                            startTime = new Date(this.startYear, this.startMonth, this.startDate).getTime(),
+                            endTime = new Date(this.endYear, this.endMonth, this.endDate).getTime();
+
+                        if (selTime < startTime) {
+                            this.startYear = this.tmpYear;
+                            this.startMonth = this.tmpMonth;
+                            this.startDate = item.value;
+                            this.flag = true;
+                        } else if (selTime > endTime) {
+                            this.endYear = this.tmpYear;
+                            this.endMonth = this.tmpMonth;
+                            this.endDate = item.value;
+                            this.flag = false;
+                        } else if (selTime > startTime && selTime < endTime) {
+                            this.flag ? (this.startYear = this.tmpYear, this.startMonth = this.tmpMonth, this.startDate = item.value) : (this.endYear = this.tmpYear, this.endMonth = this.tmpMonth, this.endDate = item.value);
+                        }
+                    } else {
+                        this.startDate = this.endDate = item.value;
+                        this.startMonth = this.endMonth = this.tmpMonth;
+                        this.startYear = this.endYear = this.tmpYear;
+                    }
+                    break;
+                default:
+                    this.value = '';
+            }
+        },
+        prevMonth() {
+            if (this.pannelType === 'date') {
+                this.tmpMonth === 0 ? (--this.tmpYear, this.tmpMonth = 11) : --this.tmpMonth;
+            } else if (this.pannelType === 'year') {
+                --this.page;
+            }
+        },
+        nextMonth() {
+            if (this.pannelType === 'date') {
+                this.tmpMonth === 11 ? (++this.tmpYear, this.tmpMonth = 0) : ++this.tmpMonth;
+            } else if (this.pannelType === 'year') {
+                ++this.page;
+            }
+        },
+        changeValue() {
+            switch (this.type) {
+                case 'single':
+                    this.value = `${this.startYear}${this.format}${this.startMonth + 1}${this.format}${this.startDate}`;
+                    break;
+                case 'range':
+                    this.value = `${this.startYear}${this.format}${this.startMonth + 1}${this.format}${this.startDate} -- ${this.endYear}${this.format}${this.endMonth + 1}${this.format}${this.endDate}`;
+                    break;
+                case 'time':
+                    let date = `${this.startYear}${this.format}${this.startMonth + 1}${this.format}${this.startDate}`;
+                    this.startHour = this.startHour > 9 ? this.startHour : '0' + this.startHour * 1;
+                    this.startMin = this.startMin > 9 ? this.startMin : '0' + this.startMin * 1;
+                    this.endHour = this.endHour > 9 ? this.endHour : '0' + this.endHour * 1;
+                    this.endMin = this.endMin > 9 ? this.endMin : '0' + this.endMin * 1;
+                    this.value = `${date} ${this.startHour}:${this.startMin} - ${this.endHour}:${this.endMin}`;
+                    break;
+                default:
+                    this.value = '';
+            }
+            this.getValue();
+            this.getStartTime();
+            this.getEndTime();
+        },
+        clearValue() {
+            this.value = '';
+            this.startYear = this.startMonth = this.startDate = this.endYear = this.endMonth = this.endDate = '';
+        },
+        confirmSelect() {
+            if (this.pannelType === 'year') {
+                this.pannelType = 'month';
+            } else if (this.pannelType === 'month') {
+                this.pannelType = 'date';
+                this.startYear = this.startMonth = this.startDate = this.endYear = this.endMonth = this.endDate = '';
+            } else {
+                if (this.endHour < this.startHour) {
+                    this.endHour = this.startHour;
+                } else if (this.endHour == this.startHour && this.endMin < this.startMin) {
+                    this.endMin = this.startMin;
+                }
+                this.changeValue();
+                this.togglePanel = !this.togglePanel;
+            }
+        },
+        cancleSelect() {
+            this.togglePanel = !this.togglePanel;
+            this.pannelType = 'date';
+            this.tmpYear = this.startYear = this.endYear = this.curYear;
+            this.tmpMonth = this.startMonth = this.endMonth = this.curMonth;
+            this.tmpDate = this.startDate = this.endDate = this.curDate;
+            this.startHour = '0';
+            this.startMin = '0';
+            this.endHour = '23';
+            this.endMin = '59';
+        },
+        setSeltheme(item, type) {
+            if (!this.validDate(item)) {
+                return `color:${this.themenotallowcolor}`;
+            } else if (this.isSelected(item, type)) {
+                let bg = this.themeselbg ? this.themeselbg : this.theme;
+                return `backgroundColor:${bg};color:${this.themeselcolor}`;
+            } else {
+                if (item.isCurMonth) {
+                    return `color:${this.themecurmonthcolor}`;
+                } else if (item.isPrevMonth) {
+                    return `color:${this.themeprevmonthcolor}`;
+                } else {
+                    return `color:${this.themenextmonthcolor}`;
+                }
+            }
+        },
+        checkTime(type) {
+            let self = this;
+            this.check = setInterval(function () {
+                switch (type) {
+                    case 'startHour':
+                    case 'endHour':
+                        self[type] = self[type] > 23 ? 23 : self[type] > 0 ? self[type] * 1 : 0;
+                        break;
+                    case 'startMin':
+                    case 'endMin':
+                        self[type] = self[type] > 59 ? 59 : self[type] > 0 ? self[type] * 1 : 0;
+                        break;
+                }
+            }, 500);
+        },
+        clearCheck() {
+            let self = this;
+            clearInterval(self.check);
+        },
+        getValue() {
+            this.$emit('getValue', this.value);
+        },
+        getStartTime() {
+            this.$emit('getStartTime', `${this.startYear}-${this.startMonth + 1}-${this.startDate} ${this.startHour}:${this.startMin}`);
+        },
+        getEndTime() {
+            this.$emit('getEndTime', `${this.endYear}-${this.endMonth + 1}-${this.endDate} ${this.endHour}:${this.endMin}`);
+        }
+    },
+    computed: {
+        yearList() {
+            return Array.from({ length: 12 }, (val, index) => {
+                return this.curYear + index + 12 * this.page;
+            });
+        },
+        dateList() {
+            let tmpMonthLength = new Date(this.tmpYear, this.tmpMonth + 1, 0).getDate();
+            let dateList = Array.from({ length: tmpMonthLength }, (val, index) => {
+                return {
+                    isCurMonth: true,
+                    value: index + 1
+                };
+            });
+            let firstDay = new Date(this.tmpYear, this.tmpMonth, 1).getDay();
+            let lastMonthLength = new Date(this.tmpYear, this.tmpMonth, 0).getDate();
+            let len, i;
+
+            for (i = lastMonthLength; i > lastMonthLength - firstDay; --i) {
+                dateList.unshift({
+                    isPrevMonth: true,
+                    value: i
+                });
+            }
+            for (i = 0, len = dateList.length; i + len < 42; ++i) {
+                dateList.push({
+                    isNextMonth: true,
+                    value: i + 1
+                });
+            }
+            return dateList;
+        },
+        // setIconUrl() {
+        //     if(/.(?:jpeg|jpg|png|svg)/i.test(this.iconUrl)){
+        //         return `background-image: url(${this.iconUrl})`;
+        //     }else {
+        //         return '';
+        //     }
+        // },
+        inputWidth() {
+            console.log(this.inputwidth);
+            return (/(?:px|%|vh|vw|vmin|vmax)/.test(this.inputwidth) ? this.inputwidth : ''
+            );
+        },
+        themePannelBg() {
+            return {
+                borderBottom: this.themeborder ? this.themeborder : `1px solid ${this.theme}`,
+                backgroundColor: this.themepannelbg
+            };
+        },
+        themeHeaderBg() {
+            return {
+                backgroundColor: this.themeheaderbg ? this.themeheaderbg : this.theme
+            };
+        },
+        themeHeaderYear() {
+            return {
+                color: this.themeheaderyear ? this.themeheaderyear : this.themeheadercolor
+            };
+        },
+        themeHeaderMonth() {
+            return {
+                color: this.themeheadermonth ? this.themeheadermonth : this.themeheadercolor
+            };
+        },
+        themeHeaderSep() {
+            return {
+                color: this.themeheadersep ? this.themeheadersep : this.themeheadercolor
+            };
+        },
+        themeLeftArrow() {
+            return {
+                color: this.themeleftarrow ? this.themeleftarrow : this.themeheadercolor
+            };
+        },
+        themeRightArrow() {
+            return {
+                color: this.themerightarrow ? this.themerightarrow : this.themeheadercolor
+            };
+        },
+        themeWeekColor() {
+            return {
+                color: this.themeweekcolor ? this.themeweekcolor : this.theme
+            };
+        },
+        themeBtnCon() {
+            return {
+                border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
+                color: this.themebtnconfirmcolor,
+                backgroundColor: this.themebtnconbg ? this.themebtnconbg : this.theme
+            };
+        },
+        themeBtnCan() {
+            return {
+                border: this.themebtnborder ? this.themebtnborder : `1px solid ${this.theme}`,
+                color: this.themebtncanclecolor,
+                backgroundColor: this.themebtncanbg ? this.themebtncanbg : this.theme
+            };
+        }
+    }
+};
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(0);
+exports = module.exports = __webpack_require__(6)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.calendar {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n/*.date-icon\n        absolute(top 5px left 5px)\n        width 20px\n        height 20px\n        background url(./imgs/calendar.png)\n        background-size contain*/\n}\n.calendar ul {\n  padding: 0;\n  margin: 0;\n}\n.calendar li {\n  display: inline-block;\n  list-style: none;\n}\n.calendar .input-wrapper {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  display: inline-block;\n}\n.calendar .input {\n  width: 259px;\n  height: 30px;\n  padding: 5px;\n  border: 1px solid #ddd;\n  text-align: left;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .input-clear {\n  position: absolute;\n  top: 6px;\n  right: 6px;\n  width: 16px;\n  height: 16px;\n}\n.calendar .input-clear:before,\n.calendar .input-clear:after {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  width: 100%;\n  height: 2px;\n  content: '';\n  background: #aaa;\n}\n.calendar .input-clear:before {\n  -webkit-transform: rotate(45deg);\n  -moz-transform: rotate(45deg);\n  -ms-transform: rotate(45deg);\n  -o-transform: rotate(45deg);\n  transform: rotate(45deg);\n}\n.calendar .input-clear:after {\n  -webkit-transform: rotate(-45deg);\n  -moz-transform: rotate(-45deg);\n  -ms-transform: rotate(-45deg);\n  -o-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n.calendar .pannel-wrapper {\n  position: absolute;\n  top: 25px;\n  left: 0;\n  width: 259px;\n  margin-top: 5px;\n  background: #fff;\n  z-index: 9;\n}\n.calendar .pannel-header {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  padding: 3px;\n  margin-bottom: 10px;\n  color: #fff;\n  text-align: center;\n  font-size: 1.5em;\n  background-color: #e57373;\n  -webkit-border-radius: 30px;\n  -moz-border-radius: 30px;\n  border-radius: 30px;\n}\n.calendar .year,\n.calendar .month {\n  display: inline-block;\n  margin: 0 5px;\n  cursor: pointer;\n}\n.calendar .prev,\n.calendar .next {\n  position: absolute;\n  top: 5px;\n  ((null)): 0;\n  cursor: pointer;\n}\n.calendar .prev {\n  left: 10px;\n}\n.calendar .next {\n  right: 10px;\n}\n.calendar .month-wrapper {\n  width: 157.5px;\n  margin: 0 auto;\n}\n.calendar .month-wrapper li {\n  width: 52.5px;\n  padding: 5px 0;\n  text-align: center;\n  cursor: pointer;\n}\n.calendar .date-list li {\n  width: 35px;\n  margin: 1px;\n  text-align: center;\n  font-size: 1em;\n  cursor: default;\n}\n.calendar .week {\n  margin-bottom: 5px;\n}\n.calendar .week li {\n  color: #e57373;\n  font-weight: bold;\n}\n.calendar .date li {\n  height: 35px;\n  color: #000;\n  line-height: 35px;\n  cursor: pointer;\n}\n.calendar .date .notCurMonth,\n.calendar .date .unvalid {\n  color: #aaa;\n}\n.calendar .date .unvalid {\n  cursor: not-allowed;\n}\n.calendar .time {\n  margin: 10px 0 15px;\n  text-align: center;\n}\n.calendar .time input {\n  width: 30px;\n  outline: none;\n  text-align: center;\n}\n.calendar li.selected {\n  color: #fff;\n  background-color: #e57373;\n  -webkit-border-radius: 20px;\n  -moz-border-radius: 20px;\n  border-radius: 20px;\n}\n.calendar .group-btn {\n  margin: 10px 0;\n  text-align: center;\n}\n.calendar .btn {\n  padding: 8px 15px;\n  margin: 0 15px;\n  border: 1px solid #e57373;\n  outline: none;\n  font-size: 16px;\n  background: #fff;\n  -webkit-border-radius: 10px;\n  -moz-border-radius: 10px;\n  border-radius: 10px;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .btn-confirm {\n  color: #fff;\n  background: #e57373;\n}\n.calendar .btn-cancle {\n  color: #000;\n  background: #fff;\n}\n.calendar .toggle-enter-active,\n.calendar .toggle-leave-active {\n  transition: opacity 0.5s, translateY 0.5s;\n}\n.calendar .toggle-enter,\n.calendar .toggle-leave-active {\n  opacity: 0;\n  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(10)
+
+var Component = __webpack_require__(8)(
+  /* script */
+  __webpack_require__(4),
+  /* template */
+  __webpack_require__(9),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "D:\\code\\vue-datepicker\\src\\calendar.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] calendar.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-db59c2d2", Component.options)
+  } else {
+    hotAPI.reload("data-v-db59c2d2", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  scopeId,
+  cssModules
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  // inject cssModules
+  if (cssModules) {
+    var computed = options.computed || (options.computed = {})
+    Object.keys(cssModules).forEach(function (key) {
+      var module = cssModules[key]
+      computed[key] = function () { return module }
+    })
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "calendar"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showInput),
+      expression: "showInput"
+    }],
+    staticClass: "input-wrapper"
+  }, [_c('div', {
+    staticClass: "input",
+    style: ({
+      width: _vm.inputWidth
+    }),
+    domProps: {
+      "textContent": _vm._s(_vm.value)
+    },
+    on: {
+      "click": function($event) {
+        _vm.togglePanel = !_vm.togglePanel
+      }
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "input-clear",
+    on: {
+      "click": _vm.clearValue
+    }
+  })]), _vm._v(" "), _c('transition', {
+    attrs: {
+      "name": "toggle"
+    }
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.togglePanel),
+      expression: "togglePanel"
+    }],
+    staticClass: "pannel-wrapper",
+    style: (_vm.themePannelBg)
+  }, [_c('div', {
+    staticClass: "pannel-header",
+    style: (_vm.themeHeaderBg)
+  }, [_c('span', {
+    staticClass: "year",
+    style: (_vm.themeHeaderYear),
+    domProps: {
+      "textContent": _vm._s(_vm.tmpYear)
+    },
+    on: {
+      "click": _vm.showYearPannel
+    }
+  }), _c('span', {
+    style: (_vm.themeHeaderSep)
+  }, [_vm._v("/")]), _c('span', {
+    staticClass: "month",
+    style: (_vm.themeHeaderMonth),
+    domProps: {
+      "textContent": _vm._s(_vm.tmpMonth + 1)
+    },
+    on: {
+      "click": _vm.showMonthPannel
+    }
+  }), _vm._v(" "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.pannelType !== "month"),
+      expression: "pannelType !== \"month\""
+    }],
+    staticClass: "prev",
+    style: (_vm.themeLeftArrow),
+    on: {
+      "click": _vm.prevMonth
+    }
+  }, [_vm._v("<")]), _vm._v(" "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.pannelType !== "month"),
+      expression: "pannelType !== \"month\""
+    }],
+    staticClass: "next",
+    style: (_vm.themeRightArrow),
+    on: {
+      "click": _vm.nextMonth
+    }
+  }, [_vm._v(">")])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.pannelType === "year"),
+      expression: "pannelType === \"year\""
+    }],
+    staticClass: "year-list"
+  }, [_c('ul', {
+    staticClass: "month-wrapper"
+  }, _vm._l((_vm.yearList), function(item) {
+    return _c('li', {
+      class: {
+        selected: _vm.isSelected(item, 'year')
+      },
+      on: {
+        "click": function($event) {
+          _vm.selectYear(item)
+        }
+      }
+    }, [_vm._v(_vm._s(item))])
+  }))]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.pannelType === "month"),
+      expression: "pannelType === \"month\""
+    }],
+    staticClass: "month-list"
+  }, [_c('ul', {
+    staticClass: "month-wrapper"
+  }, _vm._l((_vm.monthList), function(item) {
+    return _c('li', {
+      class: {
+        selected: _vm.isSelected(item, 'month')
+      },
+      on: {
+        "click": function($event) {
+          _vm.selectMonth(item)
+        }
+      }
+    }, [_vm._v(_vm._s(_vm.month(item, _vm.lang)))])
+  }))]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.pannelType === "date"),
+      expression: "pannelType === \"date\""
+    }],
+    staticClass: "date-list"
+  }, [_c('ul', {
+    staticClass: "week"
+  }, _vm._l((_vm.weekList), function(item) {
+    return _c('li', {
+      style: (_vm.themeWeekColor)
+    }, [_vm._v(_vm._s(_vm.week(item, _vm.lang)))])
+  })), _vm._v(" "), _c('ul', {
+    staticClass: "date"
+  }, _vm._l((_vm.dateList), function(item) {
+    return _c('li', {
+      class: {
+        selected: _vm.isSelected(item, 'date'), 'notCurMonth': !item.isCurMonth, unvalid: !_vm.validDate(item)
+      },
+      style: (_vm.setSeltheme(item, "date")),
+      on: {
+        "click": function($event) {
+          _vm.selectDate(item)
+        }
+      }
+    }, [_vm._v(_vm._s(item.value))])
+  })), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.type === "time"),
+      expression: "type === \"time\""
+    }],
+    staticClass: "time"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.startHour),
+      expression: "startHour"
+    }],
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.startHour)
+    },
+    on: {
+      "focus": function($event) {
+        _vm.checkTime("startHour")
+      },
+      "blur": _vm.clearCheck,
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.startHour = $event.target.value
+      }
+    }
+  }), _vm._v(" : "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.startMin),
+      expression: "startMin"
+    }],
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.startMin)
+    },
+    on: {
+      "focus": function($event) {
+        _vm.checkTime("startMin")
+      },
+      "blur": _vm.clearCheck,
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.startMin = $event.target.value
+      }
+    }
+  }), _vm._v(" - "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.endHour),
+      expression: "endHour"
+    }],
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.endHour)
+    },
+    on: {
+      "focus": function($event) {
+        _vm.checkTime("endHour")
+      },
+      "blur": _vm.clearCheck,
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.endHour = $event.target.value
+      }
+    }
+  }), _vm._v(" : "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.endMin),
+      expression: "endMin"
+    }],
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.endMin)
+    },
+    on: {
+      "focus": function($event) {
+        _vm.checkTime("endMin")
+      },
+      "blur": _vm.clearCheck,
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.endMin = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "group-btn"
+  }, [_c('button', {
+    staticClass: "btn btn-confirm",
+    style: (_vm.themeBtnCon),
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": _vm.confirmSelect
+    }
+  }, [_vm._v("确认")]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-cancle",
+    style: (_vm.themeBtnCan),
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": _vm.cancleSelect
+    }
+  }, [_vm._v("取消")])])])])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-db59c2d2", module.exports)
+  }
+}
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(5);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(11)("49930904", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-db59c2d2!./../node_modules/stylus-loader/index.js!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./calendar.vue", function() {
+     var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-db59c2d2!./../node_modules/stylus-loader/index.js!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./calendar.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(12)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction) {
+  isProduction = _isProduction
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = { css: css, media: media, sourceMap: sourceMap }
+    if (!newStyles[id]) {
+      part.id = parentId + ':0'
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      part.id = parentId + ':' + newStyles[id].parts.length
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+  var hasSSR = styleElement != null
+
+  // if in production mode and style is already provided by SSR,
+  // simply do nothing.
+  if (hasSSR && isProduction) {
+    return noop
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = styleElement || createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (!hasSSR) {
+    update(obj)
+  }
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
 
 
 /***/ })
