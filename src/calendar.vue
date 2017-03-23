@@ -519,13 +519,6 @@
             list-style none
         .input-wrapper
             relative()
-            display inline-block
-        /*.date-icon
-            absolute(top 5px left 5px)
-            width 20px
-            height 20px
-            background url(./imgs/calendar.png)
-            background-size contain*/
         .input
             width width
             height 30px
