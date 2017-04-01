@@ -46,6 +46,34 @@
     export default {
         data() {
             let curDate = new Date();
+            /**
+             * param {String} value: 已选日期
+             * param {Boolean} togglePanel: 是否展示日期选择框
+             * param {String} pannelType: 当前日期选择类型（年、月、日） 
+             * param {Date} curYear: 当日年份
+             * param {Date} curMonth: 当日月份
+             * param {Date} curMonth: 当日日期
+             * param {Date} tmpYear: 已点击年份
+             * param {Date} tmpMonth: 已点击月份
+             * param {Date} tmpDate: 已点击日期
+             * param {Date} startYear: 已选择日期开始年份
+             * param {Date} startMonth: 已选择日期开始月份
+             * param {Date} startDate: 已选择日期开始日期
+             * param {Date} endYear: 已选择日期结束年份
+             * param {Date} endMonth: 已选择日期结束月份
+             * param {Date} endDate: 已选择日期结束日期
+             * param {String} startHour: 日期开始时
+             * param {String} startMin: 日期开始分
+             * param {String} endHour: 日期结束时
+             * param {String} endMin: 日期结束分
+             * param {Number} page: 年份选择，更新年份
+             * param {String} lang: 日期语言，'zh','en'
+             * param {String} format: 日期分隔符
+             * param {Array} weekList: 周列表
+             * param {Array} monthList: 月列表
+             * param {Boolean} flag: type 为 'range' 时，日期范围点击判断
+             * param {Boolean} check: type 为 'range' 时，检查输入时间是否合法
+            */
             return {
                 value: '',
                 togglePanel: false,

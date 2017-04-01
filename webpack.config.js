@@ -25,7 +25,7 @@ module.exports = {
 		}, {
 			test: /\.(png|jpg|gif|svg)$/,
 			exclude: /node_modules/,
-			loader: 'url-loader?limit=8192'
+			loader: 'url-loader?limit=8192&name=imgs/[hash:8].[ext]'
 		}]
     },
 	plugins: [
@@ -48,14 +48,6 @@ module.exports = {
 		extensions: ['.js', '.vue'],
 		alias: {
 			vue: 'vue/dist/vue.js'
-		}
-	},
-	devServer: {
-		inline: true,
-		hot: true,
-		'/get': {
-			target: 'localhost:3000',
-			secure: false
 		}
 	}
 }
