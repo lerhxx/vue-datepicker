@@ -1,8 +1,8 @@
 <template>
     <div class='calendar'>
         <div class='input-wrapper' v-show='showInput'>
-            <i class='date-icon' :style='setIconUrl'></i>
-            <div class='input' v-text='value' @click='togglePanel = !togglePanel'></div>
+            <!--<i class='date-icon' :style='setIconUrl'></i>-->
+            <div class='input' v-text='value' :style='{width: inputWidth}' @click='togglePanel = !togglePanel'></div>
             <span class='input-clear' @click='clearValue'></span>
         </div>
         <transition name='toggle'>
@@ -88,9 +88,9 @@
                 type: Boolean,
                 default: true
             },
-            iconUrl: {
+            inputwidth: {
                 type: String,
-                default: '../dist/imgs/calendar.svg'
+                default: '259px'
             },
             theme: {
                 type: String,
@@ -319,6 +319,8 @@
                         this.value = '';
                 }
                 this.getValue();
+                this.getStartTime();
+                this.getEndTime();
             },
             clearValue() {
                 this.value = '';
@@ -388,6 +390,12 @@
             },
             getValue() {
                 this.$emit('getValue', this.value);
+            },
+            getStartTime() {
+                this.$emit('getStartTime', `${this.startYear}-${this.startMonth}-${this.startDate} ${this.startHour}:${this.startMin}`);
+            },
+            getEndTime() {
+                this.$emit('getEndTime', `${this.endYear}-${this.endMonth}-${this.endDate} ${this.endHour}:${this.endMin}`);
             }
         },
         computed: {
@@ -423,12 +431,15 @@
                 }
                 return dateList;
             },
-            setIconUrl() {
-                if(/.(?:jpeg|jpg|png|svg)/i.test(this.iconUrl)){
-                    return `background-image: url(${this.iconUrl})`;
-                }else {
-                    return '';
-                }
+            // setIconUrl() {
+            //     if(/.(?:jpeg|jpg|png|svg)/i.test(this.iconUrl)){
+            //         return `background-image: url(${this.iconUrl})`;
+            //     }else {
+            //         return '';
+            //     }
+            // },
+            inputWidth() {
+                return /(?:px|%|vh|vw|vmin|vmax)/.test(this.inputwidth) ? this.inputwidth : '259px';
             },
             themePannelBg() {
                 return {
@@ -498,6 +509,7 @@
     header-color = #e57373
 
     .calendar
+        relative()
         ul
             padding 0
             margin 0
@@ -507,18 +519,18 @@
         .input-wrapper
             relative()
             display inline-block
-        .date-icon
+        /*.date-icon
             absolute(top 5px left 5px)
             width 20px
             height 20px
-            background url(../dist/imgs/calendar.svg)
-            background-size contain
+            background url(./imgs/calendar.png)
+            background-size contain*/
         .input
             width width
             height 30px
             padding 5px
-            padding-left 30px
             border 1px solid #ddd
+            text-align left
             box-sizing border-box
         .input-clear
             absolute(top 6px right 6px)
@@ -536,9 +548,11 @@
             &:after
                 transform rotate(-45deg)
         .pannel-wrapper
+            absolute(top 25px left 0)
             width width
             margin-top 5px
             background #fff
+            z-index 9
         .pannel-header
             relative()
             padding 3px

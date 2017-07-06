@@ -1,24 +1,38 @@
 {
   "name": "auto-calendar",
+<<<<<<< HEAD
   "version": "1.0.1",
   "description": "datepicker for vue",
   "main": "webpack.config.js",
+=======
+  "version": "1.0.16",
+  "description": "datepicker component for vue",
+  "main": "src/calendar.vue",
+>>>>>>> 67a98837932ea192aa7bf53dbd7bc7044731acc3
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node wpServer"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "datepicker",
+    "vue",
+    "date",
+    "calendar"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lerhxx/vue-datepicker.git"
   },
-  "author": "",
+  "author": "xuehuan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lerhxx/vue-datepicker/issues"
+    "url": "https://github.com/lerhxx/vue-datepicker/issues",
+    "email": "hxuehuan@gmail.com"
   },
   "homepage": "https://github.com/lerhxx/vue-datepicker#readme",
-  "dependencies": {
-    "axios": "^0.15.3",
+  "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
     "babel-plugin-transform-runtime": "^6.22.0",
@@ -35,5 +49,6 @@
     "vue-loader": "^10.3.0",
     "vue-template-compiler": "^2.1.10",
     "webpack": "^2.2.1"
-  }
+  },
+  "dependencies": {}
 }

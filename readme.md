@@ -3,6 +3,12 @@
 
 [DEMO][3]
 
+##Installation
+
+```
+npm install aotu-calendar --save
+```
+
 ##Usage
 
 只需要在项目中加入 calendar.vue，就可以使用了。
@@ -27,6 +33,8 @@
 * `isAbandon(Boolean)`: 默认 true，早于系统日期的日期选项是否不可选
 
 * `showInput(Boolean)`: 默认 true，是否展示输入框
+
+* `inputwidth`: 默认“259px”，显示框的宽度
 
 * `theme(String)`: 默认 #e57373，主题色
 
