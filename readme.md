@@ -6,7 +6,7 @@
 ##Installation
 
 ```
-npm install aotu-calendar --save
+npm install auto-calendar --save
 ```
 
 ##Usage
