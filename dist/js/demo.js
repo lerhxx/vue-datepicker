@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/dist/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -195,7 +195,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(10)
+var listToStyles = __webpack_require__(15)
 
 /*
 type StyleObject = {
@@ -413,6 +413,44 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(13)
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(6),
+  /* template */
+  __webpack_require__(11),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "E:\\code\\vue-datepicker\\src\\demo.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] demo.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-64b74f3c", Component.options)
+  } else {
+    hotAPI.reload("data-v-64b74f3c", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -8984,10 +9022,10 @@ return Vue$3;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)))
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9482,7 +9520,283 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 5 */
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__calendar_vue__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__calendar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__calendar_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = {
+	data() {
+		return {
+			value: '',
+			type: 'single',
+			iconUrl: '',
+			theme: '#e57373',
+			themePannelBg: '#ffffff',
+			themeHeaderColor: '#ffffff',
+			themeHeaderBg: '',
+			themeHeaderYear: '',
+			themeHeaderMonth: '',
+			themeHeaderSep: '',
+			themeLeftArrow: '',
+			themeRightArrow: '',
+			themeWeekColor: '',
+			themeBtnConBg: '',
+			themebtnConfirmColor: '#ffffff',
+			themeBtnCanBg: '#ffffff',
+			themebtnCancleColor: '#000000',
+			themeBorderColor: '',
+			themeBorderWidth: '1',
+			themeSelBg: '',
+			themeSelColor: '#fff',
+			themeCurmonthColor: '#000000',
+			themePrevMonthColor: '#aaaaaa',
+			themeNextMonthColor: '#aaaaaa',
+			themeNotAllowColor: '#aaaaaa',
+			themeBorderColorStyle: 'solid'
+		};
+	},
+	methods: {
+		changeBorderStyle(e) {
+			this.themeBorderColorStyle = e.target.innerHTML;
+		},
+		setIconUrl(e) {
+			let file = e.target.files || e.dataTransfer.files;
+			this.iconUrl = `./images/${file[0].name}`;
+		},
+		getTimeValue(value) {
+			this.value = value;
+		},
+		clearIconUrl() {
+			this.iconUrl = '';
+		},
+		clearTheme() {
+			this.theme = '';
+		},
+		clearPannelBg() {},
+		clear(type) {
+			switch (type) {
+				case 'theme':
+					this[type] = '#e57373';
+					break;
+				case 'themePannelBg':
+				case 'themeHeaderColor':
+				case 'themebtnConfirmColor':
+				case 'themeBtnCanBg':
+				case 'themeSelColor':
+					this[type] = '#ffffff';
+					break;
+				case 'themeHeaderBg':
+				case 'themeHeaderYear':
+				case 'themeHeaderMonth':
+				case 'themeHeaderSep':
+				case 'themeLeftArrow':
+				case 'themeRightArrow':
+				case 'themeWeekColor':
+				case 'themeBtnConBg':
+				case 'themeSelBg':
+					this[type] = '';
+					break;
+				case 'themebtnCancleColor':
+				case 'themeCurmonthColor':
+					this[type] = '#000000';
+					break;
+				case 'themePrevMonthColor':
+				case 'themeNextMonthColor':
+				case 'themeNotAllowColor':
+					this[type] = '#aaaaaa';
+					break;
+				case 'themeBorder':
+					this.themeBorderColor = '';
+					this.themeBorderWidth = '1';
+					this.themeBorderColorStyle = 'solid';
+					break;
+				default:
+					this[type] = '';
+			}
+		}
+
+	},
+	computed: {
+		themeBorderR() {
+			let color = this.themeBorderColor ? this.themeBorderColor : this.theme;
+			return `${this.themeBorderWidth}px ${this.themeBorderColorStyle} ${color}`;
+		}
+	},
+	components: {
+		calendar: __WEBPACK_IMPORTED_MODULE_0__calendar_vue___default.a
+	}
+};
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)();
@@ -9490,36 +9804,50 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n.calendar ul {\n  padding: 0;\n  margin: 0;\n}\n.calendar li {\n  display: inline-block;\n  list-style: none;\n}\n.calendar .input-wrapper {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  display: inline-block;\n}\n.calendar .date-icon {\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  width: 20px;\n  height: 20px;\n  background: url(" + __webpack_require__(6) + ");\n  background-size: contain;\n}\n.calendar .input {\n  width: 259px;\n  height: 30px;\n  padding: 5px;\n  padding-left: 30px;\n  border: 1px solid #ddd;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .input-clear {\n  position: absolute;\n  top: 6px;\n  right: 6px;\n  width: 16px;\n  height: 16px;\n}\n.calendar .input-clear:before,\n.calendar .input-clear:after {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  width: 100%;\n  height: 2px;\n  content: '';\n  background: #aaa;\n}\n.calendar .input-clear:before {\n  -webkit-transform: rotate(45deg);\n  -moz-transform: rotate(45deg);\n  -ms-transform: rotate(45deg);\n  -o-transform: rotate(45deg);\n  transform: rotate(45deg);\n}\n.calendar .input-clear:after {\n  -webkit-transform: rotate(-45deg);\n  -moz-transform: rotate(-45deg);\n  -ms-transform: rotate(-45deg);\n  -o-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n.calendar .pannel-wrapper {\n  width: 259px;\n  margin-top: 5px;\n  background: #fff;\n}\n.calendar .pannel-header {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  padding: 3px;\n  margin-bottom: 10px;\n  color: #fff;\n  text-align: center;\n  font-size: 1.5em;\n  background-color: #e57373;\n  -webkit-border-radius: 30px;\n  -moz-border-radius: 30px;\n  border-radius: 30px;\n}\n.calendar .year,\n.calendar .month {\n  display: inline-block;\n  margin: 0 5px;\n  cursor: pointer;\n}\n.calendar .prev,\n.calendar .next {\n  position: absolute;\n  top: 5px;\n  ((null)): 0;\n  cursor: pointer;\n}\n.calendar .prev {\n  left: 10px;\n}\n.calendar .next {\n  right: 10px;\n}\n.calendar .month-wrapper {\n  width: 157.5px;\n  margin: 0 auto;\n}\n.calendar .month-wrapper li {\n  width: 52.5px;\n  padding: 5px 0;\n  text-align: center;\n  cursor: pointer;\n}\n.calendar .date-list li {\n  width: 35px;\n  margin: 1px;\n  text-align: center;\n  font-size: 1em;\n  cursor: default;\n}\n.calendar .week {\n  margin-bottom: 5px;\n}\n.calendar .week li {\n  color: #e57373;\n  font-weight: bold;\n}\n.calendar .date li {\n  height: 35px;\n  color: #000;\n  line-height: 35px;\n  cursor: pointer;\n}\n.calendar .date .notCurMonth,\n.calendar .date .unvalid {\n  color: #aaa;\n}\n.calendar .date .unvalid {\n  cursor: not-allowed;\n}\n.calendar .time {\n  margin: 10px 0 15px;\n  text-align: center;\n}\n.calendar .time input {\n  width: 30px;\n  outline: none;\n  text-align: center;\n}\n.calendar li.selected {\n  color: #fff;\n  background-color: #e57373;\n  -webkit-border-radius: 20px;\n  -moz-border-radius: 20px;\n  border-radius: 20px;\n}\n.calendar .group-btn {\n  margin: 10px 0;\n  text-align: center;\n}\n.calendar .btn {\n  padding: 8px 15px;\n  margin: 0 15px;\n  border: 1px solid #e57373;\n  outline: none;\n  font-size: 16px;\n  background: #fff;\n  -webkit-border-radius: 10px;\n  -moz-border-radius: 10px;\n  border-radius: 10px;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .btn-confirm {\n  color: #fff;\n  background: #e57373;\n}\n.calendar .btn-cancle {\n  color: #000;\n  background: #fff;\n}\n.calendar .toggle-enter-active,\n.calendar .toggle-leave-active {\n  transition: opacity 0.5s, translateY 0.5s;\n}\n.calendar .toggle-enter,\n.calendar .toggle-leave-active {\n  opacity: 0;\n  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);\n}\n", ""]);
+exports.push([module.i, "\n.calendar {\n  float: left;\n}\n.select-wrapper {\n  margin-left: 300px;\n}\ninput[type='number'] {\n  width: 30px;\n}\ninput,\nselect {\n  outline: none;\n}\nlabel {\n  display: inline-block;\n  width: 200px;\n}\n.group {\n  margin: 10px 0;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 6 */
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.calendar ul {\n  padding: 0;\n  margin: 0;\n}\n.calendar li {\n  display: inline-block;\n  list-style: none;\n}\n.calendar .input-wrapper {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  display: inline-block;\n}\n.calendar .date-icon {\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  width: 20px;\n  height: 20px;\n  background: url(" + __webpack_require__(9) + ");\n  background-size: contain;\n}\n.calendar .input {\n  width: 259px;\n  height: 30px;\n  padding: 5px;\n  padding-left: 30px;\n  border: 1px solid #ddd;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .input-clear {\n  position: absolute;\n  top: 6px;\n  right: 6px;\n  width: 16px;\n  height: 16px;\n}\n.calendar .input-clear:before,\n.calendar .input-clear:after {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  width: 100%;\n  height: 2px;\n  content: '';\n  background: #aaa;\n}\n.calendar .input-clear:before {\n  -webkit-transform: rotate(45deg);\n  -moz-transform: rotate(45deg);\n  -ms-transform: rotate(45deg);\n  -o-transform: rotate(45deg);\n  transform: rotate(45deg);\n}\n.calendar .input-clear:after {\n  -webkit-transform: rotate(-45deg);\n  -moz-transform: rotate(-45deg);\n  -ms-transform: rotate(-45deg);\n  -o-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n.calendar .pannel-wrapper {\n  width: 259px;\n  margin-top: 5px;\n  background: #fff;\n}\n.calendar .pannel-header {\n  position: relative;\n  ((null)): 0;\n  ((null)): 0;\n  padding: 3px;\n  margin-bottom: 10px;\n  color: #fff;\n  text-align: center;\n  font-size: 1.5em;\n  background-color: #e57373;\n  -webkit-border-radius: 30px;\n  -moz-border-radius: 30px;\n  border-radius: 30px;\n}\n.calendar .year,\n.calendar .month {\n  display: inline-block;\n  margin: 0 5px;\n  cursor: pointer;\n}\n.calendar .prev,\n.calendar .next {\n  position: absolute;\n  top: 5px;\n  ((null)): 0;\n  cursor: pointer;\n}\n.calendar .prev {\n  left: 10px;\n}\n.calendar .next {\n  right: 10px;\n}\n.calendar .month-wrapper {\n  width: 157.5px;\n  margin: 0 auto;\n}\n.calendar .month-wrapper li {\n  width: 52.5px;\n  padding: 5px 0;\n  text-align: center;\n  cursor: pointer;\n}\n.calendar .date-list li {\n  width: 35px;\n  margin: 1px;\n  text-align: center;\n  font-size: 1em;\n  cursor: default;\n}\n.calendar .week {\n  margin-bottom: 5px;\n}\n.calendar .week li {\n  color: #e57373;\n  font-weight: bold;\n}\n.calendar .date li {\n  height: 35px;\n  color: #000;\n  line-height: 35px;\n  cursor: pointer;\n}\n.calendar .date .notCurMonth,\n.calendar .date .unvalid {\n  color: #aaa;\n}\n.calendar .date .unvalid {\n  cursor: not-allowed;\n}\n.calendar .time {\n  margin: 10px 0 15px;\n  text-align: center;\n}\n.calendar .time input {\n  width: 30px;\n  outline: none;\n  text-align: center;\n}\n.calendar li.selected {\n  color: #fff;\n  background-color: #e57373;\n  -webkit-border-radius: 20px;\n  -moz-border-radius: 20px;\n  border-radius: 20px;\n}\n.calendar .group-btn {\n  margin: 10px 0;\n  text-align: center;\n}\n.calendar .btn {\n  padding: 8px 15px;\n  margin: 0 15px;\n  border: 1px solid #e57373;\n  outline: none;\n  font-size: 16px;\n  background: #fff;\n  -webkit-border-radius: 10px;\n  -moz-border-radius: 10px;\n  border-radius: 10px;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -o-box-sizing: border-box;\n  box-sizing: border-box;\n}\n.calendar .btn-confirm {\n  color: #fff;\n  background: #e57373;\n}\n.calendar .btn-cancle {\n  color: #000;\n  background: #fff;\n}\n.calendar .toggle-enter-active,\n.calendar .toggle-leave-active {\n  transition: opacity 0.5s, translateY 0.5s;\n}\n.calendar .toggle-enter,\n.calendar .toggle-leave-active {\n  opacity: 0;\n  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNDg2NTQ3ODYxMDM2IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE0MjgiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTcxMS4zMDYyIDI5MC42OTcyYzI0LjI4MjEgMCA0NS4zNzY1LTE5LjcwNjkgNDUuMzc2NS00NC4wMzJWNDYuNTYwMjU1OTk5OTk5OTk1YzAtMjQuMzI1MS0yMS4wOTU0LTQ0LjA1MzUtNDUuMzc2NS00NC4wNTM1LTI0LjMwMjYgMC00My45ODggMTkuNzI4NC00My45ODggNDQuMDUzNXYyMDAuMTA0OTZDNjY3LjMxODMgMjcwLjk5MDMgNjg3LjAwMzYgMjkwLjY5NzIgNzExLjMwNjIgMjkwLjY5NzJ6TTYyMy40ODA4IDExMy40MjAzSDQwMC43NjQ5Mjh2NjYuNTEzOTJoMjIyLjcxNTkwNDAwMDAwMDAyVjExMy40MjAyODh6TTg4NC4wNTMgMTEzLjQyMDNoLTgyLjc3NDAxNnY2Ni4xNDUyOGg4NS45NDAyMjRjMjUuMjc4NSAwIDQ2LjYxMTUgMjEuMzc2IDQ2LjYxMTUgNDYuNjc3djE1My45Mjc2OEg5MC40Mzg2NTYwMDAwMDAwMXYtMTUzLjkyNzY4YzAtMjUuMyAyMS4zMzMtNDYuNjc3IDQ2LjYxMTUtNDYuNjc3aDg2LjUwMzQyNFYxMTMuNDIwMjg4aC04Mi42NDI5NDRjLTY0LjA4NiAwLTExNi41MDc2IDUyLjUwODctMTE2LjUwNzYgMTE2LjcwMzJ2Njc2LjgwMTUzNTk5OTk5OTljMCA2NC4xNzQxIDUwLjQ5MTQgMTE2LjY4MDcgMTE0LjU3NzQgMTE2LjY4MDdIODg0LjA1Mjk5MmM2NC4wNjI1IDAgMTE2LjUwNjYtNTIuNTA2NiAxMTYuNTA2Ni0xMTYuNjgwN1YyMzAuMTIzNTE5OTk5OTk5OThDMTAwMC41NTk2IDE2NS45MjkgOTQ4LjExNDQgMTEzLjQyMDMgODg0LjA1MyAxMTMuNDIwM3pNOTMzLjgyOTYgOTEwLjM1MTRjMCAyNS4zLTIxLjMzMyA0Ni42NzYtNDYuNjExNSA0Ni42NzZIMTM3LjA1MDExMTk5OTk5OTk4Yy0yNS4yNzg1IDAtNDYuNjExNS0yMS4zNzYtNDYuNjExNS00Ni42NzZWNDQ2LjQ0NTU2OEg5MzMuODI5NjMyVjkxMC4zNTEzNnpNMjY3LjEwODQgNjQ2LjE4MTljMzYuODc3MyAwIDY2Ljc1MjUtMjkuOTM5NyA2Ni43NTI1LTY2Ljg4MTUgMC0zNi45MjI0LTI5Ljg3NTItNjYuODYxMS02Ni43NTI1LTY2Ljg2MTEtMzYuODU0OCAwLTY2Ljc1MjUgMjkuOTM5Ny02Ni43NTI1IDY2Ljg2MTFDMjAwLjM1NTggNjE2LjI0MjIgMjMwLjI1MjUgNjQ2LjE4MTkgMjY3LjEwODQgNjQ2LjE4MTl6TTUxMS41NDg0IDY0Ni4xODE5YzM2Ljg1NTggMCA2Ni43NTI1LTI5LjkzOTcgNjYuNzUyNS02Ni44ODE1IDAtMzYuOTIyNC0yOS44OTU3LTY2Ljg2MTEtNjYuNzUyNS02Ni44NjExLTM2Ljg3NzMgMC02Ni43NTI1IDI5LjkzOTctNjYuNzUyNSA2Ni44NjExQzQ0NC43OTU5IDYxNi4yNDIyIDQ3NC42NzExIDY0Ni4xODE5IDUxMS41NDg0IDY0Ni4xODE5ek0yNjUuOTE2NCA4OTAuNzA5YzM2Ljg3NzMgMCA2Ni43NTE1LTI5LjkzOTcgNjYuNzUxNS02Ni44NjExIDAtMzYuOTQyOC0yOS44NzQyLTY2Ljg4MjYtNjYuNzUxNS02Ni44ODI2LTM2Ljg1NTggMC02Ni43NTI1IDI5LjkzOTctNjYuNzUyNSA2Ni44ODI2QzE5OS4xNjM5IDg2MC43NjkzIDIyOS4wNTk2IDg5MC43MDkgMjY1LjkxNjQgODkwLjcwOXpNNTExLjU0ODQgODkwLjcwOWMzNi44NTU4IDAgNjYuNzUyNS0yOS45Mzk3IDY2Ljc1MjUtNjYuODYxMSAwLTM2Ljk0MjgtMjkuODk1Ny02Ni44ODI2LTY2Ljc1MjUtNjYuODgyNi0zNi44NzczIDAtNjYuNzUyNSAyOS45Mzk3LTY2Ljc1MjUgNjYuODgyNkM0NDQuNzk1OSA4NjAuNzY5MyA0NzQuNjcxMSA4OTAuNzA5IDUxMS41NDg0IDg5MC43MDl6TTc1NS42NDEzIDY0Ni4xODE5YzM2Ljg1NjggMCA2Ni43NTM1LTI5LjkzOTcgNjYuNzUzNS02Ni44ODE1IDAtMzYuOTIyNC0yOS44OTY3LTY2Ljg2MTEtNjYuNzUzNS02Ni44NjExLTM2Ljg3NzMgMC02Ni43NTI1IDI5LjkzOTctNjYuNzUyNSA2Ni44NjExQzY4OC44ODk5IDYxNi4yNDIyIDcxOC43NjQgNjQ2LjE4MTkgNzU1LjY0MTMgNjQ2LjE4MTl6TTMxMS43MDM2IDI5MC42OTcyYzI0LjI4MTEgMCA0NS4zNzY1LTE5LjcwNjkgNDUuMzc2NS00NC4wMzJWNDYuNTYwMjU1OTk5OTk5OTk1YzAtMjQuMzI1MS0yMS4wOTQ0LTQ0LjA1MzUtNDUuMzc2NS00NC4wNTM1LTI0LjMwMTYgMC00My45ODkgMTkuNzI4NC00My45ODkgNDQuMDUzNXYyMDAuMTA0OTZDMjY3LjcxNDYgMjcwLjk5MDMgMjg3LjQwMiAyOTAuNjk3MiAzMTEuNzAzNiAyOTAuNjk3MnoiIHAtaWQ9IjE0MjkiIGZpbGw9IiNiZmJmYmYiPjwvcGF0aD48L3N2Zz4="
 
 /***/ }),
-/* 7 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(9)
+__webpack_require__(14)
 
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(4),
+  __webpack_require__(5),
   /* template */
-  __webpack_require__(8),
+  __webpack_require__(12),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "F:\\code\\vue-datepicker\\src\\calendar.vue"
+Component.options.__file = "E:\\code\\vue-datepicker\\src\\calendar.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] calendar.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -9540,7 +9868,101 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 8 */
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('calendar', {
+    attrs: {
+      "iconUrl": _vm.iconUrl,
+      "theme": _vm.theme,
+      "themepannelbg": _vm.themePannelBg,
+      "themeheadercolor": _vm.themeHeaderColor,
+      "themeheaderbg": _vm.themeHeaderBg,
+      "themeheaderyear": _vm.themeHeaderYear,
+      "themeheadermonth": _vm.themeHeaderMonth,
+      "themeheadersep": _vm.themeHeaderSep,
+      "themeleftarrow": _vm.themeLeftArrow,
+      "themerightarrow": _vm.themeRightArrow,
+      "themeweekcolor": _vm.themeWeekColor,
+      "themebtnconbg": _vm.themeBtnConBg,
+      "themebtnconfirmcolor": _vm.themebtnConfirmColor,
+      "themebtncanbg": _vm.themeBtnCanBg,
+      "themebtncanclecolor": _vm.themebtnCancleColor,
+      "themeselbg": _vm.themeSelBg,
+      "themeselcolor": _vm.themeSelColor,
+      "themecurmonthcolor": _vm.themeCurmonthColor,
+      "themeprevmonthcolor": _vm.themePrevMonthColor,
+      "themenextmonthcolor": _vm.themeNextMonthColor,
+      "themenotallowcolor": _vm.themeNotAllowColor,
+      "themeborder": _vm.themeBorderR,
+      "type": _vm.type
+    },
+    on: {
+      "getValue": _vm.getTimeValue
+    }
+  }), _vm._v(" "), _c('div', {
+    staticClass: "select-wrapper"
+  }, [_c('div', {
+    staticClass: "group"
+  }, [_c('label', [_vm._v("getValue:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.value))])]), _vm._v(" "), _c('div', {
+    staticClass: "group"
+  }, [_c('label', [_vm._v("type:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.type),
+      expression: "type"
+    }],
+    on: {
+      "change": function($event) {
+        _vm.type = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        })[0]
+      }
+    }
+  }, [_c('option', [_vm._v("single")]), _vm._v(" "), _c('option', [_vm._v("range")]), _vm._v(" "), _c('option', [_vm._v("time")])])]), _vm._v(" "), _c('div', {
+    staticClass: "group"
+  }, [_c('label', [_vm._v("theme:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.theme),
+      expression: "theme"
+    }],
+    attrs: {
+      "type": "color"
+    },
+    domProps: {
+      "value": _vm._s(_vm.theme)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.theme = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": function($event) {
+        _vm.clear("theme")
+      }
+    }
+  }, [_vm._v("clear")])])])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-64b74f3c", module.exports)
+  }
+}
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -9833,13 +10255,39 @@ if (false) {
 }
 
 /***/ }),
-/* 9 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(5);
+var content = __webpack_require__(7);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("4fa17baf", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-64b74f3c!./../node_modules/stylus-loader/index.js!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./demo.vue", function() {
+     var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-64b74f3c!./../node_modules/stylus-loader/index.js!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./demo.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(8);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -9859,7 +10307,7 @@ if(false) {
 }
 
 /***/ }),
-/* 10 */
+/* 15 */
 /***/ (function(module, exports) {
 
 /**
@@ -9892,7 +10340,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 11 */
+/* 16 */
 /***/ (function(module, exports) {
 
 var g;
@@ -9919,1061 +10367,17 @@ module.exports = g;
 
 
 /***/ }),
-/* 12 */,
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/* styles */
-__webpack_require__(17)
-
-var Component = __webpack_require__(1)(
-  /* script */
-  __webpack_require__(14),
-  /* template */
-  __webpack_require__(16),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "F:\\code\\vue-datepicker\\src\\demo.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] demo.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-64b74f3c", Component.options)
-  } else {
-    hotAPI.reload("data-v-64b74f3c", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__calendar_vue__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__calendar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__calendar_vue__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = {
-	data() {
-		return {
-			value: '',
-			type: 'single',
-			iconUrl: '',
-			theme: '#e57373',
-			themePannelBg: '#ffffff',
-			themeHeaderColor: '#ffffff',
-			themeHeaderBg: '',
-			themeHeaderYear: '',
-			themeHeaderMonth: '',
-			themeHeaderSep: '',
-			themeLeftArrow: '',
-			themeRightArrow: '',
-			themeWeekColor: '',
-			themeBtnConBg: '',
-			themebtnConfirmColor: '#ffffff',
-			themeBtnCanBg: '#ffffff',
-			themebtnCancleColor: '#000000',
-			themeBorderColor: '',
-			themeBorderWidth: '1',
-			themeSelBg: '',
-			themeSelColor: '#fff',
-			themeCurmonthColor: '#000000',
-			themePrevMonthColor: '#aaaaaa',
-			themeNextMonthColor: '#aaaaaa',
-			themeNotAllowColor: '#aaaaaa',
-			themeBorderColorStyle: 'solid'
-		};
-	},
-	methods: {
-		changeBorderStyle(e) {
-			this.themeBorderColorStyle = e.target.innerHTML;
-		},
-		setIconUrl(e) {
-			let file = e.target.files || e.dataTransfer.files;
-			this.iconUrl = `./images/${file[0].name}`;
-		},
-		getTimeValue(value) {
-			this.value = value;
-		},
-		clearIconUrl() {
-			this.iconUrl = '';
-		},
-		clearTheme() {
-			this.theme = '';
-		},
-		clearPannelBg() {},
-		clear(type) {
-			switch (type) {
-				case 'theme':
-					this[type] = '#e57373';
-					break;
-				case 'themePannelBg':
-				case 'themeHeaderColor':
-				case 'themebtnConfirmColor':
-				case 'themeBtnCanBg':
-				case 'themeSelColor':
-					this[type] = '#ffffff';
-					break;
-				case 'themeHeaderBg':
-				case 'themeHeaderYear':
-				case 'themeHeaderMonth':
-				case 'themeHeaderSep':
-				case 'themeLeftArrow':
-				case 'themeRightArrow':
-				case 'themeWeekColor':
-				case 'themeBtnConBg':
-				case 'themeSelBg':
-					this[type] = '';
-					break;
-				case 'themebtnCancleColor':
-				case 'themeCurmonthColor':
-					this[type] = '#000000';
-					break;
-				case 'themePrevMonthColor':
-				case 'themeNextMonthColor':
-				case 'themeNotAllowColor':
-					this[type] = '#aaaaaa';
-					break;
-				case 'themeBorder':
-					this.themeBorderColor = '';
-					this.themeBorderWidth = '1';
-					this.themeBorderColorStyle = 'solid';
-					break;
-				default:
-					this[type] = '';
-			}
-		}
-
-	},
-	computed: {
-		themeBorderR() {
-			let color = this.themeBorderColor ? this.themeBorderColor : this.theme;
-			return `${this.themeBorderWidth}px ${this.themeBorderColorStyle} ${color}`;
-		}
-	},
-	components: {
-		calendar: __WEBPACK_IMPORTED_MODULE_0__calendar_vue___default.a
-	}
-};
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)();
-// imports
-
-
-// module
-exports.push([module.i, "\n.calendar {\n  float: left;\n}\n.select-wrapper {\n  margin-left: 300px;\n}\ninput[type='number'] {\n  width: 30px;\n}\ninput,\nselect {\n  outline: none;\n}\nlabel {\n  display: inline-block;\n  width: 200px;\n}\n.group {\n  margin: 10px 0;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('calendar', {
-    attrs: {
-      "iconUrl": _vm.iconUrl,
-      "theme": _vm.theme,
-      "themepannelbg": _vm.themePannelBg,
-      "themeheadercolor": _vm.themeHeaderColor,
-      "themeheaderbg": _vm.themeHeaderBg,
-      "themeheaderyear": _vm.themeHeaderYear,
-      "themeheadermonth": _vm.themeHeaderMonth,
-      "themeheadersep": _vm.themeHeaderSep,
-      "themeleftarrow": _vm.themeLeftArrow,
-      "themerightarrow": _vm.themeRightArrow,
-      "themeweekcolor": _vm.themeWeekColor,
-      "themebtnconbg": _vm.themeBtnConBg,
-      "themebtnconfirmcolor": _vm.themebtnConfirmColor,
-      "themebtncanbg": _vm.themeBtnCanBg,
-      "themebtncanclecolor": _vm.themebtnCancleColor,
-      "themeselbg": _vm.themeSelBg,
-      "themeselcolor": _vm.themeSelColor,
-      "themecurmonthcolor": _vm.themeCurmonthColor,
-      "themeprevmonthcolor": _vm.themePrevMonthColor,
-      "themenextmonthcolor": _vm.themeNextMonthColor,
-      "themenotallowcolor": _vm.themeNotAllowColor,
-      "themeborder": _vm.themeBorderR,
-      "type": _vm.type
-    },
-    on: {
-      "getValue": _vm.getTimeValue
-    }
-  }), _vm._v(" "), _c('div', {
-    staticClass: "select-wrapper"
-  }, [_c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("getValue:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.value))])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("type:")]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.type),
-      expression: "type"
-    }],
-    on: {
-      "change": function($event) {
-        _vm.type = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        })[0]
-      }
-    }
-  }, [_c('option', [_vm._v("single")]), _vm._v(" "), _c('option', [_vm._v("range")]), _vm._v(" "), _c('option', [_vm._v("time")])])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("iconUrl:")]), _vm._v(" "), _c('input', {
-    attrs: {
-      "type": "file"
-    },
-    on: {
-      "change": _vm.setIconUrl
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("iconUrl")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("theme:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.theme),
-      expression: "theme"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.theme)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.theme = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("theme")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themepannelbg:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themePannelBg),
-      expression: "themePannelBg"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themePannelBg)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themePannelBg = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themePannelBg")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themeheadercolor:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeHeaderColor),
-      expression: "themeHeaderColor"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeHeaderColor)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeHeaderColor = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themeHeaderColor")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themeheaderbg:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeHeaderBg),
-      expression: "themeHeaderBg"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeHeaderBg)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeHeaderBg = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themeHeaderBg")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themeheaderyear:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeHeaderYear),
-      expression: "themeHeaderYear"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeHeaderYear)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeHeaderYear = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themeHeaderYear")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themeheadermonth:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeHeaderMonth),
-      expression: "themeHeaderMonth"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeHeaderMonth)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeHeaderMonth = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themeHeaderMonth")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themeheadersep:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeHeaderSep),
-      expression: "themeHeaderSep"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeHeaderSep)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeHeaderSep = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themeHeaderSep")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themeleftarrow:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeLeftArrow),
-      expression: "themeLeftArrow"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeLeftArrow)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeLeftArrow = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themeLeftArrow")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themerightarrow:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeRightArrow),
-      expression: "themeRightArrow"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeRightArrow)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeRightArrow = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themeRightArrow")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themeweekcolor:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeWeekColor),
-      expression: "themeWeekColor"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeWeekColor)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeWeekColor = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themeWeekColor")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themebtnconbg:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeBtnConBg),
-      expression: "themeBtnConBg"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeBtnConBg)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeBtnConBg = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themeBtnConBg")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themebtnconfirmcolor:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themebtnConfirmColor),
-      expression: "themebtnConfirmColor"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themebtnConfirmColor)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themebtnConfirmColor = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themebtnConfirmColor")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themebtncanbg:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeBtnCanBg),
-      expression: "themeBtnCanBg"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeBtnCanBg)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeBtnCanBg = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themeBtnCanBg")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themebtncanclecolor:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themebtnCancleColor),
-      expression: "themebtnCancleColor"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themebtnCancleColor)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themebtnCancleColor = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themebtnCancleColor")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themeselbg:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeSelBg),
-      expression: "themeSelBg"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeSelBg)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeSelBg = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themeSelBg")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themeselcolor:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeSelColor),
-      expression: "themeSelColor"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeSelColor)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeSelColor = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themeSelColor")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themecurmonthcolor:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeCurmonthColor),
-      expression: "themeCurmonthColor"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeCurmonthColor)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeCurmonthColor = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themeCurmonthColor")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themeprevmonthcolor:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themePrevMonthColor),
-      expression: "themePrevMonthColor"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themePrevMonthColor)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themePrevMonthColor = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themePrevMonthColor")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themenextmonthcolor:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeNextMonthColor),
-      expression: "themeNextMonthColor"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeNextMonthColor)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeNextMonthColor = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themeNextMonthColor")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themenotallowcolor:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeNotAllowColor),
-      expression: "themeNotAllowColor"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeNotAllowColor)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeNotAllowColor = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themeNotAllowColor")
-      }
-    }
-  }, [_vm._v("clear")])]), _vm._v(" "), _c('div', {
-    staticClass: "group"
-  }, [_c('label', [_vm._v("themeborder:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeBorderWidth),
-      expression: "themeBorderWidth"
-    }],
-    attrs: {
-      "type": "number",
-      "min": "0"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeBorderWidth)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeBorderWidth = _vm._n($event.target.value)
-      },
-      "blur": function($event) {
-        _vm.$forceUpdate()
-      }
-    }
-  }), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeBorderColorStyle),
-      expression: "themeBorderColorStyle"
-    }],
-    on: {
-      "change": function($event) {
-        _vm.themeBorderColorStyle = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        })[0]
-      }
-    }
-  }, [_c('option', [_vm._v("none")]), _vm._v(" "), _c('option', [_vm._v("dotted")]), _vm._v(" "), _c('option', [_vm._v("dashed")]), _vm._v(" "), _c('option', [_vm._v("solid")])]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.themeBorderColor),
-      expression: "themeBorderColor"
-    }],
-    attrs: {
-      "type": "color"
-    },
-    domProps: {
-      "value": _vm._s(_vm.themeBorderColor)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.themeBorderColor = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        _vm.clear("themeBorder")
-      }
-    }
-  }, [_vm._v("clear")])])])], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-64b74f3c", module.exports)
-  }
-}
-
-/***/ }),
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(15);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("4fa17baf", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-64b74f3c!./../node_modules/stylus-loader/index.js!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./demo.vue", function() {
-     var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-64b74f3c!./../node_modules/stylus-loader/index.js!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./demo.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 
-var _vue = __webpack_require__(3);
+var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _demo = __webpack_require__(13);
+var _demo = __webpack_require__(3);
 
 var _demo2 = _interopRequireDefault(_demo);
 

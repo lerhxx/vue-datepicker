@@ -39,17 +39,17 @@
 					<option>time</option>
 				</select>
 			</div>
-			<div class='group'>
+			<!-- <div class='group'>
 				<label>iconUrl:</label>
 				<input type='file' @change='setIconUrl'/>
 				<button @click='clear("iconUrl")'>clear</button>
-			</div>
+			</div> -->
 			<div class='group'>
 				<label>theme:</label>
 				<input type='color' v-model='theme'/>
 				<button @click='clear("theme")'>clear</button>
 			</div>
-			<div class='group'>
+<!-- 			<div class='group'>
 				<label>themepannelbg:</label>
 				<input type='color' v-model='themePannelBg'/>
 				<button @click='clear("themePannelBg")'>clear</button>
@@ -155,7 +155,7 @@
 				</select>
 				<input type='color' v-model='themeBorderColor'/>
 				<button @click='clear("themeBorder")'>clear</button>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </template>
